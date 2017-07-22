@@ -15,13 +15,12 @@ export class AppComponent {
 
     constructor(private router: Router, private route: ActivatedRoute, private uiService: UiService, private appRef: ApplicationRef, private changeDetectorRef: ChangeDetectorRef, private translate: TranslateService) { 
         // this language will be used as a fallback when a translation isn't found in the current language
-        translate.setDefaultLang('en');
+        translate.setDefaultLang('de');
 
          // the lang to use, if the lang isn't available, it will use the current loader to get them
-        translate.use('en');
+        translate.use('de');
 
         this.router.events.subscribe((event) => {
-            console.log(event)
           if (event instanceof RoutesRecognized) {
             let leavingSlideIndex = _.get(event, 'state.root.firstChild.data.slideIndex');
             let enteringSlideIndex = _.get(this.route, 'snapshot.firstChild.data.slideIndex');

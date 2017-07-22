@@ -6,3 +6,12 @@
     left: 0;
     background: red;
 }
+
+.wbc-turned-link {
+    position: absolute;
+    left: 3em;
+    bottom: 3em;
+    transform: rotate(90deg);
+    color: black;
+    letter-spacing: 2px;
+}
