@@ -1,0 +1,21 @@
+// #wbc-main-page {
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     bottom: 0;
+//     left: 0;
+// }
+
+wbc-nav {
+    position: absolute;
+    z-index: 10;
+    right: 1em;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+wbc-footer {
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+}

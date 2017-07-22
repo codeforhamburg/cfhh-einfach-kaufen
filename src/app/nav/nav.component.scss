@@ -1,0 +1,15 @@
+#wbc-nav-container {
+    ul {
+        list-style: none;
+        li {
+            a {
+                margin: 1em;
+                border-radius: 50%;
+                width: 10px;
+                height: 10px;
+                background: black;
+                display: inline-block;
+            }
+        }
+    }
+}
