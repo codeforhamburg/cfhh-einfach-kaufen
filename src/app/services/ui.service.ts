@@ -6,8 +6,9 @@ import {Subject} from 'rxjs/Subject';
 export class UiService {
 
     public pos = 0;
-    public direction = 'down';
+    public direction = 'none';
     public currentPosition: number = undefined;
+    public showFooter: boolean = false;
 
     // direction$: Observable<String>;
     // directionSubj : Subject<String>;
