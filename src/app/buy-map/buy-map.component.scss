@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 :host {
     position: absolute;
     top: 0;
@@ -5,4 +7,11 @@
     bottom: 0;
     left: 0;
     background: green;
+
+     .wbc-filter-item {
+
+        &.active {
+            background: $primaryBlue;
+        }
+     }
 }

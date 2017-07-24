@@ -1,5 +1,5 @@
 <div id="wbc-filter">
     <ul *ngIf="dataService.activeCat">
-        <li *ngFor="let sub of dataService.activeCat.subs" (click)="dataService.toggleSub(sub)">{{sub.name | translate }}</li>
+        <li class="wbc-filter-item" *ngFor="let sub of dataService.activeCat.subs" (click)="dataService.toggleSub(sub)" [ngClass]="{'active' : sub.active}">{{sub.name | translate }}</li>
     </ul>
 </div>

@@ -1,0 +1,16 @@
+#wbc-filter {
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        .wbc-filter-item {
+            background: white;
+            padding: 0.5em 0.3em;
+        }
+
+        .wbc-filter-item:not(:last-child) { 
+            border-bottom: 1px solid black;
+        }
+    }
+}
