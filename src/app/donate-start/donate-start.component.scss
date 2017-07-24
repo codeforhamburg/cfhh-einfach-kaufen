@@ -1,10 +1,17 @@
+@import '../../styles/variables.scss';
+
+
 :host {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background: red;
+    background: $primaryRed;
+
+    h1 {
+        color: white;
+    }
 }
 
 .wbc-turned-link {

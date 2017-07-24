@@ -79,4 +79,8 @@ export class DataService {
       }
   }
 
+  toggleSub(sub){
+      sub.active = !sub.active;
+  }
+
 }
