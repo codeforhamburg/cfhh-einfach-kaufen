@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { UiService } from '../services/ui.service';
+import { DataService } from '../services/data.service';
+import { MapService } from '../services/map.service';
 import { slideVertical } from '../app-routing-animations';
 import { Slideable } from '../abstract/RoutingAnimationHelper';
 
@@ -16,9 +18,13 @@ export class BuyMapComponent extends Slideable implements OnInit {
 
     public orderId = 4;
 
-  // constructor(private uiService: UiService) { }
+  constructor(private dataService: DataService, protected cdRef2: ChangeDetectorRef, private uiService2: UiService, private mapService: MapService) { 
+      super(cdRef2, uiService2);
+
+  }
 
   ngOnInit() {
+    this.mapService.initMap('wbc-buy-map')
   }
 
 }

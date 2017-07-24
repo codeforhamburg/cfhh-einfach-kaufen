@@ -9,11 +9,11 @@ const styleSlidedTop = style({transform: 'translateY(-100%)', display: 'none'});
 const styleSlideBot = style({transform: 'translateY(100%)', display: 'none'});
 const stateSlidedTop = state('left', styleSlidedTop);
 const stateSlidedBot = state('right', styleSlideBot);
-const transitionsSlideLeft = [
+const transitionsSlideTop = [
   transition('fromTop => void', animate('.5s ease-out', styleSlideBot)),
   transition('void => fromTop', [styleSlidedTop, animate('.5s ease-out')])
 ];
-const transitionsSlideRight = [
+const transitionsSlideBot = [
   transition('fromBot => void', animate('.5s ease-out', styleSlidedTop)),
   transition('void => fromBot', [styleSlideBot, animate('.5s ease-out')])
 ];
@@ -21,8 +21,8 @@ export const slideVertical = trigger('slideVertical', [
   ...statesSlidedIn,
   stateSlidedTop,
   stateSlidedBot,
-  ...transitionsSlideLeft,
-  ...transitionsSlideRight
+  ...transitionsSlideTop,
+  ...transitionsSlideBot
 ]);
 
 

@@ -2,5 +2,4 @@
 <p>{{ 'HELLO' | translate }}</p>
 <router-outlet id="wbc-main-page"></router-outlet>
 
-<div id="wbc-show-footer-button" (click)="uiService.showFooter = !uiService.showFooter"> {{ 'Show Footer' | translate }}</div>
-<wbc-footer *ngIf="uiService.showFooter" [@slideInAnimation]></wbc-footer>
+<wbc-footer></wbc-footer>

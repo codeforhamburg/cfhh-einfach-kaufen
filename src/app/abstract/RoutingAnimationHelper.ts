@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef, AfterViewChecked, HostBinding } from '@angular/core';
-import {Subject} from 'rxjs/Subject';
+import { Subject } from 'rxjs/Subject';
 import { UiService } from '../services/ui.service';
 
 

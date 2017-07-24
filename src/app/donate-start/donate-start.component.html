@@ -1,13 +1,17 @@
 
-<a class="wbc-turned-link" routerLink="/kaufen" routerLinkActive="active"> {{ "Kaufen" | translate }}></a>
+<a class="wbc-turned-link" routerLink="/kaufen" routerLinkActive="active"> {{ "Kaufen" | translate }} ></a>
 
 <h1>
 {{ 'spenden-headline' | translate }}
 </h1>
 
 <ul class="wbc-four-row">
+    <li class="wbc-image-title-container" *ngFor="let cat of dataService.categories"><div class="wbc-image-container" (click)="dataService.activate(cat, 'donate')"><img src="{{cat.img}}"></div>{{ cat.name | translate }}</li>
+</ul>
+<!-- <ul class="wbc-four-row">
     <li class="wbc-image-title-container"><div class="wbc-image-container"><img src="assets/img/placeholder.jpg"></div> {{ 'Sonstiges' | translate }}</li>
     <li class="wbc-image-title-container"><div class="wbc-image-container"><img src="assets/img/placeholder.jpg"></div> {{ 'Kleidung' | translate }}</li>
     <li class="wbc-image-title-container"><div class="wbc-image-container"><img src="assets/img/placeholder.jpg"></div> {{ 'Haushalt' | translate }}</li>
     <li class="wbc-image-title-container"><div class="wbc-image-container"><img src="assets/img/placeholder.jpg"></div> {{ 'Freizeit' | translate }}</li>
 </ul>
+ -->

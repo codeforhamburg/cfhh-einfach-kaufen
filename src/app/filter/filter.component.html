@@ -1,0 +1,5 @@
+<div id="wbc-filter">
+    <ul *ngIf="dataService.activeCat">
+        <li *ngFor="let sub of dataService.activeCat.subs">{{sub.name | translate }}</li>
+    </ul>
+</div>

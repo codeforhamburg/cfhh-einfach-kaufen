@@ -1,5 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { UiService } from '../services/ui.service';
+import { DataService } from '../services/data.service';
+
 import { slideVertical } from '../app-routing-animations';
 import { Slideable } from '../abstract/RoutingAnimationHelper';
 
@@ -14,6 +16,11 @@ export class BuyStartComponent extends Slideable {
 
     public orderId = 3;
     public direction;
+
+    constructor(private dataService: DataService, protected cdRef2: ChangeDetectorRef, private uiService2: UiService) { 
+      super(cdRef2, uiService2);
+
+    }
 
     // constructor(private uiService: UiService, private ref: ChangeDetectorRef) { }
 

@@ -13,12 +13,16 @@ import { FooterComponent } from './footer/footer.component';
 import { NavComponent } from './nav/nav.component';
 
 import { UiService } from './services/ui.service';
+import { DataService } from './services/data.service';
+import { MapService } from './services/map.service';
 
 import {HttpModule, Http} from '@angular/http';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 import { CanDeactivateAfterChangeDetectionGuard } from './guards/can-deactivate-after-change-detection.guard';
+import { FilterComponent } from './filter/filter.component';
+import { IconFilterComponent } from './icon-filter/icon-filter.component';
 
 export function HttpLoaderFactory(http: Http) {
     return new TranslateHttpLoader(http);
@@ -33,7 +37,9 @@ export function HttpLoaderFactory(http: Http) {
     DonateStartComponent,
     DonateMapComponent,
     FooterComponent,
-    NavComponent
+    NavComponent,
+    FilterComponent,
+    IconFilterComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +54,7 @@ export function HttpLoaderFactory(http: Http) {
     BrowserAnimationsModule,
     AppRoutingModule,
   ],
-  providers: [UiService, CanDeactivateAfterChangeDetectionGuard],
+  providers: [UiService, CanDeactivateAfterChangeDetectionGuard, DataService, MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

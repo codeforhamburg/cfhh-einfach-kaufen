@@ -1,0 +1,18 @@
+@import '../../styles/variables.scss';
+
+:host {
+    width: 100%;
+    background: $primaryBlue;
+    .wbc-footer {
+        padding: 1em;
+    }
+}
+
+
+#wbc-show-footer-button {
+    position: absolute;
+    top: -27px;
+    background: #eee;
+    padding: 0.3em 0.3em;
+    right: 0px;
+}

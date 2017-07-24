@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { UiService } from '../services/ui.service';
+import { MapService } from '../services/map.service';
 import { slideVertical } from '../app-routing-animations';
 import { Slideable } from '../abstract/RoutingAnimationHelper';
 
@@ -11,17 +12,18 @@ import { Slideable } from '../abstract/RoutingAnimationHelper';
   // host: {'[@routerSlide]': 'uiService.direction'}
 
 })
-export class DonateMapComponent extends Slideable {
+export class DonateMapComponent extends Slideable implements OnInit {
 
     public orderId = 1;
 
-    // constructor(private uiService: UiService, private changeDetectorRef: ChangeDetectorRef) { }
+    constructor(private uiService2: UiService, private cdRef2: ChangeDetectorRef, private mapService: MapService) {
+      super(cdRef2, uiService2);
+    }
 
-    // ngOnInit() {
-    // console.log("init")
+    ngOnInit() {
+        this.mapService.initMap('wbc-donate-map');
 
-
-    // }
+    }
 
     // ngOnChanges() {
     //     console.log("change");

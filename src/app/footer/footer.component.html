@@ -1,3 +1,4 @@
-<p>
-  footer works!
-</p>
+<div id="wbc-show-footer-button" (click)="uiService.showFooter = !uiService.showFooter"> {{ 'Show Footer' | translate }}</div>
+
+
+<div class="wbc-footer" *ngIf="uiService.showFooter" [@slideInAnimation]>LOGO LOGO LOGO   THANK YOU EVERYONE</div>
