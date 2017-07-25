@@ -1,4 +1,5 @@
 <div id="wbc-nav-container">
+    <p class="wbc-rotate-text-top" *ngIf="uiService.currentIndex < 3">{{'Spenden' | translate }}</p>
     <ul>
         <li>
             <a routerLink="/spenden-karte" routerLinkActive="active"></a>
@@ -13,4 +14,5 @@
             <a routerLink="/kaufen-karte" routerLinkActive="active"></a>
         </li>
     </ul>
+    <p class="wbc-rotate-text-bot" *ngIf="uiService.currentIndex > 2">{{'Kaufen' | translate }}</p>
 </div>

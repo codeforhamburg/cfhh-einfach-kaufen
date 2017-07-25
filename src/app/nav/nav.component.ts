@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UiService} from '../services/ui.service';
 
 @Component({
@@ -9,17 +9,18 @@ import { UiService} from '../services/ui.service';
 })
 export class NavComponent implements OnInit {
 
-    constructor(private router: Router, private uiService: UiService) { }
-
-    activateRoute(route, id) {
-        if (id > this.uiService.currentPosition) {
-            this.uiService.direction = 'down';
-        } else {
-            this.uiService.direction = 'up';
-        }
-        this.uiService.currentPosition = id;
-        this.router.navigateByUrl(route);
+    constructor(private router: Router, private uiService: UiService) { 
     }
+
+    // activateRoute(route, id) {
+    //     if (id > this.uiService.currentPosition) {
+    //         this.uiService.direction = 'down';
+    //     } else {
+    //         this.uiService.direction = 'up';
+    //     }
+    //     this.uiService.currentPosition = id;
+    //     this.router.navigateByUrl(route);
+    // }
 
     ngOnInit() {
     }

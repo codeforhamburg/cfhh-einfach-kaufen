@@ -45,6 +45,7 @@ export class AppComponent {
             } else {
               this.uiService.setDirection(null);
             }
+            this.uiService.currentIndex = leavingSlideIndex;
           }
         });
     }

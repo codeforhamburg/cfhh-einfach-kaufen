@@ -9,6 +9,7 @@ export class UiService {
     public direction = 'none';
     public currentPosition: number = undefined;
     public showFooter: boolean = false;
+    public currentIndex = 3;
 
     public showSelectedFeature = false;
 

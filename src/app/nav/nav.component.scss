@@ -3,7 +3,7 @@
         list-style: none;
         li {
             a {
-                margin: 1em;
+                margin: 0.8em;
                 border-radius: 50%;
                 width: 10px;
                 height: 10px;
@@ -17,5 +17,21 @@
             }
 
         }
+    }
+
+    .wbc-rotate-text-top {
+        position: absolute;
+        transform: rotate(90deg);
+        margin: 0;
+        left: 30px;
+        top: -25px;
+    }
+
+    .wbc-rotate-text-bot {
+        position: absolute;
+        transform: rotate(90deg);
+        margin: 0;
+        left: 30px;
+        // top: -25px;
     }
 }
