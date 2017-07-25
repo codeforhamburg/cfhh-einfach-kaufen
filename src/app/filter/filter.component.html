@@ -1,5 +1,11 @@
-<div id="wbc-filter">
-    <ul *ngIf="dataService.activeCat">
-        <li class="wbc-filter-item" *ngFor="let sub of dataService.activeCat.subs" (click)="mapService.toggleSub(sub)" [ngClass]="{'active' : sub.active}">{{sub.name | translate }}</li>
+<div id="wbc-filter" *ngIf="dataService.activeCat">
+    Was brauchst du genau?
+    <ul>
+        <li class="wbc-filter-item" *ngFor="let sub of dataService.activeCat.subs" (click)="mapService.toggleSub(sub)" [ngClass]="{'active' : sub.active}">{{sub.name | translate }}
+            <span *ngIf="sub.active" class="checkmark">
+                <div class="checkmark_stem"></div>
+                <div class="checkmark_kick"></div>
+            </span>
+        </li>
     </ul>
 </div>

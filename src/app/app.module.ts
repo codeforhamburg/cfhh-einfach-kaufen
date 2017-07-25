@@ -24,6 +24,7 @@ import { CanDeactivateAfterChangeDetectionGuard } from './guards/can-deactivate-
 import { FilterComponent } from './filter/filter.component';
 import { IconFilterComponent } from './icon-filter/icon-filter.component';
 import { InfoboxComponent } from './infobox/infobox.component';
+import { BottomRightComponent } from './bottom-right/bottom-right.component';
 
 export function HttpLoaderFactory(http: Http) {
     return new TranslateHttpLoader(http);
@@ -41,7 +42,8 @@ export function HttpLoaderFactory(http: Http) {
     NavComponent,
     FilterComponent,
     IconFilterComponent,
-    InfoboxComponent
+    InfoboxComponent,
+    BottomRightComponent
   ],
   imports: [
     BrowserModule,
