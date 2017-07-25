@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class DataService {
 
-    private data;
+    // private _data: BehaviorSubject<List<Object>> = new BehaviorSubject(List([]));
     public categories = [];
     public activeCat;
+    public data = new Subject();
+
+    getData() {
+        return this.data.asObservable();
+    }
 
   constructor(private http: Http, private router: Router) { 
 
@@ -57,9 +64,9 @@ export class DataService {
           }
       ]
 
-      http.get("https://spreadsheets.google.com/feeds/list/1HkqOPm5Q9Ey-gl781tu7wgtDLZvd6-KuxAUYe2axwqo/od6/public/values?alt=json")
+      http.get("https://spreadsheets.google.com/feeds/list/1HkqOPm5Q9Ey-gl781tu7wgtDLZvd6-KuxAUYe2axwqo/2/public/values?alt=json")
           .subscribe(res => {
-              console.log(res.json());
+              this.data.next(res.json().feed.entry);
           })
   }
 
