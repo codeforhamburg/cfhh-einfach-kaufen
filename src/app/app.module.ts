@@ -23,6 +23,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { CanDeactivateAfterChangeDetectionGuard } from './guards/can-deactivate-after-change-detection.guard';
 import { FilterComponent } from './filter/filter.component';
 import { IconFilterComponent } from './icon-filter/icon-filter.component';
+import { InfoboxComponent } from './infobox/infobox.component';
 
 export function HttpLoaderFactory(http: Http) {
     return new TranslateHttpLoader(http);
@@ -39,7 +40,8 @@ export function HttpLoaderFactory(http: Http) {
     FooterComponent,
     NavComponent,
     FilterComponent,
-    IconFilterComponent
+    IconFilterComponent,
+    InfoboxComponent
   ],
   imports: [
     BrowserModule,

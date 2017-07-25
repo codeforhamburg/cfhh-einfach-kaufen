@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
+import { UiService } from './ui.service';
 
 declare var mapboxgl: any;
 // declare var MapboxGeocoder: any;
@@ -8,9 +9,10 @@ declare var mapboxgl: any;
 export class MapService {
 
     private data;
+    private selectedFeature;
 
 
-    constructor(private dataService: DataService) { }
+    constructor(private dataService: DataService, private uiService: UiService) { }
 
 
     initMap(id) {
@@ -53,7 +55,8 @@ export class MapService {
                 }, err => console.log(err));
             }
 
-            console.log(that.data);
+
+
         });
     }
 
@@ -72,7 +75,136 @@ export class MapService {
                 "icon-allow-overlap" : true,
                 "text-allow-overlap" : true
             }
-        })
+        });
+        this.addMouseHandler(map);
+    }
+
+    addMouseHandler(map){
+
+        let that = this;
+        //DISPLAY POPUP ON HOVER
+        var popup = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false
+        });
+
+        // map.on('mouseenter', 'kaufhaus', function(e) {
+        //     // Change the cursor style as a UI indicator.
+        //     map.getCanvas().style.cursor = 'pointer';
+
+        //     // Populate the popup and set its coordinates
+        //     // based on the feature found.
+        //     popup.setLngLat(e.features[0].geometry.coordinates)
+        //         .setHTML(e.features[0].properties.title +  '<br>' + e.features[0].properties.props.gsx$adresse)
+        //         .addTo(map);
+        // });
+
+        // map.on('mouseleave', 'kaufhaus', function() {
+        //     map.getCanvas().style.cursor = '';
+        //     popup.remove();
+        // });
+
+        map.on('mousemove', function(e) {
+            var features = map.queryRenderedFeatures(e.point, { layers: ['kaufhaus'] });
+            map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+            if (features.length > 0){
+                popup.setLngLat(features[0].geometry.coordinates)
+                    .setHTML(features[0].properties.title +  '<br>' + features[0].properties.address +  '<br> T - ' + features[0].properties.tel)
+                    .addTo(map);
+            } else {
+                // map.getCanvas().style.cursor = '';
+                popup.remove();
+            }
+        });
+
+        map.on('click', function(e){
+            var features = map.queryRenderedFeatures(e.point, { layers: ['kaufhaus'] });
+            if (features.length > 0){
+                that.selectedFeature = features[0];
+                that.uiService.showSelectedFeature = true;
+            }
+        });
+
+                  // Mousehandlers for highlighting and openening popups
+            // that.map.on('mousemove', function(e) {
+            //     var allFeatures = that.map.queryRenderedFeatures(e.point);
+            //     var features = that.map.queryRenderedFeatures(e.point, { layers: ['projectLayer'] });
+            //     that.map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+                
+            //     var feature = features[0];
+            //     if (features.length > 0){
+                    
+            //         that.map.setFilter('project-layer-hover', ["==", "id", feature.properties.id]);
+            //         that.dataService.hoverProject(feature.properties.id);
+                    
+            //         let lngLat = JSON.parse(feature.properties.location);
+            //         let wbcPopup = window.document.getElementById('wbc-popup-content');
+                    
+            //         popup
+            //             .setLngLat(lngLat)
+            //             .setDOMContent(wbcPopup)
+            //             // .setHTML(that.makePopup(feature.properties))
+            //             .addTo(that.map);
+            //         wbcPopup.style.display = 'block';
+
+            //         let pop = window.document.getElementsByClassName('mapboxgl-popup')[0] as HTMLElement;
+            //         if(pop)
+            //             pop.style.display = 'flex';
+
+            //     } else {
+
+            //         let pop = window.document.getElementsByClassName('mapboxgl-popup')[0] as HTMLElement;
+                    
+            //         if(pop)
+            //             pop.style.display = 'none';
+
+            //         that.map.setFilter("project-layer-hover", ["==", "id", ""]);
+            //     }
+
+            // });
+            // that.map.on('click', function(e) {
+            //     // var features = that.map.queryRenderedFeatures(e.point, { layers: ['projectLayer'] });
+            //     // var feature = features[0];
+            //     // if (features.length > 0){
+            //     //     that.selectProject();
+            //     //     that.dataService.selectProject(feature.properties.id);
+            //     // }
+            //      var features = that.map.queryRenderedFeatures(e.point, { layers: ['projectLayer'] });
+            //     that.map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+                
+            //     var feature = features[0];
+            //     if (features.length > 0){
+                    
+            //         that.map.setFilter('project-layer-hover', ["==", "id", feature.properties.id]);
+            //         that.dataService.hoverProject(feature.properties.id);
+                    
+            //         let lngLat = JSON.parse(feature.properties.location);
+            //         let wbcPopup = window.document.getElementById('wbc-popup-content');
+                    
+            //         popup
+            //             .setLngLat(lngLat)
+            //             .setDOMContent(wbcPopup)
+            //             // .setHTML(that.makePopup(feature.properties))
+            //             .addTo(that.map);
+            //         wbcPopup.style.display = 'block';
+
+            //         let pop = window.document.getElementsByClassName('mapboxgl-popup')[0] as HTMLElement;
+            //         if(pop)
+            //             pop.style.display = 'flex';
+
+            //     } else {
+
+            //         let pop = window.document.getElementsByClassName('mapboxgl-popup')[0] as HTMLElement;
+                    
+            //         if(pop)
+            //             pop.style.display = 'none';
+
+            //         that.map.setFilter("project-layer-hover", ["==", "id", ""]);
+            //     }
+            // });
+            // that.map.on('mouseout', function(e) {
+            //     that.map.setFilter("project-layer-hover", ["==", "id", ""]);
+            // });
     }
 
     toGeoJson(data){
@@ -82,6 +214,8 @@ export class MapService {
                 "type" : "Feature",
                 "properties": {
                     "title" : item.title.$t,
+                    "address" : item.gsx$adresse.$t,
+                    "tel" : item.gsx$telefon.$t,
                     "props" : item
                 },
                 // "id"       : item.pk,

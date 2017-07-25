@@ -10,6 +10,8 @@ export class UiService {
     public currentPosition: number = undefined;
     public showFooter: boolean = false;
 
+    public showSelectedFeature = false;
+
     // direction$: Observable<String>;
     // directionSubj : Subject<String>;
 
@@ -24,6 +26,5 @@ export class UiService {
     getDirection(): string {
         return this.direction;
     }
-
 
 }

@@ -59,3 +59,15 @@ wbc-filter {
     left: 1em;
     top: 2em;
 }
+
+wbc-infobox {
+    position: absolute;
+    z-index: 3;
+    bottom: 1em;
+    width: 100%;
+    
+    .wbc-four-row {
+        background: white;
+        border-bottom: 2px solid black;
+    }
+}
