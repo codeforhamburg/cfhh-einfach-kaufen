@@ -14,7 +14,6 @@ export class MapService {
 
 
     initMap(id) {
-        console.log("init");
         mapboxgl.accessToken = 'pk.eyJ1IjoibHVuZGVsaXVzIiwiYSI6ImNpdWljbmV4eTAwM2Uyb21kczN6bndrb2kifQ.AXS9vjUNgfpx8zrAfNT2pw';
         let that = this;
 
@@ -43,15 +42,15 @@ export class MapService {
 
         // this.drawData(this.dataService.data);
         map.once('style.load', function() {
-            if(that.data){
-                console.log(that.data);
+            if(that.dataService.staticData){
+                that.data = that.toGeoJson(that.dataService.staticData);
                 that.drawData(map, that.data);
             } else {
+                console.log("should fetch")
                 that.dataService.getData().subscribe(res => {
                     that.data = that.toGeoJson(res);
-                    console.log(that.data);
                     that.drawData(map, that.data);
-                });
+                }, err => console.log(err));
             }
 
             console.log(that.data);
@@ -79,11 +78,11 @@ export class MapService {
     toGeoJson(data){
         let features = [];
         data.forEach(function(item){
-            console.log(item);
             let feature = {
                 "type" : "Feature",
                 "properties": {
-                    "title" : item.title.$t
+                    "title" : item.title.$t,
+                    "props" : item
                 },
                 // "id"       : item.pk,
                 "geometry" : { "type" : "Point", "coordinates" : [parseFloat(item.gsx$lng.$t), parseFloat(item.gsx$lat.$t)] }

@@ -11,8 +11,10 @@ export class DataService {
     public categories = [];
     public activeCat;
     public data = new Subject();
+    public staticData = undefined;
 
     getData() {
+        console.log(this.data)
         return this.data.asObservable();
     }
 
@@ -66,6 +68,7 @@ export class DataService {
 
       http.get("https://spreadsheets.google.com/feeds/list/1HkqOPm5Q9Ey-gl781tu7wgtDLZvd6-KuxAUYe2axwqo/2/public/values?alt=json")
           .subscribe(res => {
+              this.staticData = res.json().feed.entry;
               this.data.next(res.json().feed.entry);
           })
   }
