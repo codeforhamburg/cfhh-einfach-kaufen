@@ -1,3 +1,32 @@
-<ul class="wbc-four-row">
-   <li>TEST</li>
+<ul class="wbc-infobox-ul">
+   <li class="wbc-wide">
+       <h2>{{mapService.selectedFeature.properties.title}}</h2>
+       <div class="wbc-wide-devider">
+            <div class="wbc-half">
+                <h3> {{'Über uns' | translate}}</h3>
+                <p>{{mapService.selectedFeature.properties.descde }}</p>
+            </div>
+            <div class="wbc-half">
+                <img src="{{mapService.selectedFeature.properties.img}}">
+           </div>
+       </div>
+   </li>
+   <li class="wbc-normal">
+        <h3>{{'Bitte Mitbringen' | translate}}</h3>
+        <ul>
+            <li>stuff</li>
+            <li>mehr stuff</li>
+            <li>nocht mehr</li>
+            <li>das auch</li>
+            <li>alles</li>
+        </ul>
+
+    </li>
+    <li class="wbc-normal">
+        <h3> {{'Kontakt' | translate}} </h3>
+        <p>{{mapService.selectedFeature.properties.title}} </p>
+        <p>{{mapService.selectedFeature.properties.address}}</p>
+        <p>{{mapService.selectedFeature.properties.opening}}</p>
+   </li>
+
 </ul>

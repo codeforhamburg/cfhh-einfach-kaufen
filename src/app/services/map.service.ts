@@ -209,6 +209,7 @@ export class MapService {
 
     toGeoJson(data){
         let features = [];
+        console.log(data);
         data.forEach(function(item){
             let feature = {
                 "type" : "Feature",
@@ -216,6 +217,9 @@ export class MapService {
                     "title" : item.title.$t,
                     "address" : item.gsx$adresse.$t,
                     "tel" : item.gsx$telefon.$t,
+                    "img" : item.gsx$picurl.$t,
+                    "descde" : item.gsx$beschreibungde.$t,
+                    "opening" : item.gsx$oeffnungszeiten.$t,
                     "props" : item
                 },
                 // "id"       : item.pk,
