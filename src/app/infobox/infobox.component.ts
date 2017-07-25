@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MapService } from '../services/map.service';
+import { UiService } from '../services/ui.service';
 
 @Component({
   selector: 'wbc-infobox',
@@ -8,7 +9,7 @@ import { MapService } from '../services/map.service';
 })
 export class InfoboxComponent implements OnInit {
 
-  constructor(private mapService: MapService) { }
+  constructor(private mapService: MapService, private uiService: UiService) { }
 
   ngOnInit() {
   }

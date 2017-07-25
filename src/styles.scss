@@ -62,12 +62,25 @@ wbc-filter {
 
 wbc-infobox {
     position: absolute;
-    z-index: 3;
+    z-index: 10;
     bottom: 1em;
     width: 100%;
-    
+
     // .wbc-four-row {
     //     background: white;
     //     border-bottom: 2px solid black;
     // }
+}
+
+.wbc-close-button {
+    position: absolute;
+    top: 0.3em;
+    right: 0.3em;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 0.5em 1em;
+    &:hover {
+        background: #ccc;
+    }
 }
