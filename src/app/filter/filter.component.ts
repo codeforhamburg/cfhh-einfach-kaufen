@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { MapService } from '../services/map.service';
 
 @Component({
   selector: 'wbc-filter',
@@ -8,7 +9,7 @@ import { DataService } from '../services/data.service';
 })
 export class FilterComponent implements OnInit {
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private mapService: MapService) { }
 
   ngOnInit() {
   }

@@ -10,6 +10,7 @@ export class MapService {
 
     private data;
     private selectedFeature;
+    private map;
 
 
     constructor(private dataService: DataService, private uiService: UiService) { }
@@ -19,7 +20,7 @@ export class MapService {
         mapboxgl.accessToken = 'pk.eyJ1IjoibHVuZGVsaXVzIiwiYSI6ImNpdWljbmV4eTAwM2Uyb21kczN6bndrb2kifQ.AXS9vjUNgfpx8zrAfNT2pw';
         let that = this;
 
-        let map = new mapboxgl.Map({
+        this.map = new mapboxgl.Map({
             container: id,
             style: 'mapbox://styles/mapbox/streets-v9',
             center : [9.980159, 53.547726],
@@ -31,7 +32,7 @@ export class MapService {
        //      placeholder: "Suche"
        //  }));
 
-        map.addControl(new mapboxgl.GeolocateControl({
+        this.map.addControl(new mapboxgl.GeolocateControl({
             positionOptions: {
                 enableHighAccuracy: true
             }
@@ -40,18 +41,20 @@ export class MapService {
         // debugger
         // window.map = this.map;
         let nav = new mapboxgl.NavigationControl();
-        map.addControl(nav, 'top-right');
+       this. map.addControl(nav, 'top-right');
 
         // this.drawData(this.dataService.data);
-        map.once('style.load', function() {
+        this.map.once('style.load', function() {
             if(that.dataService.staticData){
                 that.data = that.toGeoJson(that.dataService.staticData);
-                that.drawData(map, that.data);
+                that.drawData(that.map, that.data);
+                that.filterData();
             } else {
                 console.log("should fetch")
                 that.dataService.getData().subscribe(res => {
                     that.data = that.toGeoJson(res);
-                    that.drawData(map, that.data);
+                    that.drawData(that.map, that.data);
+                    that.filterData();
                 }, err => console.log(err));
             }
 
@@ -61,8 +64,8 @@ export class MapService {
     }
 
     drawData(map, data){
-        map.addSource('data', {"type" : "geojson", "data" : data});
-        map.addLayer({
+        this.map.addSource('data', {"type" : "geojson", "data" : data});
+        this.map.addLayer({
             "id" : "kaufhaus",
             "source" : "data",
             "type" : "symbol",
@@ -76,7 +79,7 @@ export class MapService {
                 "text-allow-overlap" : true
             }
         });
-        this.addMouseHandler(map);
+        this.addMouseHandler(this.map);
     }
 
     addMouseHandler(map){
@@ -104,21 +107,21 @@ export class MapService {
         //     popup.remove();
         // });
 
-        map.on('mousemove', function(e) {
-            var features = map.queryRenderedFeatures(e.point, { layers: ['kaufhaus'] });
-            map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+        this.map.on('mousemove', function(e) {
+            var features = that.map.queryRenderedFeatures(e.point, { layers: ['kaufhaus'] });
+            that.map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
             if (features.length > 0){
                 popup.setLngLat(features[0].geometry.coordinates)
                     .setHTML(features[0].properties.title +  '<br>' + features[0].properties.address +  '<br> T - ' + features[0].properties.tel)
-                    .addTo(map);
+                    .addTo(that.map);
             } else {
                 // map.getCanvas().style.cursor = '';
                 popup.remove();
             }
         });
 
-        map.on('click', function(e){
-            var features = map.queryRenderedFeatures(e.point, { layers: ['kaufhaus'] });
+        this.map.on('click', function(e){
+            var features = that.map.queryRenderedFeatures(e.point, { layers: ['kaufhaus'] });
             if (features.length > 0){
                 that.selectedFeature = features[0];
                 that.uiService.showSelectedFeature = true;
@@ -220,6 +223,18 @@ export class MapService {
                     "img" : item.gsx$picurl.$t,
                     "descde" : item.gsx$beschreibungde.$t,
                     "opening" : item.gsx$oeffnungszeiten.$t,
+
+                    //KATEGORIE STUFF
+                    "freizeit" : item.gsx$freizeit.$t,
+                    "fahrrad" : item.gsx$fahrradfahrradbedarf.$t,
+                    "bücher" : item.gsx$bücher.$t,
+                    "spielzeug" : item.gsx$spielzeug.$t,
+                    "cds"     : item.gsx$cds.$t,
+                    "camping"     : item.gsx$camping.$t,
+                    "schule"     : item.gsx$schule.$t,
+                    "musik"     : item.gsx$musik.$t,
+                    // END KATEGORIE STUFF
+
                     "props" : item
                 },
                 // "id"       : item.pk,
@@ -234,6 +249,33 @@ export class MapService {
           "features": features
         }
         return geojson;
+    }
+
+    toggleSub(sub) {
+        let filter = [];
+        sub.active = !sub.active;
+        this.dataService.activeCat.subs.forEach(function(subItem){
+            if (subItem.active){
+                filter.push(['==', subItem.name.toLowerCase(), 'TRUE']);
+            }
+        });
+
+        if (filter.length > 0){
+            this.map.setFilter('kaufhaus', ['any'].concat(filter));
+        } else {
+            filter.push(['==', this.dataService.activeCat.name.toLowerCase(), 'TRUE']);
+            this.map.setFilter('kaufhaus', ['any'].concat(filter));
+        }
+
+    }
+
+    filterData() {
+        let filter = [];
+        if (this.dataService.activeCat) {
+            filter.push(['==', this.dataService.activeCat.name.toLowerCase(), 'TRUE']);
+            this.map.setFilter('kaufhaus', ['any'].concat(filter));
+        }
+
     }
 
 }

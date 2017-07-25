@@ -14,7 +14,6 @@ export class DataService {
     public staticData = undefined;
 
     getData() {
-        console.log(this.data)
         return this.data.asObservable();
     }
 
@@ -31,7 +30,9 @@ export class DataService {
                   { "name" : "Bücher", "active": false},
                   { "name" : "Spielzeug", "active": false},
                   { "name" : "Cds", "active": false},
-                  { "name" : "Camping", "active": false}
+                  { "name" : "Camping", "active": false},
+                  { "name" : "Schule", "active": false},
+                  { "name" : "Musik", "active": false}
               ]
           },
           { 
@@ -80,16 +81,15 @@ export class DataService {
 
       cat.active = true;
       this.activeCat = cat;
-      console.log(this.categories);
 
-      if (type === 'buy'){
+      if (type === 'buy') {
           this.router.navigateByUrl('kaufen-karte');
       } else if (type === 'donate') {
           this.router.navigateByUrl('spenden-karte');
       }
   }
 
-  toggleSub(sub){
+  toggleSub(sub) {
       sub.active = !sub.active;
   }
 

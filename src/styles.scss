@@ -1,3 +1,5 @@
+@import 'styles/variables.scss';
+
 html, body {
     height: 100%;
     width: 100%;
@@ -80,7 +82,41 @@ wbc-infobox {
     font-size: 1.2em;
     font-weight: bold;
     padding: 0.5em 1em;
+
     &:hover {
         background: #ccc;
     }
 }
+
+.wbc-back {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    background: #eee;
+    padding: 0.1em 0.3em;
+    cursor: pointer;
+}
+
+
+#wbc-buy-map {
+    .wbc-filter-item.active {
+        background: $primaryBlue !important;
+    }
+    wbc-icon-filter {
+        .active {
+            background: $primaryBlue !important;
+        }
+    }
+}
+#wbc-donate-map {
+    .wbc-filter-item.active {
+        background: $primaryRed !important;
+    }
+    wbc-icon-filter {
+        .active {
+            background: $primaryRed !important;
+        }
+    }
+}
+
