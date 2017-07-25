@@ -32,11 +32,11 @@ export class MapService {
        //      placeholder: "Suche"
        //  }));
 
-        this.map.addControl(new mapboxgl.GeolocateControl({
-            positionOptions: {
-                enableHighAccuracy: true
-            }
-        }));
+        // this.map.addControl(new mapboxgl.GeolocateControl({
+        //     positionOptions: {
+        //         enableHighAccuracy: true
+        //     }
+        // }));
 
         // debugger
         // window.map = this.map;
@@ -212,7 +212,6 @@ export class MapService {
 
     toGeoJson(data){
         let features = [];
-        console.log(data);
         data.forEach(function(item){
             let feature = {
                 "type" : "Feature",

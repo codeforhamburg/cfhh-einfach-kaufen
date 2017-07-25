@@ -108,6 +108,11 @@ wbc-infobox {
             background: $primaryBlue !important;
         }
     }
+    .wbc-infobox-ul {
+        h2 {
+            color: $primaryBlue;
+        }
+    }
 }
 #wbc-donate-map {
     .wbc-filter-item.active {
@@ -116,6 +121,11 @@ wbc-infobox {
     wbc-icon-filter {
         .active {
             background: $primaryRed !important;
+        }
+    }
+    .wbc-infobox-ul {
+        h2 {
+            color: $primaryRed;
         }
     }
 }
