@@ -1,0 +1,22 @@
+.wbc-bottom-right-icon {
+    z-index: 3;
+}
+#wbc-lang-switch-list {
+    position: absolute;
+    bottom: 3em;
+    right: 0;
+    z-index: 1;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        background: white;
+        li {
+            border-bottom: 1px solid black;
+            padding: 0.3em 0.5em;
+            &:hover {
+                background: #eee;
+            }
+        }
+    }
+}

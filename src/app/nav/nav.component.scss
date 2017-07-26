@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 #wbc-nav-container {
     ul {
         list-style: none;
@@ -16,6 +18,16 @@
                 }
             }
 
+        }
+        li:nth-child(-n + 2):hover {
+            a {
+                background: $primaryRed;
+            }
+        }
+        li:nth-child(-n - 2):hover {
+            a {
+                background: $primaryBlue;
+            }
         }
     }
 
