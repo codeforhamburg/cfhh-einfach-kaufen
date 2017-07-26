@@ -3,7 +3,7 @@ import { DataService } from './data.service';
 import { UiService } from './ui.service';
 
 declare var mapboxgl: any;
-// declare var MapboxGeocoder: any;
+declare var MapboxGeocoder: any;
 
 @Injectable()
 export class MapService {
@@ -27,10 +27,11 @@ export class MapService {
             zoom: 11
         });
 
-       // map.addControl(new MapboxGeocoder({
-       //      accessToken: mapboxgl.accessToken,
-       //      placeholder: "Suche"
-       //  }));
+       this.map.addControl(new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            placeholder: "Suche",
+            bbox: [9.725313, 53.39534, 10.325959, 53.738472]
+        }));
 
         // this.map.addControl(new mapboxgl.GeolocateControl({
         //     positionOptions: {
@@ -220,7 +221,7 @@ export class MapService {
                 "type" : "Feature",
                 "properties": {
                     "title" : item.title.$t,
-                    "address" : item.gsx$adresse.$t,
+                    "address" : item.gsx$adresse.$t,    
                     "tel" : item.gsx$telefon.$t,
                     "img" : item.gsx$picurl.$t,
                     "descde" : item.gsx$beschreibungde.$t,
