@@ -1,6 +1,18 @@
-<div id="wbc-filter" *ngIf="dataService.activeCat">
+<div id="wbc-filter">
+    <div class="wbc-close-bar wbc-hidden-lg">
+        <span class="wbc-close-button-rel" (click)="uiService.showFilter = false">x</span>
+    </div>
+    <div class="wbc-hidden-lg">
+        <ul id="wbc-choose-cat">
+            <li *ngFor="let cat of dataService.categories"><div (click)="dataService.activate(cat, '')"><img src="{{cat.img}}"></div></li>
+        </ul>
+        <div class="wbc-text-field" *ngIf="dataService.activeCat">
+            {{ dataService.activeCat.name | translate }}
+        </div>
+
+    </div>
     Was brauchst du genau?
-    <ul>
+    <ul *ngIf="dataService.activeCat">
         <li class="wbc-filter-item" *ngFor="let sub of dataService.activeCat.subs" (click)="mapService.toggleSub(sub)" [ngClass]="{'active' : sub.active}">{{sub.name | translate }}
             <span *ngIf="sub.active" class="checkmark">
                 <div class="checkmark_stem"></div>
@@ -8,4 +20,6 @@
             </span>
         </li>
     </ul>
+
+    <div class="wbc-full-button wbc-hidden-lg" (click)="uiService.showFilter = false">{{'Ergebnisse anzeigen' | translate}}</div>
 </div>

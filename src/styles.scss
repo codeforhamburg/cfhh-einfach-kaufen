@@ -66,9 +66,17 @@ wbc-icon-filter {
 
 wbc-filter {
     position: absolute;
-    z-index: 2;
+    z-index: 12;
     left: 1em;
     top: 5em;
+    @media screen and (max-width: 768px){
+        right: 1em;
+        background: #EBEBEB;
+        max-height: 80%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
 }
 
 wbc-infobox {
@@ -97,6 +105,28 @@ wbc-infobox {
     }
 }
 
+.wbc-close-bar {
+    text-align: right;
+    background: black;
+    height: 30px;
+}
+
+.wbc-close-button-rel {
+    position: relative;
+    top: 5.5px;
+    // right: 0.3em;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0.1em 1em;
+    color: white;
+
+    &:hover {
+        background: white;
+        color: black !important;
+    } 
+}
+
 .wbc-back {
     position: absolute;
     z-index: 2;
@@ -108,6 +138,9 @@ wbc-infobox {
 }
 
 #wbc-buy-map {
+    .wbc-color {
+            color: $primaryBlue !important;
+    }
     .wbc-filter-item.active {
         background: $primaryBlue !important;
         color: white;
@@ -128,6 +161,9 @@ wbc-infobox {
     }
 }
 #wbc-donate-map {
+     .wbc-color {
+        color: $primaryRed !important;
+    }
     .wbc-filter-item.active {
         background: $primaryRed !important;
         color: white;
@@ -187,5 +223,45 @@ wbc-bottom-right {
     img {
         height: 30px;
     }
+}
+
+.wbc-hidden-xs {
+    @media screen and (max-width: 768px){
+        display: none !important;
+    }
+}
+
+.wbc-hidden-lg {
+     @media screen and (min-width: 769px){
+        display: none !important;
+    }
+
+}
+
+.wbc-menu-button {
+    position: absolute;
+    top: 2em;
+    left: 1em;
+    z-index: 2;
+    background: black;
+    cursor: pointer;
+    border-left: 4px solid black;
+    border-right: 4px solid black;
+    div {
+        width: 30px;
+        height: 3px;
+        background-color: white;
+        margin: 6px 4px;
+    }
+}
+
+wbc-filter {
+    @media screen and (max-width: 768px){
+        display: none;
+        &.visible {
+            display: block;
+        }
+    }
+    
 }
 

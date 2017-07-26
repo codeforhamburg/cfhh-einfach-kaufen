@@ -43,3 +43,17 @@
         float: left;
     }
 }
+
+.wbc-mobile-info {
+    max-height: 95VH;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin: 0 1em;
+    background: white;
+    .wbc-infos {
+        padding: 1em;
+        img {
+            max-height: 200px;
+        }
+    }
+}

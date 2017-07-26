@@ -12,6 +12,7 @@ export class UiService {
     public currentIndex = 3;
 
     public showSelectedFeature = false;
+    public showFilter = false;
 
     // direction$: Observable<String>;
     // directionSubj : Subject<String>;

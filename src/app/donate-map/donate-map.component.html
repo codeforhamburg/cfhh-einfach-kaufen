@@ -1,8 +1,13 @@
 <div id="wbc-donate-map" class="wbc-map">
-    <wbc-icon-filter></wbc-icon-filter>
-    <wbc-filter></wbc-filter>
-    <wbc-infobox *ngIf="uiService2.showSelectedFeature"></wbc-infobox>
+    <div *ngIf="!uiService.showFilter" class="wbc-menu-button wbc-hidden-lg" (click)="uiService.showFilter = true">
+        <div></div>
+        <div></div>
+        <div></div> 
+    </div>
+    <wbc-filter [ngClass]="{'visible' : uiService.showFilter}"></wbc-filter>
+    <wbc-infobox *ngIf="uiService2.showSelectedFeature" [@slideInAnimation] ></wbc-infobox>
     <span class="wbc-back" routerLink="/spenden">{{'zurück auf Start' | translate }}</span>
+    <wbc-icon-filter class="wbc-hidden-xs"></wbc-icon-filter>
     <wbc-bottom-right></wbc-bottom-right>
 
 </div>

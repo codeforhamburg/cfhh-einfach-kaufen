@@ -3,12 +3,24 @@ import { UiService } from '../services/ui.service';
 import { MapService } from '../services/map.service';
 import { slideVertical } from '../app-routing-animations';
 import { Slideable } from '../abstract/RoutingAnimationHelper';
+import {trigger, state, animate, style, transition} from '@angular/animations';
 
 @Component({
   selector: 'wbc-donate-map',
   templateUrl: './donate-map.component.html',
   styleUrls: ['./donate-map.component.scss'],
-  animations: [slideVertical]
+  animations: [slideVertical, trigger(
+      'slideInAnimation', [
+        transition(':enter', [
+          style({transform: 'translateY(100%)', opacity: 0.5}),
+          animate('300ms', style({transform: 'translateY(0)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'translateY(0)', opacity: 1}),
+          animate('300ms', style({transform: 'translateY(100%)', opacity: 0.5}))
+        ])
+      ]
+    )]
   // host: {'[@routerSlide]': 'uiService.direction'}
 
 })

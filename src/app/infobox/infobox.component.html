@@ -1,4 +1,4 @@
-<ul class="wbc-infobox-ul">
+<ul class="wbc-infobox-ul wbc-hidden-xs">
     <span class="wbc-close-button" (click)="uiService.showSelectedFeature = false">x</span>
    <li class="wbc-wide">
        <h2>{{mapService.selectedFeature.properties.title}}</h2>
@@ -31,3 +31,29 @@
    </li>
 
 </ul>
+
+
+<div class="wbc-mobile-info wbc-hidden-lg">
+     <div class="wbc-close-bar wbc-hidden-lg">
+        <span class="wbc-close-button-rel" (click)="uiService.showSelectedFeature = false">x</span>
+    </div>
+    <div class="wbc-infos">
+        <h2 class="wbc-color">{{mapService.selectedFeature.properties.title}}</h2>
+        <h3> {{'Kontakt' | translate}} </h3>
+        <p>{{mapService.selectedFeature.properties.title}} </p>
+        <p>{{mapService.selectedFeature.properties.address}}</p>
+        <p>{{mapService.selectedFeature.properties.opening}}</p>
+        <img src="{{mapService.selectedFeature.properties.img}}">
+
+        <h3> {{'Über uns' | translate}}</h3>
+        <p>{{mapService.selectedFeature.properties.descde }}</p>
+        <h3>{{'Bitte Mitbringen' | translate}}</h3>
+        <ul>
+            <li>stuff</li>
+            <li>mehr stuff</li>
+            <li>nocht mehr</li>
+            <li>das auch</li>
+            <li>alles</li>
+        </ul>
+    </div>
+</div>
