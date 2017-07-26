@@ -1,14 +1,14 @@
 <ul class="wbc-infobox-ul wbc-hidden-xs">
     <span class="wbc-close-button" (click)="uiService.showSelectedFeature = false">x</span>
    <li class="wbc-wide">
-       <h2>{{mapService.selectedFeature.properties.title}}</h2>
+       <h2>{{uiService.selectedFeature.properties.title}}</h2>
        <div class="wbc-wide-devider">
             <div class="wbc-half">
                 <h3> {{'Über uns' | translate}}</h3>
-                <p>{{mapService.selectedFeature.properties.descde }}</p>
+                <p>{{uiService.selectedFeature.properties.descde }}</p>
             </div>
             <div class="wbc-half">
-                <img src="{{mapService.selectedFeature.properties.img}}">
+                <img src="{{uiService.selectedFeature.properties.img}}">
            </div>
        </div>
    </li>
@@ -25,9 +25,9 @@
     </li>
     <li class="wbc-normal">
         <h3> {{'Kontakt' | translate}} </h3>
-        <p>{{mapService.selectedFeature.properties.title}} </p>
-        <p>{{mapService.selectedFeature.properties.address}}</p>
-        <p>{{mapService.selectedFeature.properties.opening}}</p>
+        <p>{{uiService.selectedFeature.properties.title}} </p>
+        <p>{{uiService.selectedFeature.properties.address}}</p>
+        <p>{{uiService.selectedFeature.properties.opening}}</p>
    </li>
 
 </ul>
@@ -38,15 +38,15 @@
         <span class="wbc-close-button-rel" (click)="uiService.showSelectedFeature = false">x</span>
     </div>
     <div class="wbc-infos">
-        <h2 class="wbc-color">{{mapService.selectedFeature.properties.title}}</h2>
+        <h2 class="wbc-color">{{uiService.selectedFeature.properties.title}}</h2>
         <h3> {{'Kontakt' | translate}} </h3>
-        <p>{{mapService.selectedFeature.properties.title}} </p>
-        <p>{{mapService.selectedFeature.properties.address}}</p>
-        <p>{{mapService.selectedFeature.properties.opening}}</p>
-        <img src="{{mapService.selectedFeature.properties.img}}">
+        <p>{{uiService.selectedFeature.properties.title}} </p>
+        <p>{{uiService.selectedFeature.properties.address}}</p>
+        <p>{{uiService.selectedFeature.properties.opening}}</p>
+        <img src="{{uiService.selectedFeature.properties.img}}">
 
         <h3> {{'Über uns' | translate}}</h3>
-        <p>{{mapService.selectedFeature.properties.descde }}</p>
+        <p>{{uiService.selectedFeature.properties.descde }}</p>
         <h3>{{'Bitte Mitbringen' | translate}}</h3>
         <ul>
             <li>stuff</li>

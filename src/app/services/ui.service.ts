@@ -14,6 +14,9 @@ export class UiService {
     public showSelectedFeature = false;
     public showFilter = false;
 
+    public popupFeature;
+    public selectedFeature;
+
     // direction$: Observable<String>;
     // directionSubj : Subject<String>;
 

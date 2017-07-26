@@ -111,22 +111,25 @@ export class MapService {
             var features = that.map.queryRenderedFeatures(e.point, { layers: ['kaufhaus'] });
             that.map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
             if (features.length > 0){
+                that.uiService.popupFeature = features[0];
                 popup.setLngLat(features[0].geometry.coordinates)
-                    .setHTML(features[0].properties.title +  '<br>' + features[0].properties.address +  '<br> T - ' + features[0].properties.tel)
+                    // .setHTML(features[0].properties.title +  '<br>' + features[0].properties.address +  '<br> T - ' + features[0].properties.tel)
+                    .setDOMContent(document.getElementById('wbc-popup'))
                     .addTo(that.map);
             } else {
                 // map.getCanvas().style.cursor = '';
+                that.uiService.popupFeature = null;
                 popup.remove();
             }
         });
 
-        this.map.on('click', function(e){
-            var features = that.map.queryRenderedFeatures(e.point, { layers: ['kaufhaus'] });
-            if (features.length > 0){
-                that.selectedFeature = features[0];
-                that.uiService.showSelectedFeature = true;
-            }
-        });
+        // this.map.on('click', function(e){
+        //     var features = that.map.queryRenderedFeatures(e.point, { layers: ['kaufhaus'] });
+        //     if (features.length > 0){
+        //         that.selectedFeature = features[0];
+        //         that.uiService.showSelectedFeature = true;
+        //     }
+        // });
 
                   // Mousehandlers for highlighting and openening popups
             // that.map.on('mousemove', function(e) {
