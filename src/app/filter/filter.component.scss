@@ -39,11 +39,11 @@
     .wbc-full-button {
         padding: 1em 1em;
         text-align: center;
-        margin: 1em;
+        margin: 1em 0;
         background: black;
         color: white;
         cursor: pointer;
-        
+
         &:hover {
             background: $primaryBlue;
         }

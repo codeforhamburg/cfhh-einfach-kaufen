@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ApplicationRef } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+
 
 @Injectable()
 export class DataService {
@@ -17,7 +18,7 @@ export class DataService {
         return this.data.asObservable();
     }
 
-  constructor(private http: Http, private router: Router) { 
+  constructor(private http: Http, private router: Router, private appRef: ApplicationRef) { 
 
       //DEFINE CATEGORIES
       this.categories = [
@@ -75,6 +76,8 @@ export class DataService {
   }
 
   activate(cat, type){
+      this.activeCat = false;
+      this.appRef.tick();
       this.categories.forEach(function(cate){
           cate.active = false;
       });

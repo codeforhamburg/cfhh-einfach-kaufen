@@ -12,7 +12,7 @@
 
     </div>
     Was brauchst du genau?
-    <ul *ngIf="dataService.activeCat">
+    <ul *ngIf="dataService.activeCat" [@slideInOutAnimation]>
         <li class="wbc-filter-item" *ngFor="let sub of dataService.activeCat.subs" (click)="mapService.toggleSub(sub)" [ngClass]="{'active' : sub.active}">{{sub.name | translate }}
             <span *ngIf="sub.active" class="checkmark">
                 <div class="checkmark_stem"></div>

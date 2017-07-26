@@ -2,16 +2,16 @@
     <p class="wbc-rotate-text-top" *ngIf="uiService.currentIndex < 3">{{'Spenden' | translate }}</p>
     <ul>
         <li>
-            <a routerLink="/spenden-karte" routerLinkActive="active"></a>
+            <a routerLink="/spenden-karte" routerLinkActive="active" title="Spenden Karte"></a>
         </li>
         <li>
-            <a routerLink="/spenden" routerLinkActive="active"></a>
+            <a routerLink="/spenden" routerLinkActive="active" title="Spenden"></a>
         </li>
         <li>
-            <a routerLink="/kaufen" routerLinkActive="active"></a>
+            <a routerLink="/kaufen" routerLinkActive="active" title="Kaufen"></a>
         </li>
         <li>
-            <a routerLink="/kaufen-karte" routerLinkActive="active"></a>
+            <a routerLink="/kaufen-karte" routerLinkActive="active" title="Kaufen Karte"></a>
         </li>
     </ul>
     <p class="wbc-rotate-text-bot" *ngIf="uiService.currentIndex > 2">{{'Kaufen' | translate }}</p>
