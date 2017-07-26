@@ -120,7 +120,7 @@ export class MapService {
             } else {
                 // map.getCanvas().style.cursor = '';
                 that.uiService.popupFeature = null;
-                popup.remove();
+                // popup.remove();
             }
         });
 
