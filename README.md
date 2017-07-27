@@ -32,3 +32,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - dataservice: Namen der Kategorien müssen mit den Feldern im Docs übereinstimmen
 - mapsservice: properties in toGeoJson müssen mit den Feldern im Docs übereinstimmen
 - Docs: ausgelesen wird aus einer zweiten, inverted Tabelle. Bei neuen Feldern muss ggf. der Bereich, aus dem diese erstellt wird, vergrößert werden
+
+
+# Compodoc Dokumentation der App
+Run `npm run compodoc` to create the compodoc documentation like a normal script
+
+Serve generated documentation with compodoc `compodoc -s` or `compodoc -s -d ./doc` the local HTTP server is launched at `http://localhost:8080`
+
+More information about the usage of compodoc you will find here: `https://compodoc.github.io/website/guides/usage.html`
+
