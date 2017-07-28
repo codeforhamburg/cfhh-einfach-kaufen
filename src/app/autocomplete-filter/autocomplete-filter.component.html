@@ -1,0 +1,16 @@
+<div class="autocomplete__container" [@isActive]="isActive">
+  <input ngui-auto-complete
+    class="autocomplete-input"
+    [source]="dataSource"
+    [list-formatter]="autocompleListFormatter"
+    (valueChanged)="onItemSelected($event)"
+    display-property-name="{{searchTerm}}"
+    [(ngModel)]="inputValue"
+    (ngModelChange)="onInputChange()"
+    (focus)="hasFocus='1'; onFocus($event)"
+    (blur)="hasFocus='0'; onBlur($event)"
+    />
+    <!-- [class.isActive]="isActive" -->
+    <span *ngIf="!hasInput && hasFocus!='1'" class="autocomplete-arrow">V</span>
+    <span *ngIf="hasInput" class="autocomplete-close" (click)="clearInput($event)">X</span>
+</div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
 import { UiService } from './ui.service';
+import { AutocompleteFilterService } from "../autocomplete-filter/autocomplete-filter.service";
 
 declare var mapboxgl: any;
 declare var MapboxGeocoder: any;
@@ -13,7 +14,7 @@ export class MapService {
     private map;
 
 
-    constructor(private dataService: DataService, private uiService: UiService) { }
+    constructor(private dataService: DataService, private uiService: UiService, private selectedAutocompleteFilter: AutocompleteFilterService ) { }
 
 
     initMap(id) {
@@ -42,9 +43,9 @@ export class MapService {
         // debugger
         // window.map = this.map;
         let nav = new mapboxgl.NavigationControl();
-       this. map.addControl(nav, 'top-right');
+        this.map.addControl(nav, 'top-right');
 
-        // this.drawData(this.dataService.data);
+
         this.map.once('style.load', function() {
             if(that.dataService.staticData){
                 that.data = that.toGeoJson(that.dataService.staticData);
@@ -59,8 +60,9 @@ export class MapService {
                 }, err => console.log(err));
             }
 
-
-
+            that.selectedAutocompleteFilter.getData().subscribe(data => {
+                that.filterDataStadtteile(data);
+            }, err => console.log(err));
         });
     }
 
@@ -80,6 +82,23 @@ export class MapService {
                 "text-allow-overlap" : true
             }
         });
+
+
+        this.map.addSource('dataStadtteile', {"type" : "geojson", "data" : "./assets/data/Hamburg_Stadtteile.geojson"});
+        this.map.addLayer({
+            "id" : "stadtteile",
+            "source": "dataStadtteile",
+            "type" : "fill",
+            "paint": {
+                "fill-color": "#00ffff"
+            },
+            "layout": {
+                'visibility': 'none'
+            }
+        });
+
+
+
         this.addMouseHandler(this.map);
     }
 
@@ -279,6 +298,15 @@ export class MapService {
             this.map.setFilter('kaufhaus', ['any'].concat(filter));
         }
 
+    }
+
+    filterDataStadtteile(selectedFeature) {
+        if (selectedFeature != null) {
+            this.map.setFilter('stadtteile', ["==", "name", selectedFeature.name]);
+            this.map.setLayoutProperty('stadtteile', 'visibility', 'visible');
+        } else {
+            this.map.setLayoutProperty('stadtteile', 'visibility', 'none');
+        }
     }
 
 }

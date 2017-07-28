@@ -1,11 +1,12 @@
 import { Component, ChangeDetectorRef, ApplicationRef } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import {UiService} from './services/ui.service';
+import { UiService } from './services/ui.service';
+import { DataService } from './services/data.service';
 
 import {RoutesRecognized, RouterModule, ActivatedRoute, Routes, Router} from '@angular/router';
 import * as _ from 'lodash';
 
-import {trigger, state, animate, style, transition} from '@angular/animations';
+import { trigger, state, animate, style, transition } from '@angular/animations';
 
 
 @Component({
@@ -29,7 +30,8 @@ import {trigger, state, animate, style, transition} from '@angular/animations';
 export class AppComponent {
   title = 'wbc';
 
-    constructor(private router: Router, private route: ActivatedRoute, private uiService: UiService, private appRef: ApplicationRef, private changeDetectorRef: ChangeDetectorRef, private translate: TranslateService) { 
+  constructor(private router: Router, private route: ActivatedRoute, private uiService: UiService,
+    private appRef: ApplicationRef, private changeDetectorRef: ChangeDetectorRef, private translate: TranslateService, private dataService: DataService) { 
         // this language will be used as a fallback when a translation isn't found in the current language
         translate.setDefaultLang('de');
 

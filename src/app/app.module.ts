@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +25,10 @@ import { FilterComponent } from './filter/filter.component';
 import { IconFilterComponent } from './icon-filter/icon-filter.component';
 import { InfoboxComponent } from './infobox/infobox.component';
 import { BottomRightComponent } from './bottom-right/bottom-right.component';
+import { NguiAutoCompleteModule } from '@ngui/auto-complete';
+import { AutocompleteFilterComponent } from './autocomplete-filter/autocomplete-filter.component';
+import { AutocompleteFilterService } from "./autocomplete-filter/autocomplete-filter.service"
+import { FormsModule } from '@angular/forms';
 
 export function HttpLoaderFactory(http: Http) {
     return new TranslateHttpLoader(http);
@@ -43,7 +47,8 @@ export function HttpLoaderFactory(http: Http) {
     FilterComponent,
     IconFilterComponent,
     InfoboxComponent,
-    BottomRightComponent
+    BottomRightComponent,
+    AutocompleteFilterComponent
   ],
   imports: [
     BrowserModule,
@@ -57,8 +62,10 @@ export function HttpLoaderFactory(http: Http) {
     }),
     BrowserAnimationsModule,
     AppRoutingModule,
+    NguiAutoCompleteModule,
+    FormsModule
   ],
-  providers: [UiService, CanDeactivateAfterChangeDetectionGuard, DataService, MapService],
+  providers: [UiService, CanDeactivateAfterChangeDetectionGuard, DataService, MapService, AutocompleteFilterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
