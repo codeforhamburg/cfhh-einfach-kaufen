@@ -1,0 +1,43 @@
+.dropdownFilter__container{
+    position: absolute;
+    top: 300px;
+    width: 200px;
+    height: 40px;
+}
+
+.dropdownFilter__container input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    padding: 0;
+}
+
+.dropdownFilter__container input:focus {
+    outline: none;
+}
+
+.dropdownFilter-list {
+    // max-height: 300vh;   // probleme mit dem ng-if!?
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: rgba(255,255,255,0.8);
+    margin: 0;
+    padding: 0;
+}
+
+.dropdownFilter-list li {
+    padding: 8px;
+    padding-left: 16px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: powderblue;
+}
+
+.no-match-found{
+    background-color: red;
+}

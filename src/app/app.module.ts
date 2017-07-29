@@ -29,6 +29,7 @@ import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { AutocompleteFilterComponent } from './autocomplete-filter/autocomplete-filter.component';
 import { AutocompleteFilterService } from "./autocomplete-filter/autocomplete-filter.service"
 import { FormsModule } from '@angular/forms';
+import { DropdownFilterComponent } from './dropdown-filter/dropdown-filter.component';
 
 export function HttpLoaderFactory(http: Http) {
     return new TranslateHttpLoader(http);
@@ -48,7 +49,8 @@ export function HttpLoaderFactory(http: Http) {
     IconFilterComponent,
     InfoboxComponent,
     BottomRightComponent,
-    AutocompleteFilterComponent
+    AutocompleteFilterComponent,
+    DropdownFilterComponent
   ],
   imports: [
     BrowserModule,

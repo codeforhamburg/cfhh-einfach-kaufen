@@ -1,0 +1,23 @@
+<div class="dropdownFilter__container">
+  <input
+    [(ngModel)]="input"
+    (ngModelChange)="onInputChange($event)"
+    (focus)="onFocus($event)"
+    (blur)="onBlur($event)"
+    (keydown)="inputKeyHandler($event)"
+  >
+  <ul *ngIf="dropdownVisible" class="dropdownFilter-list">
+    <li class="no-match-found"
+      *ngIf="input && !filteredList.length"
+    >
+      {{noMatchFoundText || 'No Result Found'}}
+    </li>
+    <li class="item"
+      *ngFor="let item of filteredList; let i=index"
+      (mousedown)="selectOne(item)"
+      (mouseover)="itemIndex = i"
+      [ngClass]="{selected: i === itemIndex}"
+      [innerHtml]="item[filterOnValue]">
+    </li>
+  </ul>
+</div>
