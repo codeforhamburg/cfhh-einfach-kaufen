@@ -25,11 +25,9 @@ import { FilterComponent } from './filter/filter.component';
 import { IconFilterComponent } from './icon-filter/icon-filter.component';
 import { InfoboxComponent } from './infobox/infobox.component';
 import { BottomRightComponent } from './bottom-right/bottom-right.component';
-import { NguiAutoCompleteModule } from '@ngui/auto-complete';
-import { AutocompleteFilterComponent } from './autocomplete-filter/autocomplete-filter.component';
-import { AutocompleteFilterService } from "./autocomplete-filter/autocomplete-filter.service"
-import { FormsModule } from '@angular/forms';
 import { DropdownFilterComponent } from './dropdown-filter/dropdown-filter.component';
+import { DropdownFilterService } from "./dropdown-filter/dropdown-filter.service"
+import { FormsModule } from '@angular/forms';
 
 export function HttpLoaderFactory(http: Http) {
     return new TranslateHttpLoader(http);
@@ -49,7 +47,6 @@ export function HttpLoaderFactory(http: Http) {
     IconFilterComponent,
     InfoboxComponent,
     BottomRightComponent,
-    AutocompleteFilterComponent,
     DropdownFilterComponent
   ],
   imports: [
@@ -64,10 +61,9 @@ export function HttpLoaderFactory(http: Http) {
     }),
     BrowserAnimationsModule,
     AppRoutingModule,
-    NguiAutoCompleteModule,
     FormsModule
   ],
-  providers: [UiService, CanDeactivateAfterChangeDetectionGuard, DataService, MapService, AutocompleteFilterService],
+  providers: [UiService, CanDeactivateAfterChangeDetectionGuard, DataService, MapService, DropdownFilterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
 import { UiService } from './ui.service';
-import { AutocompleteFilterService } from "../autocomplete-filter/autocomplete-filter.service";
+import { DropdownFilterService } from "../dropdown-filter/dropdown-filter.service";
 
 declare var mapboxgl: any;
 declare var MapboxGeocoder: any;
@@ -14,7 +14,7 @@ export class MapService {
     private map;
 
 
-    constructor(private dataService: DataService, private uiService: UiService, private selectedAutocompleteFilter: AutocompleteFilterService ) { }
+    constructor(private dataService: DataService, private uiService: UiService, private dropDownFilterService: DropdownFilterService ) { }
 
 
     initMap(id) {
@@ -60,7 +60,7 @@ export class MapService {
                 }, err => console.log(err));
             }
 
-            that.selectedAutocompleteFilter.getData().subscribe(data => {
+            that.dropDownFilterService.getData().subscribe(data => {
                 that.filterDataStadtteile(data);
             }, err => console.log(err));
         });

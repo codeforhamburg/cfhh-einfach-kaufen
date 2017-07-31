@@ -1,16 +1,16 @@
-<div class="dropdownFilter__container">
+<div #dropdownFilter class="dropdownFilter__container" [class.expand]="input || hasFocus">
   <input
     [(ngModel)]="input"
     (ngModelChange)="onInputChange($event)"
-    (focus)="onFocus($event)"
-    (blur)="onBlur($event)"
+    (focus)="onFocus($event); hasFocus = true"
+    (blur)="onBlur($event); hasFocus = false"
     (keydown)="inputKeyHandler($event)"
   >
   <ul *ngIf="dropdownVisible" class="dropdownFilter-list">
     <li class="no-match-found"
       *ngIf="input && !filteredList.length"
     >
-      {{noMatchFoundText || 'No Result Found'}}
+      {{"dropdownFilter_noMatchFoundText" | translate}}
     </li>
     <li class="item"
       *ngFor="let item of filteredList; let i=index"
@@ -20,4 +20,6 @@
       [innerHtml]="item[filterOnValue]">
     </li>
   </ul>
+  <span *ngIf="!input && hasFocus!=true" class="dropdown-expand">V</span>
+  <span *ngIf="input" class="dropdown-close" (click)="clearInput($event)">X</span>
 </div>

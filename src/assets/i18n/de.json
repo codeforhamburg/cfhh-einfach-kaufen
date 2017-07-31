@@ -6,5 +6,6 @@
     "Sonstiges" : "Sonstiges",
     "Kleidung" : "Kleidung & Schuhe",
     "Hauhalt" : "Haushalt",
-    "Freizeit" : "Freizeit"
+    "Freizeit" : "Freizeit",
+    "dropdownFilter_noMatchFoundText": "keine Ergebnisse"
 }

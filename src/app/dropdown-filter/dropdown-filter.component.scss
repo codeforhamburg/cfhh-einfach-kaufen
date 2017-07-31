@@ -1,8 +1,19 @@
-.dropdownFilter__container{
+:host{
     position: absolute;
-    top: 300px;
-    width: 200px;
+    top: 200px;
+    right: 10px;
+    z-index: 999;
+}
+
+.dropdownFilter__container {
+    width: 40px;
     height: 40px;
+    transition: width 0.15s ease-out;
+    will-change: width;
+}
+
+.dropdownFilter__container.expand {
+    width: 200px;
 }
 
 .dropdownFilter__container input {
@@ -10,6 +21,7 @@
     width: 100%;
     border: none;
     padding: 0;
+    text-indent: 8px;
 }
 
 .dropdownFilter__container input:focus {
@@ -17,12 +29,15 @@
 }
 
 .dropdownFilter-list {
-    // max-height: 300vh;   // probleme mit dem ng-if!?
+    max-height: 30vh;
     overflow-y: auto;
     overflow-x: hidden;
     background-color: rgba(255,255,255,0.8);
     margin: 0;
     padding: 0;
+    position: absolute;
+    width: 100%;
+    top: 40px;
 }
 
 .dropdownFilter-list li {
@@ -40,4 +55,20 @@
 
 .no-match-found{
     background-color: red;
+}
+
+.dropdown-close,
+.dropdown-expand {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    margin: 8px;
+    text-align: center;
+    line-height: 24px;
+}
+
+.dropdown-expand {
+    pointer-events: none;
 }

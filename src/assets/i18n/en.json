@@ -1,5 +1,7 @@
 {
     "HELLO": "hello",
     "kaufen" : "buybuy",
-    "Spenden" : "Donate"
+    "Spenden" : "Donate",
+    "dropdownFilter_noMatchFoundText" : "no results"
 }
+
