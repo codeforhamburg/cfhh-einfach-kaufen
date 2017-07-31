@@ -4,7 +4,7 @@ Takes an array of objects as `dataSource`, and filters items on input. <br>
 `filterOnValue` is the key of the dataSource objects to filter on. <br>
 Emits the selected item to the `dropDownFilterService` observable;
 
----
+<br>
 
 ## how to use
 ### _app.component.html:_
@@ -37,9 +37,9 @@ don't forget to add `dropdownFilter_noMatchFoundText` to your i18n translation:
 {"dropdownFilter_noMatchFoundText" : "no results"}
 ```
 
-___
+<br>
 
-## _service usage_
+## service usage
   ```
     import { DropdownFilterService } from "../dropdown-filter/dropdown-filter.service";
   ```
