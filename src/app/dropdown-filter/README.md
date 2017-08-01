@@ -2,6 +2,11 @@
 
 Takes an array of objects as `dataSource`, and filters items on input. <br>
 `filterOnValue` is the key of the dataSource objects to filter on. <br>
+
+(optional) can take additional `dataSourceObservable`, f.e. from geocoding serice, <br>
+which can be debounced by `debounceTime` <br>
+(optional) data[addInfo] prefix to display for filtered Data, f.e. "Stadtteil"
+<br><br>
 Emits the selected item to the `dropDownFilterService` observable;
 
 <br>
@@ -32,9 +37,10 @@ Emits the selected item to the `dropDownFilterService` observable;
 ```
 providers: [DropdownFilterService],
 ```
-don't forget to add `dropdownFilter_noMatchFoundText` to your i18n translation:
+don't forget to add to your i18n translation:
 ```
-{"dropdownFilter_noMatchFoundText" : "no results"}
+{"dropdownFilter_noMatchFoundText" : "no results",
+"dropdownFilter_isLoading": "loading ..."}
 ```
 
 <br>
