@@ -2,6 +2,7 @@
     "HELLO": "hello",
     "kaufen" : "buybuy",
     "Spenden" : "Donate",
-    "dropdownFilter_noMatchFoundText" : "no results"
+    "dropdownFilter_noMatchFoundText" : "no results",
+    "dropdownFilter_isLoading": "loading ..."
 }
 

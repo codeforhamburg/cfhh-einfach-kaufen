@@ -15,6 +15,7 @@ import { NavComponent } from './nav/nav.component';
 import { UiService } from './services/ui.service';
 import { DataService } from './services/data.service';
 import { MapService } from './services/map.service';
+import { MapBoxGeocoderService } from './services/mapBoxGeocoder.service';
 
 import {HttpModule, Http} from '@angular/http';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
@@ -63,7 +64,7 @@ export function HttpLoaderFactory(http: Http) {
     AppRoutingModule,
     FormsModule
   ],
-  providers: [UiService, CanDeactivateAfterChangeDetectionGuard, DataService, MapService, DropdownFilterService],
+  providers: [UiService, CanDeactivateAfterChangeDetectionGuard, DataService, MapService, DropdownFilterService, MapBoxGeocoderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

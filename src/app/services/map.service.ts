@@ -302,7 +302,7 @@ export class MapService {
 
     filterDataStadtteile(selectedFeature) {
         if (selectedFeature != null) {
-            this.map.setFilter('stadtteile', ["==", "name", selectedFeature.name]);
+            this.map.setFilter('stadtteile', ["==", "place_name", selectedFeature.place_name]);
             this.map.setLayoutProperty('stadtteile', 'visibility', 'visible');
         } else {
             this.map.setLayoutProperty('stadtteile', 'visibility', 'none');

@@ -7,5 +7,6 @@
     "Kleidung" : "Kleidung & Schuhe",
     "Hauhalt" : "Haushalt",
     "Freizeit" : "Freizeit",
-    "dropdownFilter_noMatchFoundText": "keine Ergebnisse"
+    "dropdownFilter_noMatchFoundText": "keine Ergebnisse",
+    "dropdownFilter_isLoading": "läd ..."
 }

@@ -80,14 +80,19 @@ export class DataService {
 
 
         http.get("./assets/data/Hamburg_Stadtteile.geojson")
-        .subscribe(data => {
-            var dataJson = data.json().features;
-            for (var i = 0; i < dataJson.length; i++) {
-                this.dataStadtteilNamen.push({ name: dataJson[i].properties.name });
-            }
-            console.log(this.dataStadtteilNamen);
-            
-        });
+            .subscribe(data => {
+                var dataJson = data.json().features;
+                for (var i = 0; i < dataJson.length; i++) {
+                    this.dataStadtteilNamen.push(dataJson[i].properties);
+                }
+                // sort alphabetically
+                this.dataStadtteilNamen.sort(function (a, b) {
+                    var textA = a.place_name.toUpperCase();
+                    var textB = b.place_name.toUpperCase();
+                    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+                });
+                console.log(this.dataStadtteilNamen);
+            });
     }
 
     activate(cat, type) {
