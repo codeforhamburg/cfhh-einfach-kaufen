@@ -42,11 +42,14 @@
 
 .dropdownFilter-list li {
     padding: 8px;
-    padding-left: 16px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow-x: hidden;
     cursor: pointer;
+}
+
+.item-addInfo {
+    font-size: 0.8em;
 }
 
 .selected {

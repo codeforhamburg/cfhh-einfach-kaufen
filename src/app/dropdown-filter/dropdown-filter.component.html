@@ -7,17 +7,20 @@
     (keydown)="inputKeyHandler($event)"
   >
   <ul *ngIf="dropdownVisible" class="dropdownFilter-list">
-    <li class="no-match-found"
-      *ngIf="input && !filteredList.length"
-    >
-      {{"dropdownFilter_noMatchFoundText" | translate}}
-    </li>
     <li class="item"
-      *ngFor="let item of filteredList; let i=index"
-      (mousedown)="selectOne(item)"
-      (mouseover)="itemIndex = i"
-      [ngClass]="{selected: i === itemIndex}"
-      [innerHtml]="item[filterOnValue]">
+    *ngFor="let item of filteredList; let i=index"
+    (mousedown)="selectOne(item)"
+    (mouseover)="itemIndex = i"
+    [ngClass]="{selected: i === itemIndex}"
+    >
+      <span *ngIf="item[addInfo]" class="item-addInfo">{{item[addInfo]}}</span>
+      <span>{{item[filterOnValue]}}</span>
+    </li>
+    <li class="item-isLoading" *ngIf="isLoading">
+      {{"dropdownFilter_isLoading" | translate}}
+    </li>
+    <li class="no-match-found" *ngIf="input && !isLoading && !filteredList.length">
+      {{"dropdownFilter_noMatchFoundText" | translate}}
     </li>
   </ul>
   <span *ngIf="!input && hasFocus!=true" class="dropdown-expand">V</span>

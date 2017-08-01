@@ -1,6 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { DropdownFilterService } from "./dropdown-filter.service"
+import { MapBoxGeocoderService } from '../services/mapBoxGeocoder.service';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/do';
 
 @Component({
   selector: 'wbc-dropdown-filter',
@@ -8,35 +13,72 @@ import { DropdownFilterService } from "./dropdown-filter.service"
   styleUrls: ['./dropdown-filter.component.scss']
 })
 export class DropdownFilterComponent implements OnInit {
-  @ViewChild('dropdownFilter') dropdownFilter__container;
-  private dataSource: any[] = this.dataService.dataStadtteilNamen;
-  private filterOnValue: any = "name";
+  private dataSource: any[] = this.dataService.dataStadtteilNamen;                  // local, static source Data to filter on
+  private dataSourceObservable = this.MapBoxGeocoderService;                        // optional remote, dynamic source Data to filter on
+  private filterOnValue: any = "place_name";                                        // data[key] to filter on
+  private addInfo: any = "name:prefix";                                             // optional data[addInfo] prefix to display for filtered Data
+  private debounceTime = 300;                                                       // time to debounce if onDebouncedInputChange is used
+  
+  private input: string = "";                                                       // ngModel, triggers ngModelChange = onInputChange()
   private filteredList: any[] = [];
-  private input: string = "";
   private dropdownVisible: boolean = false;
   private itemIndex: number = 0;
   private hasFocus: Boolean = false;
+  private inputChangedDebouncer: Subject<string> = new Subject<string>();
+  private isLoading: Boolean = false;
+  @ViewChild('dropdownFilter') dropdownFilter__container;
+  
 
-
-  constructor(private dataService: DataService, private dropDownFilterService: DropdownFilterService) {
+  constructor(private dataService: DataService, private dropDownFilterService: DropdownFilterService, private MapBoxGeocoderService: MapBoxGeocoderService) {
+    if (this.dataSourceObservable) {
+      this.inputChangedDebouncer
+        .do(val => {
+          this.isLoading = true;
+        })
+        .debounceTime(this.debounceTime)
+        .subscribe(trigger => {
+          this.onDebouncedInputChange();
+        });
+    }
   }
 
   ngOnInit() {
+    // initially set results = static data
     this.filteredList = this.dataSource;
   }
   
-  /**
-   * fires on change of input ele
-   */
-  onInputChange(evt) {
+  // fires imidiatly on change of input ele
+  onInputChange() {
+    this.itemIndex = 0; // reset selection, case: search, 2*DOWN (2. item selected), clear input, search again.
+
+    // updates with instantly available data from static source
     this.updateFilteredList(this.input);
+
+    // trigger input debouncer
+    if (this.input) {
+      this.inputChangedDebouncer.next(this.input);
+    }
+  }
+
+  // fires after input + debounceTime
+  onDebouncedInputChange() {
+    // request data from remote geolocator && join results
+    console.log(this.input);
+    
+    this.dataSourceObservable.geocode(this.input)
+      .subscribe(data => {
+        let features = data.features;
+        
+        // features = this.sortByKey(features, "place_name");
+
+        // join remote data to local, filtered results
+        this.filteredList = this.filteredList.concat(features);
+        this.isLoading = false;
+      });
   }
 
   onFocus(evt) {
     this.dropdownVisible = true;
-    if (this.input) { // catch user focuses after prev selecting item
-      this.updateFilteredList(this.input);
-    }
   }
 
   onBlur(evt) {
@@ -82,6 +124,7 @@ export class DropdownFilterComponent implements OnInit {
   };
 
   updateFilteredList(keyword: string) {
+    this.itemIndex = 0; //reset eventual previous selection
     this.filteredList = this.filter(this.dataSource, keyword);
   }
 
@@ -98,18 +141,29 @@ export class DropdownFilterComponent implements OnInit {
     );
   }
 
+  /**
+   * returns sorted array
+   */
+  sortByKey(arr, sortonKey) {
+    return arr.sort(function (a, b) {
+      var compA = a[sortonKey];
+      var compB = b[sortonKey];
+      if (typeof compA === "string") {
+        compA.toUpperCase();
+        compB.toUpperCase();
+      }
+      return (compA < compB) ? -1 : (compA > compB) ? 1 : 0;
+    });
+  }
+
   selectOne(item) {
-    this.input = item[this.filterOnValue]; // set input value to selected item
-    this.updateFilteredList(this.input);
     this.dropdownVisible = false;
-    this.itemIndex = 0;
     this.triggerObservable(item);
-    console.log(item);
-    
+    // console.log("selectedItem: ", item);
   }
 
   /**
-   * update observable subscribers
+   * triggers service subscribers
    */
   triggerObservable(val) {
     this.dropDownFilterService.setData(val);
