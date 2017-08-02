@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
+declare var mapboxgl: any;
+
 
 @Injectable()
 export class DataService {
@@ -81,9 +83,23 @@ export class DataService {
 
         http.get("./assets/data/Hamburg_Stadtteile.geojson")
             .subscribe(data => {
-                var dataJson = data.json().features;
-                for (var i = 0; i < dataJson.length; i++) {
-                    this.dataStadtteilNamen.push(dataJson[i].properties);
+                let dataJson = data.json().features;
+                
+                for (let i = 0; i < dataJson.length; i++) {
+                    let props = dataJson[i].properties;
+                    let bounds = new mapboxgl.LngLatBounds();
+                    props["geometry"] = dataJson[i].geometry;
+                    
+                    
+                    let polyCoords = props.geometry.coordinates[0];
+                    for (let j = 0; j < polyCoords.length; j++) {
+                        var coords = polyCoords[j];
+                        
+                        bounds.extend(coords);
+                    }
+                    props["bounds"] = bounds;
+                    
+                    this.dataStadtteilNamen.push(props);
                 }
                 // sort alphabetically
                 this.dataStadtteilNamen.sort(function (a, b) {

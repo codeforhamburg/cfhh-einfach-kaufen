@@ -12,7 +12,8 @@ export class MapService {
     private data;
     private selectedFeature;
     private map;
-    private searchResultMarker;
+    private searchResultMarker = null;
+    private searchResultPopup;
 
 
     constructor(private dataService: DataService, private uiService: UiService, private dropDownFilterService: DropdownFilterService ) { }
@@ -75,14 +76,27 @@ export class MapService {
             }, err => console.log(err));
 
             var markerEl = document.createElement('div');
-            markerEl.style.backgroundColor = "red";
-            markerEl.style.width = "100px";
-            markerEl.style.height = "100px";
+            markerEl.innerHTML = '<div class="searchResultMarker" (mouseover)="changeStyle($event)"></div>' +       // use innerHTML to preserve transform:translate(x,y) from mapbox to position marker
+                            '<div class="searchResultMarker-pulse"></div>';
+            
             that.searchResultMarker = new mapboxgl.Marker(markerEl);
+            that.searchResultPopup = new mapboxgl.Popup({ offset: [-5, -15], closeButton: false, closeOnClick: false});
+
+            markerEl.addEventListener('mouseenter', function () {
+                if (!that.searchResultPopup.isOpen()) {
+                    that.searchResultMarker.togglePopup();
+                }
+            });
+            markerEl.addEventListener('mouseleave', function () {
+                if (that.searchResultPopup.isOpen()) {
+                    that.searchResultMarker.togglePopup();
+                }
+            });
+
         });
     }
 
-    drawData(map, data){
+    drawData(map, data) {
         this.map.addSource('data', {"type" : "geojson", "data" : data});
         this.map.addLayer({
             "id" : "kaufhaus",
@@ -98,7 +112,7 @@ export class MapService {
                 "text-allow-overlap" : true
             }
         });
-
+        
 
         this.map.addSource('dataStadtteile', {"type" : "geojson", "data" : "./assets/data/Hamburg_Stadtteile.geojson"});
         this.map.addLayer({
@@ -273,7 +287,9 @@ export class MapService {
                     "musik"     : item.gsx$musik.$t,
                     // END KATEGORIE STUFF
 
-                    "props" : item
+                    "props": item,
+                    "lat" : parseFloat(item.gsx$lat.$t),
+                    "lng" : parseFloat(item.gsx$lng.$t)
                 },
                 // "id"       : item.pk,
                 "geometry" : { "type" : "Point", "coordinates" : [parseFloat(item.gsx$lng.$t), parseFloat(item.gsx$lat.$t)] }
@@ -320,6 +336,7 @@ export class MapService {
         if (selectedFeature != null) {
             this.map.setFilter('stadtteile', ["==", "place_name", selectedFeature.place_name]);
             this.map.setLayoutProperty('stadtteile', 'visibility', 'visible');
+            this.zoomToBoundingBox(selectedFeature.bounds);
         } else {
             this.map.setLayoutProperty('stadtteile', 'visibility', 'none');
         }
@@ -327,12 +344,70 @@ export class MapService {
 
     resetMapFeatures () {
         this.map.setLayoutProperty('stadtteile', 'visibility', 'none');
-        this.searchResultMarker.remove();
+        if (this.searchResultMarker) {
+            this.searchResultMarker.remove();
+        }
     }
 
     drawSearchResults(feature) {
         console.log("new Marker: ", feature.center[0], ", ", feature.center[1])
-        this.searchResultMarker.setLngLat([feature.center[0], feature.center[1]]).addTo(this.map);
+        let point = { lng: feature.center[0], lat: feature.center[1] };
+        this.searchResultMarker.setLngLat(point).addTo(this.map);
+        this.searchResultMarker.setPopup(this.searchResultPopup);
+        this.searchResultPopup.setText(feature.place_name);
+        this.zoomToPoint([feature.center[0], feature.center[1]]);
     }
 
+    markerClicked(marker) {
+        console.log(marker);
+        
+    }
+
+    zoomToBoundingBox(bounds) {
+        console.log(bounds);
+        
+        this.map.fitBounds(bounds, {padding: 80});
+    }
+
+    zoomToPoint(point) {
+       // this.map.flyTo({ center: point, zoom: 15 });
+
+        let bounds = this.boundingBoxFromPointAndKaufhaus(point);
+        
+        console.log(bounds);
+        
+       //this.zoomToBoundingBox(bounds);
+        
+    }
+
+    boundingBoxFromPointAndKaufhaus(point) {
+        let that = this;
+        var query = function (point, loop) {
+            let radius = 20 * loop;
+            let width = radius;
+            let height = radius;
+            let features = that.map.queryRenderedFeatures([
+                [point[0] - width / 2, point[1] - height / 2],
+                [point[0] + width / 2, point[1] + height / 2]
+            ], { layers: ['kaufhaus'] });
+            
+            if (features.length > 0) {
+                let bounds = new mapboxgl.LngLatBounds();
+                
+                for (let j = 0; j < features.length; j++) {
+                    bounds.extend([features[j].properties.lng, features[j].properties.lat]);
+                }
+                bounds.extend(point);
+                that.map.fitBounds(bounds, { padding: 80 });
+                console.log(bounds);
+                return bounds;
+            } else {
+                query(point, loop + 1);
+            }
+        }
+        query(point, 1);
+    }
 }
+
+
+// wenn erst stadtteil, dann adresse - geht nicht.
