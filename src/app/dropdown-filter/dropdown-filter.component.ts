@@ -162,6 +162,7 @@ export class DropdownFilterComponent implements OnInit {
 
   selectOne(item) {
     console.log("selectedItem: ", item);
+    this.triggerObservable(null);   // clear map
     this.dropdownVisible = false;
     this.triggerObservable(item);
     this.input = item.place_name;
