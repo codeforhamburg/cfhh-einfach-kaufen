@@ -12,6 +12,7 @@ export class MapService {
     private data;
     private selectedFeature;
     private map;
+    private searchResultMarker;
 
 
     constructor(private dataService: DataService, private uiService: UiService, private dropDownFilterService: DropdownFilterService ) { }
@@ -60,9 +61,24 @@ export class MapService {
                 }, err => console.log(err));
             }
 
+
             that.dropDownFilterService.getData().subscribe(data => {
-                that.filterDataStadtteile(data);
+                if (data !== null) {
+                    if (data["source"]) {
+                        that.drawSearchResults(data);
+                    } else {
+                        that.filterDataStadtteile(data);
+                    }
+                } else {
+                    that.resetMapFeatures();
+                }
             }, err => console.log(err));
+
+            var markerEl = document.createElement('div');
+            markerEl.style.backgroundColor = "red";
+            markerEl.style.width = "100px";
+            markerEl.style.height = "100px";
+            that.searchResultMarker = new mapboxgl.Marker(markerEl);
         });
     }
 
@@ -300,13 +316,23 @@ export class MapService {
 
     }
 
-    filterDataStadtteile(selectedFeature) {
+    filterDataStadtteile (selectedFeature) {
         if (selectedFeature != null) {
             this.map.setFilter('stadtteile', ["==", "place_name", selectedFeature.place_name]);
             this.map.setLayoutProperty('stadtteile', 'visibility', 'visible');
         } else {
             this.map.setLayoutProperty('stadtteile', 'visibility', 'none');
         }
+    }
+
+    resetMapFeatures () {
+        this.map.setLayoutProperty('stadtteile', 'visibility', 'none');
+        this.searchResultMarker.remove();
+    }
+
+    drawSearchResults(feature) {
+        console.log("new Marker: ", feature.center[0], ", ", feature.center[1])
+        this.searchResultMarker.setLngLat([feature.center[0], feature.center[1]]).addTo(this.map);
     }
 
 }

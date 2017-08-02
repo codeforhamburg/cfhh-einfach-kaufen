@@ -29,6 +29,7 @@ import { BottomRightComponent } from './bottom-right/bottom-right.component';
 import { DropdownFilterComponent } from './dropdown-filter/dropdown-filter.component';
 import { DropdownFilterService } from "./dropdown-filter/dropdown-filter.service"
 import { FormsModule } from '@angular/forms';
+import { MapBoxSimpleMarkerComponent } from './mapbox-simple-marker/mapbox-simple-marker.component';
 
 export function HttpLoaderFactory(http: Http) {
     return new TranslateHttpLoader(http);
@@ -48,7 +49,8 @@ export function HttpLoaderFactory(http: Http) {
     IconFilterComponent,
     InfoboxComponent,
     BottomRightComponent,
-    DropdownFilterComponent
+    DropdownFilterComponent,
+    MapBoxSimpleMarkerComponent
   ],
   imports: [
     BrowserModule,
