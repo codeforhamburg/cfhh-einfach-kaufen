@@ -1,4 +1,4 @@
-<div #dropdownFilter class="dropdownFilter__container" [class.expand]="input || hasFocus">
+<div #dropdownFilter class="dropdownFilter__container" [class.expand]="input || hasFocus || disableCollapse">
   <input
     [(ngModel)]="input"
     (ngModelChange)="onInputChange($event)"

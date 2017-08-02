@@ -18,6 +18,7 @@ export class DropdownFilterComponent implements OnInit {
   private filterOnValue: any = "place_name";                                        // data[key] to filter on
   private addInfo: any = "name:prefix";                                             // optional data[addInfo] prefix to display for filtered Data
   private debounceTime = 300;                                                       // time to debounce if onDebouncedInputChange is used
+  private disableCollapse: Boolean = true;                                          // true disables collapsing
   
   private input: string = "";                                                       // ngModel, triggers ngModelChange = onInputChange()
   private filteredList: any[] = [];
@@ -72,6 +73,9 @@ export class DropdownFilterComponent implements OnInit {
         // features = this.sortByKey(features, "place_name");
 
         // join remote data to local, filtered results
+        features.forEach(ele => {
+          ele["source"] = "mapBox";
+        });
         this.filteredList = this.filteredList.concat(features);
         this.isLoading = false;
       });
@@ -157,9 +161,10 @@ export class DropdownFilterComponent implements OnInit {
   }
 
   selectOne(item) {
+    console.log("selectedItem: ", item);
     this.dropdownVisible = false;
     this.triggerObservable(item);
-    // console.log("selectedItem: ", item);
+    this.input = item.place_name;
   }
 
   /**

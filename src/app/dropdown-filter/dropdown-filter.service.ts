@@ -3,7 +3,7 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class DropdownFilterService {
-  public dropDownFilterService = new Subject();
+  public dropDownFilterService: Subject<{}> = new Subject<{}>();
 
   getData() {
     return this.dropDownFilterService.asObservable();
