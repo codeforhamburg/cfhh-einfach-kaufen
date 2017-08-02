@@ -89,6 +89,7 @@ export class DataService {
                     let props = dataJson[i].properties;
                     let bounds = new mapboxgl.LngLatBounds();
                     props["geometry"] = dataJson[i].geometry;
+                    props["source"] = "static";
                     
                     
                     let polyCoords = props.geometry.coordinates[0];

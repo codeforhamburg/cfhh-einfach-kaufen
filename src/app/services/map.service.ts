@@ -65,10 +65,10 @@ export class MapService {
 
             that.dropDownFilterService.getData().subscribe(data => {
                 if (data !== null) {
-                    if (data["source"]) {
-                        that.drawSearchResults(data);
-                    } else {
+                    if (data["source"] == "static") {
                         that.filterDataStadtteile(data);
+                    } else {
+                        that.drawSearchResults(data);
                     }
                 } else {
                     that.resetMapFeatures();
@@ -333,13 +333,9 @@ export class MapService {
     }
 
     filterDataStadtteile (selectedFeature) {
-        if (selectedFeature != null) {
-            this.map.setFilter('stadtteile', ["==", "place_name", selectedFeature.place_name]);
-            this.map.setLayoutProperty('stadtteile', 'visibility', 'visible');
-            this.zoomToBoundingBox(selectedFeature.bounds);
-        } else {
-            this.map.setLayoutProperty('stadtteile', 'visibility', 'none');
-        }
+        this.map.setFilter('stadtteile', ["==", "place_name", selectedFeature.place_name]);
+        this.map.setLayoutProperty('stadtteile', 'visibility', 'visible');
+        this.zoomToBoundingBox(selectedFeature.bounds);
     }
 
     resetMapFeatures () {
@@ -364,50 +360,61 @@ export class MapService {
     }
 
     zoomToBoundingBox(bounds) {
-        console.log(bounds);
-        
         this.map.fitBounds(bounds, {padding: 80});
     }
 
     zoomToPoint(point) {
-       // this.map.flyTo({ center: point, zoom: 15 });
+        // this.map.flyTo({ center: point, zoom: 15 });
 
-        let bounds = this.boundingBoxFromPointAndKaufhaus(point);
-        
-        console.log(bounds);
-        
-       //this.zoomToBoundingBox(bounds);
-        
+        this.boundingBoxFromPointAndKaufhaus(point, function (bounds) {
+            this.zoomToBoundingBox(bounds);
+        }.bind(this));
     }
 
-    boundingBoxFromPointAndKaufhaus(point) {
+    boundingBoxFromPointAndKaufhaus(point, callback) {
+        console.log(point)
         let that = this;
-        var query = function (point, loop) {
-            let radius = 20 * loop;
-            let width = radius;
-            let height = radius;
-            let features = that.map.queryRenderedFeatures([
-                [point[0] - width / 2, point[1] - height / 2],
-                [point[0] + width / 2, point[1] + height / 2]
-            ], { layers: ['kaufhaus'] });
+        let loop = 1;
+        let query = function (point, loop) {
+            console.log(point, " " ,loop);
             
+            let radius = 2 * loop;
+            let width = radius;
+            console.log(point[0] - width / 2);
+            let height = radius;
+            let minLng = Math.max(-90, point[0] - width / 2);   // hier ist falsch! sind keine latlngs, sonder pointlikes = "screen coordinates in pixels", https://www.mapbox.com/mapbox-gl-js/api/#pointlike
+            let minLat = Math.max(-90, point[1] - height / 2); //http://turfjs.org/docs/#nearest
+            let maxLng = Math.min(90, point[0] + width / 2);
+            let maxLat = Math.min(90, point[1] + height / 2);
+            let features = that.map.queryRenderedFeatures([
+                [minLng, minLat],
+                [maxLng, maxLat]
+            ], { layers: ['kaufhaus'] });
+
             if (features.length > 0) {
                 let bounds = new mapboxgl.LngLatBounds();
-                
+
                 for (let j = 0; j < features.length; j++) {
                     bounds.extend([features[j].properties.lng, features[j].properties.lat]);
                 }
                 bounds.extend(point);
-                that.map.fitBounds(bounds, { padding: 80 });
                 console.log(bounds);
-                return bounds;
+                callback(bounds);
             } else {
-                query(point, loop + 1);
+                if (loop < 100) {
+                    loop += 1;
+                    query(point, loop);
+                } else {
+
+                }
             }
         }
-        query(point, 1);
+        query(point, loop);
     }
 }
 
 
 // wenn erst stadtteil, dann adresse - geht nicht.
+// macht es einen unterschied, ob ich mit x lösche nach stadtteil, oder nur den text entferne? -nein
+// let features = that.map.queryRenderedFeatures([ findet nix und sucht ewig weiter...
+    // es kommt auf den Stadtteil an! Alsterdorf geht, allermöhle nicht!
