@@ -26,6 +26,7 @@
     "@ngui/auto-complete": "^0.13.3",
     "@ngx-translate/core": "^7.1.0",
     "@ngx-translate/http-loader": "^0.1.0",
+    "@turf/turf": "^4.6.1",
     "core-js": "^2.4.1",
     "mapbox-gl": "^0.32.1",
     "mapbox-gl-geocoder": "^2.0.1",
