@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
 import { UiService } from './ui.service';
 import { DropdownFilterService } from "../dropdown-filter/dropdown-filter.service";
+import * as turf from 'turf';
 
 declare var mapboxgl: any;
 declare var MapboxGeocoder: any;
+// declare var turf: any;
 
 @Injectable()
 export class MapService {
@@ -12,8 +14,10 @@ export class MapService {
     private data;
     private selectedFeature;
     private map;
+    private stadtteilData = "./assets/data/Hamburg_Stadtteile.geojson";
     private searchResultMarker = null;
     private searchResultPopup;
+    private kaufhausPopup;
 
 
     constructor(private dataService: DataService, private uiService: UiService, private dropDownFilterService: DropdownFilterService ) { }
@@ -76,7 +80,7 @@ export class MapService {
             }, err => console.log(err));
 
             var markerEl = document.createElement('div');
-            markerEl.innerHTML = '<div class="searchResultMarker" (mouseover)="changeStyle($event)"></div>' +       // use innerHTML to preserve transform:translate(x,y) from mapbox to position marker
+            markerEl.innerHTML = '<div class="searchResultMarker"></div>' +       // use innerHTML to preserve transform:translate(x,y) from mapbox to position marker
                             '<div class="searchResultMarker-pulse"></div>';
             
             that.searchResultMarker = new mapboxgl.Marker(markerEl);
@@ -92,6 +96,10 @@ export class MapService {
                     that.searchResultMarker.togglePopup();
                 }
             });
+
+            let popupEle = document.getElementById('wbc-popup');
+            that.kaufhausPopup = new mapboxgl.Popup({ offset: [-5, -15], closeButton: true, closeOnClick: true });
+            that.kaufhausPopup.setDOMContent(popupEle);
 
         });
     }
@@ -114,7 +122,7 @@ export class MapService {
         });
         
 
-        this.map.addSource('dataStadtteile', {"type" : "geojson", "data" : "./assets/data/Hamburg_Stadtteile.geojson"});
+        this.map.addSource('dataStadtteile', {"type" : "geojson", "data" : this.stadtteilData});
         this.map.addLayer({
             "id" : "stadtteile",
             "source": "dataStadtteile",
@@ -137,8 +145,8 @@ export class MapService {
         let that = this;
         //DISPLAY POPUP ON HOVER
         var popup = new mapboxgl.Popup({
-            closeButton: false,
-            closeOnClick: false
+            closeButton: true,
+            closeOnClick: true
         });
 
         // map.on('mouseenter', 'kaufhaus', function(e) {
@@ -162,105 +170,52 @@ export class MapService {
             that.map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
             if (features.length > 0){
                 that.uiService.popupFeature = features[0];
-                popup.setLngLat(features[0].geometry.coordinates)
-                    // .setHTML(features[0].properties.title +  '<br>' + features[0].properties.address +  '<br> T - ' + features[0].properties.tel)
-                    .setDOMContent(document.getElementById('wbc-popup'))
-                    .addTo(that.map);
+                that.kaufhausPopup.setLngLat(features[0].geometry.coordinates);
+                // popup.setLngLat(features[0].geometry.coordinates)
+                //     // .setHTML(features[0].properties.title +  '<br>' + features[0].properties.address +  '<br> T - ' + features[0].properties.tel)
+                //     .setDOMContent(document.getElementById('wbc-popup'))
+                //     .addTo(that.map);
             } else {
                 // map.getCanvas().style.cursor = '';
-                that.uiService.popupFeature = null;
+                // that.uiService.popupFeature = null;
                 // popup.remove();
+                // if (popup.isOpen()) {
+                //     that.searchResultMarker.togglePopup();
+                // }
             }
         });
+        this.addMarker();
 
-        // this.map.on('click', function(e){
-        //     var features = that.map.queryRenderedFeatures(e.point, { layers: ['kaufhaus'] });
-        //     if (features.length > 0){
-        //         that.selectedFeature = features[0];
-        //         that.uiService.showSelectedFeature = true;
-        //     }
-        // });
+ 
+    }
 
-                  // Mousehandlers for highlighting and openening popups
-            // that.map.on('mousemove', function(e) {
-            //     var allFeatures = that.map.queryRenderedFeatures(e.point);
-            //     var features = that.map.queryRenderedFeatures(e.point, { layers: ['projectLayer'] });
-            //     that.map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
-                
-            //     var feature = features[0];
-            //     if (features.length > 0){
-                    
-            //         that.map.setFilter('project-layer-hover', ["==", "id", feature.properties.id]);
-            //         that.dataService.hoverProject(feature.properties.id);
-                    
-            //         let lngLat = JSON.parse(feature.properties.location);
-            //         let wbcPopup = window.document.getElementById('wbc-popup-content');
-                    
-            //         popup
-            //             .setLngLat(lngLat)
-            //             .setDOMContent(wbcPopup)
-            //             // .setHTML(that.makePopup(feature.properties))
-            //             .addTo(that.map);
-            //         wbcPopup.style.display = 'block';
+    addMarker() {
+        https://stackoverflow.com/questions/17662551/how-to-use-angular-directives-ng-click-and-ng-class-inside-leaflet-marker-popup
+        let that = this;
+        let content = '<div class="searchResultMarker"></div><div class="searchResultMarker-pulse"></div>';
 
-            //         let pop = window.document.getElementsByClassName('mapboxgl-popup')[0] as HTMLElement;
-            //         if(pop)
-            //             pop.style.display = 'flex';
+        this.data.features.forEach(function (marker) {
 
-            //     } else {
+            var markerEl = document.createElement('div');
+            markerEl.innerHTML = content;
+            
+            var newMarker = new mapboxgl.Marker(markerEl);
+            newMarker.setLngLat(marker.geometry.coordinates).addTo(that.map);
+            
+            newMarker.setPopup(that.kaufhausPopup);
 
-            //         let pop = window.document.getElementsByClassName('mapboxgl-popup')[0] as HTMLElement;
-                    
-            //         if(pop)
-            //             pop.style.display = 'none';
-
-            //         that.map.setFilter("project-layer-hover", ["==", "id", ""]);
-            //     }
-
-            // });
-            // that.map.on('click', function(e) {
-            //     // var features = that.map.queryRenderedFeatures(e.point, { layers: ['projectLayer'] });
-            //     // var feature = features[0];
-            //     // if (features.length > 0){
-            //     //     that.selectProject();
-            //     //     that.dataService.selectProject(feature.properties.id);
-            //     // }
-            //      var features = that.map.queryRenderedFeatures(e.point, { layers: ['projectLayer'] });
-            //     that.map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
-                
-            //     var feature = features[0];
-            //     if (features.length > 0){
-                    
-            //         that.map.setFilter('project-layer-hover', ["==", "id", feature.properties.id]);
-            //         that.dataService.hoverProject(feature.properties.id);
-                    
-            //         let lngLat = JSON.parse(feature.properties.location);
-            //         let wbcPopup = window.document.getElementById('wbc-popup-content');
-                    
-            //         popup
-            //             .setLngLat(lngLat)
-            //             .setDOMContent(wbcPopup)
-            //             // .setHTML(that.makePopup(feature.properties))
-            //             .addTo(that.map);
-            //         wbcPopup.style.display = 'block';
-
-            //         let pop = window.document.getElementsByClassName('mapboxgl-popup')[0] as HTMLElement;
-            //         if(pop)
-            //             pop.style.display = 'flex';
-
-            //     } else {
-
-            //         let pop = window.document.getElementsByClassName('mapboxgl-popup')[0] as HTMLElement;
-                    
-            //         if(pop)
-            //             pop.style.display = 'none';
-
-            //         that.map.setFilter("project-layer-hover", ["==", "id", ""]);
+            markerEl.addEventListener('mouseenter', function () {
+                console.log(newMarker)
+                if (!that.kaufhausPopup.isOpen()) {
+                    newMarker.togglePopup();
+                }
+            });
+            // markerEl.addEventListener('mouseleave', function () {
+            //     if (that.kaufhausPopup.isOpen()) {
+            //         newMarker.togglePopup();
             //     }
             // });
-            // that.map.on('mouseout', function(e) {
-            //     that.map.setFilter("project-layer-hover", ["==", "id", ""]);
-            // });
+        });
     }
 
     toGeoJson(data){
@@ -346,9 +301,7 @@ export class MapService {
     }
 
     drawSearchResults(feature) {
-        console.log("new Marker: ", feature.center[0], ", ", feature.center[1])
-        let point = { lng: feature.center[0], lat: feature.center[1] };
-        this.searchResultMarker.setLngLat(point).addTo(this.map);
+        this.searchResultMarker.setLngLat({ lng: feature.center[0], lat: feature.center[1] }).addTo(this.map);
         this.searchResultMarker.setPopup(this.searchResultPopup);
         this.searchResultPopup.setText(feature.place_name);
         this.zoomToPoint([feature.center[0], feature.center[1]]);
@@ -365,56 +318,16 @@ export class MapService {
 
     zoomToPoint(point) {
         // this.map.flyTo({ center: point, zoom: 15 });
-
-        this.boundingBoxFromPointAndKaufhaus(point, function (bounds) {
-            this.zoomToBoundingBox(bounds);
-        }.bind(this));
+        var bounds = this.bboxFromPointAndKaufhaus(point);
+        this.zoomToBoundingBox(bounds);
     }
 
-    boundingBoxFromPointAndKaufhaus(point, callback) {
-        console.log(point)
-        let that = this;
-        let loop = 1;
-        let query = function (point, loop) {
-            console.log(point, " " ,loop);
-            
-            let radius = 2 * loop;
-            let width = radius;
-            console.log(point[0] - width / 2);
-            let height = radius;
-            let minLng = Math.max(-90, point[0] - width / 2);   // hier ist falsch! sind keine latlngs, sonder pointlikes = "screen coordinates in pixels", https://www.mapbox.com/mapbox-gl-js/api/#pointlike
-            let minLat = Math.max(-90, point[1] - height / 2); //http://turfjs.org/docs/#nearest
-            let maxLng = Math.min(90, point[0] + width / 2);
-            let maxLat = Math.min(90, point[1] + height / 2);
-            let features = that.map.queryRenderedFeatures([
-                [minLng, minLat],
-                [maxLng, maxLat]
-            ], { layers: ['kaufhaus'] });
-
-            if (features.length > 0) {
-                let bounds = new mapboxgl.LngLatBounds();
-
-                for (let j = 0; j < features.length; j++) {
-                    bounds.extend([features[j].properties.lng, features[j].properties.lat]);
-                }
-                bounds.extend(point);
-                console.log(bounds);
-                callback(bounds);
-            } else {
-                if (loop < 100) {
-                    loop += 1;
-                    query(point, loop);
-                } else {
-
-                }
-            }
-        }
-        query(point, loop);
+    bboxFromPointAndKaufhaus(point) {
+        var that = this;
+        var nearestKaufhaus = turf.nearest(point, that.data);
+        let bounds = new mapboxgl.LngLatBounds();
+        bounds.extend(nearestKaufhaus.geometry.coordinates);
+        bounds.extend(point);
+        return bounds;
     }
 }
-
-
-// wenn erst stadtteil, dann adresse - geht nicht.
-// macht es einen unterschied, ob ich mit x lösche nach stadtteil, oder nur den text entferne? -nein
-// let features = that.map.queryRenderedFeatures([ findet nix und sucht ewig weiter...
-    // es kommt auf den Stadtteil an! Alsterdorf geht, allermöhle nicht!
