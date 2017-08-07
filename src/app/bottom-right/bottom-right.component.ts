@@ -32,7 +32,8 @@ export class BottomRightComponent implements OnInit {
     }
 
     switchLang(lang){
-        this.translate.use(lang);
+      this.translate.use(lang);
+      this.langSwitch = false;
     }
 
 }
