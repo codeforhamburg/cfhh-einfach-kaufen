@@ -14,23 +14,6 @@ wbc-footer {
     z-index: 10;
 }
 
-.wbc-content {
-    padding: 0 1em;
-}
-.wbc-more-button {
-    background: black;
-    color: white;
-    font-weight: bold;
-    padding: 1em 0.5em;
-    text-align: center;
-    &:hover {
-        background: #333333;
-    }
-    &:active {
-        background: $primaryRed;
-    }
-}
-
 :host /deep/ .searchResultMarker {
   width: 30px;
   height: 30px;
@@ -115,6 +98,6 @@ wbc-footer {
     }
 }
 
-:host /deep/ .mapboxgl-popup-content{
-    pointer-events: none;
-}
+// :host /deep/ .mapboxgl-popup-content{
+//     pointer-events: none;
+// }

@@ -4,16 +4,6 @@
 
 <wbc-footer></wbc-footer>
 
- <!-- <div id="wbc-popup" [hidden]="uiService.popupFeature == null">  -->
- <div id="wbc-popup"> 
-   <div *ngIf="uiService.popupFeature"> 
-    <div class="wbc-content">
-      <h3>{{uiService.popupFeature.properties.title}}</h3>
-      <p>{{uiService.popupFeature.properties.address}}</p>
-      <a href="tel:{{uiService.popupFeature.properties.tel}}">{{uiService.popupFeature.properties.tel}}</a>
-    </div>
-    <div class="wbc-more-button" (click)="openDetails(uiService.popupFeature)">{{'Mehr Information' | translate}}</div>
-  </div>
-</div>
+
 
 <wbc-dropdown-filter></wbc-dropdown-filter>

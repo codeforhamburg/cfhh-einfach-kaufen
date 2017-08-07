@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 :host {
     position: absolute;
     top: 0;
@@ -5,4 +7,21 @@
     bottom: 0;
     left: 0;
     background: orange;
+}
+
+.wbc-content {
+    padding: 0 1em;
+}
+.wbc-more-button {
+    background: black;
+    color: white;
+    font-weight: bold;
+    padding: 1em 0.5em;
+    text-align: center;
+    &:hover {
+        background: #333333;
+    }
+    &:active {
+        background: $primaryRed;
+    }
 }

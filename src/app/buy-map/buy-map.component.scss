@@ -8,3 +8,20 @@
     left: 0;
     // background: green;
 }
+
+.wbc-content {
+    padding: 0 1em;
+}
+.wbc-more-button {
+    background: black;
+    color: white;
+    font-weight: bold;
+    padding: 1em 0.5em;
+    text-align: center;
+    &:hover {
+        background: #333333;
+    }
+    &:active {
+        background: $primaryRed;
+    }
+}

@@ -14,9 +14,8 @@ export class MapService {
     private selectedFeature;
     private map;
     private stadtteilData = "./assets/data/Hamburg_Stadtteile.geojson";
-    private searchResultMarker = null;
+    private searchResultMarker;
     private searchResultPopup;
-    private kaufhausPopup;
 
 
     constructor(private dataService: DataService, private uiService: UiService, private dropDownFilterService: DropdownFilterService ) { }
@@ -130,37 +129,71 @@ export class MapService {
             }
         });
 
-
-
-        this.addMouseHandler(this.map);
+        this.addMarker();
     }
 
-    addMouseHandler(map){
-
+    addMarker() {
         let that = this;
-        //DISPLAY POPUP ON HOVER
-        var popup = new mapboxgl.Popup({
-            closeButton: true,
-            closeOnClick: false
+
+        let content = '<div class="searchResultMarker"></div><div class="searchResultMarker-pulse"></div>';     // use innerHTML to preserve transform:translate(x,y) from mapbox to position marker
+
+        // add marker w/ popup for each Kaufhaus
+        let kaufhausPopup = new mapboxgl.Popup({ offset: [-5, -15], closeButton: true, closeOnClick: true });
+        kaufhausPopup.setDOMContent(document.getElementById('wbc-popup'));
+
+        this.data.features.forEach(function (marker) {
+
+            let markerEl_KH = document.createElement('div');
+            markerEl_KH.innerHTML = content;
+
+            let newMarker = new mapboxgl.Marker(markerEl_KH);
+            newMarker.setLngLat(marker.geometry.coordinates).addTo(that.map);
+
+            newMarker.setPopup(kaufhausPopup);
+
+            markerEl_KH.addEventListener('mouseenter', function () {
+                if (!kaufhausPopup.isOpen()) {
+                    newMarker.togglePopup();
+                }
+            });
         });
 
-        // that.kaufhausPopup = new mapboxgl.Popup({ offset: [-5, -15], closeButton: true, closeOnClick: true });
-        // that.kaufhausPopup.setDOMContent(document.getElementById('wbc-popup'));
-
-        this.map.on('mousemove', function(e) {
+        this.map.on('mousemove', function (e) {
             var features = that.map.queryRenderedFeatures(e.point, { layers: ['kaufhaus'] });
             that.map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
-            if (features.length > 0){
+            if (features.length > 0) {
                 that.uiService.popupFeature = features[0];
-                popup.setLngLat(features[0].geometry.coordinates)
-                    .setDOMContent(document.getElementById('wbc-popup'))
-                    .addTo(that.map);
-                
-                // that.kaufhausPopup.setLngLat(features[0].geometry.coordinates);
-            } else {
-               //that.uiService.popupFeature = null;
+                kaufhausPopup.setLngLat(features[0].geometry.coordinates);
             }
         });
+
+
+        // prepare marker for searchresult
+        let searchResultMarkerEl = document.createElement('div');
+        searchResultMarkerEl.innerHTML = content;
+
+        let searchResultMarker = new mapboxgl.Marker(searchResultMarkerEl);
+        let searchResultPopup = new mapboxgl.Popup({ offset: [-5, -15], closeButton: false, closeOnClick: false });
+        searchResultMarker.setLngLat({ lng: 0, lat: 0 }).addTo(that.map);
+        searchResultMarker.setPopup(searchResultPopup);
+
+        that.searchResultMarker = searchResultMarker;
+        that.searchResultPopup = searchResultPopup;
+
+        searchResultMarkerEl.addEventListener('mouseenter', function () {
+            if (!that.searchResultPopup.isOpen()) {
+                that.searchResultMarker.togglePopup();
+            }
+        });
+        searchResultMarkerEl.addEventListener('mouseleave', function () {
+            if (that.searchResultPopup.isOpen()) {
+                that.searchResultMarker.togglePopup();
+            }
+        });
+
+
+
+
     }
 
     toGeoJson(data){
