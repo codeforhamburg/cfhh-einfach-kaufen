@@ -112,14 +112,16 @@ export class DataService {
     }
 
     activate(cat, type) {
+        this.resetSubs(this.activeCat);
         this.activeCat = false;
         this.appRef.tick();
         this.categories.forEach(function (cate) {
             cate.active = false;
         });
-
+        
         cat.active = true;
         this.activeCat = cat;
+        
 
         if (type === 'buy') {
             this.router.navigateByUrl('kaufen-karte');
@@ -132,5 +134,13 @@ export class DataService {
         sub.active = !sub.active;
     }
 
-
+    resetSubs(activeCat) {
+        if (activeCat) {
+            activeCat.subs.forEach(function (subItem) {
+                if (subItem.active) {
+                    subItem.active = false;
+                }
+            });
+        }
+    }
 }
