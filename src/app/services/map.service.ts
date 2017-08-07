@@ -17,7 +17,6 @@ export class MapService {
     private stadtteilData = "./assets/data/Hamburg_Stadtteile.geojson";
     private searchResultMarker = null;
     private searchResultPopup;
-    private kaufhausPopup;
 
 
     constructor(private dataService: DataService, private uiService: UiService, private dropDownFilterService: DropdownFilterService ) { }
@@ -79,28 +78,6 @@ export class MapService {
                 }
             }, err => console.log(err));
 
-            var markerEl = document.createElement('div');
-            markerEl.innerHTML = '<div class="searchResultMarker"></div>' +       // use innerHTML to preserve transform:translate(x,y) from mapbox to position marker
-                            '<div class="searchResultMarker-pulse"></div>';
-            
-            that.searchResultMarker = new mapboxgl.Marker(markerEl);
-            that.searchResultPopup = new mapboxgl.Popup({ offset: [-5, -15], closeButton: false, closeOnClick: false});
-
-            markerEl.addEventListener('mouseenter', function () {
-                if (!that.searchResultPopup.isOpen()) {
-                    that.searchResultMarker.togglePopup();
-                }
-            });
-            markerEl.addEventListener('mouseleave', function () {
-                if (that.searchResultPopup.isOpen()) {
-                    that.searchResultMarker.togglePopup();
-                }
-            });
-
-            let popupEle = document.getElementById('wbc-popup');
-            that.kaufhausPopup = new mapboxgl.Popup({ offset: [-5, -15], closeButton: true, closeOnClick: true });
-            that.kaufhausPopup.setDOMContent(popupEle);
-
         });
     }
 
@@ -136,86 +113,72 @@ export class MapService {
         });
 
 
-
-        this.addMouseHandler(this.map);
+        this.addMarker();
     }
 
-    addMouseHandler(map){
-
+    addMarker(){
         let that = this;
-        //DISPLAY POPUP ON HOVER
-        var popup = new mapboxgl.Popup({
-            closeButton: true,
-            closeOnClick: true
+
+        let content = '<div class="searchResultMarker"></div><div class="searchResultMarker-pulse"></div>';     // use innerHTML to preserve transform:translate(x,y) from mapbox to position marker
+        
+        // add marker w/ popup for each Kaufhaus
+        let popupEle = document.getElementById('wbc-popup');
+        let kaufhausPopup = new mapboxgl.Popup({ offset: [-5, -15], closeButton: true, closeOnClick: true });
+        kaufhausPopup.setDOMContent(popupEle);
+        
+        this.data.features.forEach(function (marker) {
+
+            let markerEl_KH = document.createElement('div');
+            markerEl_KH.innerHTML = content;
+
+            let newMarker = new mapboxgl.Marker(markerEl_KH);
+            newMarker.setLngLat(marker.geometry.coordinates).addTo(that.map);
+
+            newMarker.setPopup(kaufhausPopup);
+
+            markerEl_KH.addEventListener('mouseenter', function () {
+                if (!kaufhausPopup.isOpen()) {
+                    newMarker.togglePopup();
+                }
+            });
         });
-
-        // map.on('mouseenter', 'kaufhaus', function(e) {
-        //     // Change the cursor style as a UI indicator.
-        //     map.getCanvas().style.cursor = 'pointer';
-
-        //     // Populate the popup and set its coordinates
-        //     // based on the feature found.
-        //     popup.setLngLat(e.features[0].geometry.coordinates)
-        //         .setHTML(e.features[0].properties.title +  '<br>' + e.features[0].properties.props.gsx$adresse)
-        //         .addTo(map);
-        // });
-
-        // map.on('mouseleave', 'kaufhaus', function() {
-        //     map.getCanvas().style.cursor = '';
-        //     popup.remove();
-        // });
 
         this.map.on('mousemove', function(e) {
             var features = that.map.queryRenderedFeatures(e.point, { layers: ['kaufhaus'] });
             that.map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
             if (features.length > 0){
                 that.uiService.popupFeature = features[0];
-                that.kaufhausPopup.setLngLat(features[0].geometry.coordinates);
-                // popup.setLngLat(features[0].geometry.coordinates)
-                //     // .setHTML(features[0].properties.title +  '<br>' + features[0].properties.address +  '<br> T - ' + features[0].properties.tel)
-                //     .setDOMContent(document.getElementById('wbc-popup'))
-                //     .addTo(that.map);
-            } else {
-                // map.getCanvas().style.cursor = '';
-                // that.uiService.popupFeature = null;
-                // popup.remove();
-                // if (popup.isOpen()) {
-                //     that.searchResultMarker.togglePopup();
-                // }
+                kaufhausPopup.setLngLat(features[0].geometry.coordinates);
             }
         });
-        this.addMarker();
+
+
+        // prepare marker for searchresult
+        let searchResultMarkerEl = document.createElement('div');
+        searchResultMarkerEl.innerHTML = content;
+
+        let searchResultMarker = new mapboxgl.Marker(searchResultMarkerEl);
+        let searchResultPopup = new mapboxgl.Popup({ offset: [-5, -15], closeButton: false, closeOnClick: false });
+        searchResultMarker.setLngLat({lng: 0, lat: 0}).addTo(that.map);
+        searchResultMarker.setPopup(searchResultPopup);
+
+        that.searchResultMarker = searchResultMarker;
+        that.searchResultPopup = searchResultPopup;
+
+        searchResultMarkerEl.addEventListener('mouseenter', function () {
+            if (!that.searchResultPopup.isOpen()) {
+                that.searchResultMarker.togglePopup();
+            }
+        });
+        searchResultMarkerEl.addEventListener('mouseleave', function () {
+            if (that.searchResultPopup.isOpen()) {
+                that.searchResultMarker.togglePopup();
+            }
+        });
+
+        
 
  
-    }
-
-    addMarker() {
-        // https://stackoverflow.com/questions/17662551/how-to-use-angular-directives-ng-click-and-ng-class-inside-leaflet-marker-popup
-        let that = this;
-        let content = '<div class="searchResultMarker"></div><div class="searchResultMarker-pulse"></div>';
-
-        this.data.features.forEach(function (marker) {
-
-            var markerEl = document.createElement('div');
-            markerEl.innerHTML = content;
-            
-            var newMarker = new mapboxgl.Marker(markerEl);
-            newMarker.setLngLat(marker.geometry.coordinates).addTo(that.map);
-            
-            newMarker.setPopup(that.kaufhausPopup);
-
-            markerEl.addEventListener('mouseenter', function () {
-                console.log(newMarker)
-                if (!that.kaufhausPopup.isOpen()) {
-                    newMarker.togglePopup();
-                }
-            });
-            // markerEl.addEventListener('mouseleave', function () {
-            //     if (that.kaufhausPopup.isOpen()) {
-            //         newMarker.togglePopup();
-            //     }
-            // });
-        });
     }
 
     toGeoJson(data){
@@ -302,7 +265,6 @@ export class MapService {
 
     drawSearchResults(feature) {
         this.searchResultMarker.setLngLat({ lng: feature.center[0], lat: feature.center[1] }).addTo(this.map);
-        this.searchResultMarker.setPopup(this.searchResultPopup);
         this.searchResultPopup.setText(feature.place_name);
         this.zoomToPoint([feature.center[0], feature.center[1]]);
     }
