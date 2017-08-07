@@ -39,4 +39,9 @@ export class BuyMapComponent extends Slideable implements OnInit {
     this.mapService.initMap('wbc-buy-map')
   }
 
+
+  openDetails(feature) {
+    this.uiService2.selectedFeature = feature;
+    this.uiService2.showSelectedFeature = true;
+  }
 }

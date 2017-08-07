@@ -45,5 +45,10 @@ export class DonateMapComponent extends Slideable implements OnInit {
     //     // this.changeDetectorRef.detectChanges();
     //     console.log("dest");
     // }
+  
+    openDetails(feature) {
+      this.uiService2.selectedFeature = feature;
+      this.uiService2.showSelectedFeature = true;
+    }
 
 }

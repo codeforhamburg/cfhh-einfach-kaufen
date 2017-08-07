@@ -52,12 +52,6 @@ export class AppComponent {
         });
     }
 
-    openDetails(feature){
-        this.uiService.selectedFeature = feature;
-        this.uiService.showSelectedFeature = true;
-
-    }
-
 
   // onActivate(e) {
   //     console.log(this.uiService.direction);
