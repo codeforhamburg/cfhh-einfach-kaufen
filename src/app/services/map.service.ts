@@ -190,7 +190,7 @@ export class MapService {
     }
 
     addMarker() {
-        https://stackoverflow.com/questions/17662551/how-to-use-angular-directives-ng-click-and-ng-class-inside-leaflet-marker-popup
+        // https://stackoverflow.com/questions/17662551/how-to-use-angular-directives-ng-click-and-ng-class-inside-leaflet-marker-popup
         let that = this;
         let content = '<div class="searchResultMarker"></div><div class="searchResultMarker-pulse"></div>';
 
