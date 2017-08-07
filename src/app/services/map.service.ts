@@ -6,7 +6,6 @@ import * as turf from 'turf';
 
 declare var mapboxgl: any;
 declare var MapboxGeocoder: any;
-// declare var turf: any;
 
 @Injectable()
 export class MapService {
@@ -97,10 +96,6 @@ export class MapService {
                 }
             });
 
-            let popupEle = document.getElementById('wbc-popup');
-            that.kaufhausPopup = new mapboxgl.Popup({ offset: [-5, -15], closeButton: true, closeOnClick: true });
-            that.kaufhausPopup.setDOMContent(popupEle);
-
         });
     }
 
@@ -146,75 +141,25 @@ export class MapService {
         //DISPLAY POPUP ON HOVER
         var popup = new mapboxgl.Popup({
             closeButton: true,
-            closeOnClick: true
+            closeOnClick: false
         });
 
-        // map.on('mouseenter', 'kaufhaus', function(e) {
-        //     // Change the cursor style as a UI indicator.
-        //     map.getCanvas().style.cursor = 'pointer';
-
-        //     // Populate the popup and set its coordinates
-        //     // based on the feature found.
-        //     popup.setLngLat(e.features[0].geometry.coordinates)
-        //         .setHTML(e.features[0].properties.title +  '<br>' + e.features[0].properties.props.gsx$adresse)
-        //         .addTo(map);
-        // });
-
-        // map.on('mouseleave', 'kaufhaus', function() {
-        //     map.getCanvas().style.cursor = '';
-        //     popup.remove();
-        // });
+        // that.kaufhausPopup = new mapboxgl.Popup({ offset: [-5, -15], closeButton: true, closeOnClick: true });
+        // that.kaufhausPopup.setDOMContent(document.getElementById('wbc-popup'));
 
         this.map.on('mousemove', function(e) {
             var features = that.map.queryRenderedFeatures(e.point, { layers: ['kaufhaus'] });
             that.map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
             if (features.length > 0){
                 that.uiService.popupFeature = features[0];
-                that.kaufhausPopup.setLngLat(features[0].geometry.coordinates);
-                // popup.setLngLat(features[0].geometry.coordinates)
-                //     // .setHTML(features[0].properties.title +  '<br>' + features[0].properties.address +  '<br> T - ' + features[0].properties.tel)
-                //     .setDOMContent(document.getElementById('wbc-popup'))
-                //     .addTo(that.map);
+                popup.setLngLat(features[0].geometry.coordinates)
+                    .setDOMContent(document.getElementById('wbc-popup'))
+                    .addTo(that.map);
+                
+                // that.kaufhausPopup.setLngLat(features[0].geometry.coordinates);
             } else {
-                // map.getCanvas().style.cursor = '';
-                // that.uiService.popupFeature = null;
-                // popup.remove();
-                // if (popup.isOpen()) {
-                //     that.searchResultMarker.togglePopup();
-                // }
+               //that.uiService.popupFeature = null;
             }
-        });
-        this.addMarker();
-
- 
-    }
-
-    addMarker() {
-        // https://stackoverflow.com/questions/17662551/how-to-use-angular-directives-ng-click-and-ng-class-inside-leaflet-marker-popup
-        let that = this;
-        let content = '<div class="searchResultMarker"></div><div class="searchResultMarker-pulse"></div>';
-
-        this.data.features.forEach(function (marker) {
-
-            var markerEl = document.createElement('div');
-            markerEl.innerHTML = content;
-            
-            var newMarker = new mapboxgl.Marker(markerEl);
-            newMarker.setLngLat(marker.geometry.coordinates).addTo(that.map);
-            
-            newMarker.setPopup(that.kaufhausPopup);
-
-            markerEl.addEventListener('mouseenter', function () {
-                console.log(newMarker)
-                if (!that.kaufhausPopup.isOpen()) {
-                    newMarker.togglePopup();
-                }
-            });
-            // markerEl.addEventListener('mouseleave', function () {
-            //     if (that.kaufhausPopup.isOpen()) {
-            //         newMarker.togglePopup();
-            //     }
-            // });
         });
     }
 

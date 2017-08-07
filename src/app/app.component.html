@@ -4,9 +4,9 @@
 
 <wbc-footer></wbc-footer>
 
-<!-- <div class="wbc-popup" [hidden]="uiService.popupFeature == null"> -->
-<div id="wbc-popup">
-  <div *ngIf="uiService.popupFeature">
+ <!-- <div id="wbc-popup" [hidden]="uiService.popupFeature == null">  -->
+ <div id="wbc-popup"> 
+   <div *ngIf="uiService.popupFeature"> 
     <div class="wbc-content">
       <h3>{{uiService.popupFeature.properties.title}}</h3>
       <p>{{uiService.popupFeature.properties.address}}</p>
