@@ -50,7 +50,7 @@ export class MapService {
 
         let nav = new mapboxgl.NavigationControl();
         this.map.addControl(nav, 'top-right');
-
+        
 
         this.map.once('style.load', function() {
             if(that.dataService.staticData){
@@ -88,7 +88,7 @@ export class MapService {
             "source" : "data",
             "type" : "symbol",
             "layout": {
-                "icon-image": "monument-15",
+                "icon-image": "marker-15",
                 "text-field": "{title}",
                 "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
                 "text-offset": [0, 0.6],
