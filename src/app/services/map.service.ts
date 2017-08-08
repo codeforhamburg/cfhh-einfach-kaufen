@@ -137,33 +137,36 @@ export class MapService {
 
         let content = '<div class="searchResultMarker"></div><div class="searchResultMarker-pulse"></div>';     // use innerHTML to preserve transform:translate(x,y) from mapbox to position marker
 
-        // add marker w/ popup for each Kaufhaus
+        // add popup to show on hover over feature
         let kaufhausPopup = new mapboxgl.Popup({ offset: [-5, -15], closeButton: true, closeOnClick: true });
         kaufhausPopup.setDOMContent(document.getElementById('wbc-popup'));
 
-        this.data.features.forEach(function (marker) {
+        // markers can't be filtered like features, so can't be hidden as easily
+        // this.data.features.forEach(function (marker) {
 
-            let markerEl_KH = document.createElement('div');
-            markerEl_KH.innerHTML = content;
+        //     let markerEl_KH = document.createElement('div');
+        //     markerEl_KH.innerHTML = content;
 
-            let newMarker = new mapboxgl.Marker(markerEl_KH);
-            newMarker.setLngLat(marker.geometry.coordinates).addTo(that.map);
+        //     let newMarker = new mapboxgl.Marker(markerEl_KH);
+        //     newMarker.setLngLat(marker.geometry.coordinates).addTo(that.map);
 
-            newMarker.setPopup(kaufhausPopup);
+        //     newMarker.setPopup(kaufhausPopup);
 
-            markerEl_KH.addEventListener('mouseenter', function () {
-                if (!kaufhausPopup.isOpen()) {
-                    newMarker.togglePopup();
-                }
-            });
-        });
+        //     markerEl_KH.addEventListener('mouseenter', function () {
+        //         if (!kaufhausPopup.isOpen()) {
+        //             newMarker.togglePopup();
+        //         }
+        //     });
+        // });
 
         this.map.on('mousemove', function (e) {
             var features = that.map.queryRenderedFeatures(e.point, { layers: ['kaufhaus'] });
             that.map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
             if (features.length > 0) {
                 that.uiService.popupFeature = features[0];
-                kaufhausPopup.setLngLat(features[0].geometry.coordinates);
+                kaufhausPopup
+                    .setLngLat(features[0].geometry.coordinates)
+                    .addTo(that.map);
             }
         });
 
