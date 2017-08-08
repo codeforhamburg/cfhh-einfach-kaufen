@@ -78,25 +78,6 @@ export class MapService {
                     that.resetMapFeatures();
                 }
             }, err => console.log(err));
-
-            var markerEl = document.createElement('div');
-            markerEl.innerHTML = '<div class="searchResultMarker"></div>' +       // use innerHTML to preserve transform:translate(x,y) from mapbox to position marker
-                            '<div class="searchResultMarker-pulse"></div>';
-            
-            that.searchResultMarker = new mapboxgl.Marker(markerEl);
-            that.searchResultPopup = new mapboxgl.Popup({ offset: [-5, -15], closeButton: false, closeOnClick: false});
-
-            markerEl.addEventListener('mouseenter', function () {
-                if (!that.searchResultPopup.isOpen()) {
-                    that.searchResultMarker.togglePopup();
-                }
-            });
-            markerEl.addEventListener('mouseleave', function () {
-                if (that.searchResultPopup.isOpen()) {
-                    that.searchResultMarker.togglePopup();
-                }
-            });
-
         });
     }
 
