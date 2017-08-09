@@ -2,17 +2,25 @@
 
 :host {
     width: 100%;
-    .wbc-footer {
+    .wbc-footer,
+    .wbc-impressum {
         background: $primaryBlue;
         padding: 1em;
+        height: 30vh;
     }
 }
 
-
-#wbc-show-footer-button {
+.footer-buttons{
     position: absolute;
-    top: -27px;
+    bottom: 0;
     background: #eee;
     padding: 0.3em 0.3em;
     right: 0px;
+    z-index: -1;
 }
+
+#wbc-show-footer-button,
+#wbc-show-impressum-button {
+    float: right;
+}
+
