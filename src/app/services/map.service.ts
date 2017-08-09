@@ -41,13 +41,10 @@ export class MapService {
         this.map.addControl(new mapboxgl.GeolocateControl({
             positionOptions: {
                 enableHighAccuracy: true
-            }
+            },
+            trackUserLocation: true
         }));
-
-        this.map.on('trackuserlocationstart', function () {
-            console.log("spinner");
-        });
-
+        
         let nav = new mapboxgl.NavigationControl();
         this.map.addControl(nav, 'top-right');
 
