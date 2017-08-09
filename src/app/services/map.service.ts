@@ -82,11 +82,11 @@ export class MapService {
     }
 
     drawData(map, data) {
-        map.loadImage('https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Cat_silhouette.svg/400px-Cat_silhouette.svg.png', function (error, image) {
-            if (error) throw error;
-            console.log(image);
-            
-        });
+        // map.loadImage('https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Cat_silhouette.svg/400px-Cat_silhouette.svg.png', function (error, image) {
+        //     if (error) throw error;
+        //     map.addImage('cat', image);
+        //     console.log(image); 
+        // });
 
         this.map.addSource('data', {"type" : "geojson", "data" : data});
         this.map.addLayer({
@@ -95,6 +95,7 @@ export class MapService {
             "type" : "symbol",
             "layout": {
                 "icon-image": "marker-15",
+                // "icon-image": "cat",
                 "text-field": "{title}",
                 "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
                 "text-offset": [0, 0.6],
