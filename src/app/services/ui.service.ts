@@ -10,6 +10,7 @@ export class UiService {
     public currentPosition: number = undefined;
     public showFooter: boolean = false;
     public showImpressum: boolean = false;
+    public showAbout: boolean = false;
     public currentIndex = 3;
 
     public showSelectedFeature = false;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import {trigger, state, animate, style, transition} from '@angular/animations';
+import { UiService } from '../services/ui.service';
 
 @Component({
   selector: 'wbc-bottom-right',
@@ -32,9 +33,8 @@ import {trigger, state, animate, style, transition} from '@angular/animations';
 export class BottomRightComponent implements OnInit {
 
     private langSwitch = false;
-    public showAbout = false;
 
-    constructor(private translate: TranslateService) { }
+    constructor(private translate: TranslateService, private uiService: UiService) { }
 
     ngOnInit() {
     }
