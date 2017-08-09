@@ -31,12 +31,6 @@ export class MapService {
             zoom: 11
         });
 
-    //    this.map.addControl(new MapboxGeocoder({
-    //         accessToken: mapboxgl.accessToken,
-    //         placeholder: "Suche",
-    //         bbox: [9.725313, 53.39534, 10.325959, 53.738472]
-    //     }));
-
         // TODO: keine Ani bei klick / kein event.    
         this.map.addControl(new mapboxgl.GeolocateControl({
             positionOptions: {
@@ -79,11 +73,11 @@ export class MapService {
     }
 
     drawData(map, data) {
-        map.loadImage('https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Cat_silhouette.svg/400px-Cat_silhouette.svg.png', function (error, image) {
-            if (error) throw error;
-            console.log(image);
-            
-        });
+        // map.loadImage('https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Cat_silhouette.svg/400px-Cat_silhouette.svg.png', function (error, image) {
+        //     if (error) throw error;
+        //     map.addImage('cat', image);
+        //     console.log(image); 
+        // });
 
         this.map.addSource('data', {"type" : "geojson", "data" : data});
         this.map.addLayer({
@@ -92,6 +86,7 @@ export class MapService {
             "type" : "symbol",
             "layout": {
                 "icon-image": "marker-15",
+                // "icon-image": "cat",
                 "text-field": "{title}",
                 "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
                 "text-offset": [0, 0.6],
@@ -196,6 +191,7 @@ export class MapService {
                     "tel" : item.gsx$telefon.$t,
                     "img" : item.gsx$picurl.$t,
                     "descde" : item.gsx$beschreibungde.$t,
+                    "email" : item.gsx$email.$t,
                     "opening" : item.gsx$oeffnungszeiten.$t,
 
                     //KATEGORIE STUFF
