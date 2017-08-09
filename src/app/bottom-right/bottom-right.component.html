@@ -1,4 +1,4 @@
-<img class="wbc-bottom-right-icon" (click)="uiService.showAbout = true" src="assets/img/placeholder.jpg">
+<img class="wbc-bottom-right-icon" (click)="uiService.showAbout = !uiService.showAbout" src="assets/img/placeholder.jpg">
 <img class="wbc-bottom-right-icon lang-switcher" (click)="toggleLangSwitch()" src="assets/img/placeholder.jpg">
 
 <div id="wbc-lang-switch-list" *ngIf="langSwitch" [@slideInAnimation]>
