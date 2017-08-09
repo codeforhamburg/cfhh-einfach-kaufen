@@ -30,6 +30,7 @@ import { DropdownFilterComponent } from './dropdown-filter/dropdown-filter.compo
 import { DropdownFilterService } from "./dropdown-filter/dropdown-filter.service"
 import { FormsModule } from '@angular/forms';
 import { MapBoxSimpleMarkerComponent } from './mapbox-simple-marker/mapbox-simple-marker.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 export function HttpLoaderFactory(http: Http) {
     return new TranslateHttpLoader(http);
@@ -50,7 +51,8 @@ export function HttpLoaderFactory(http: Http) {
     InfoboxComponent,
     BottomRightComponent,
     DropdownFilterComponent,
-    MapBoxSimpleMarkerComponent
+    MapBoxSimpleMarkerComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

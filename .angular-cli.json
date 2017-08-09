@@ -20,11 +20,13 @@
       "prefix": "wbc",
       "styles": [
         "styles.scss",
-        "../node_modules/mapbox-gl/dist/mapbox-gl.css"
+        "../node_modules/mapbox-gl/dist/mapbox-gl.css",
+        "../node_modules/@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css"
       ],
 
       "scripts": [
-        "../node_modules/mapbox-gl/dist/mapbox-gl.js"
+        "../node_modules/mapbox-gl/dist/mapbox-gl.js",
+        "../node_modules/@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.min.js"
 
       ],
       "environmentSource": "environments/environment.ts",
