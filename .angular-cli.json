@@ -20,7 +20,8 @@
       "prefix": "wbc",
       "styles": [
         "styles.scss",
-        "../node_modules/mapbox-gl/dist/mapbox-gl.css"
+        "../node_modules/mapbox-gl/dist/mapbox-gl.css",
+        "../node_modules/font-awesome/css/font-awesome.css"
       ],
 
       "scripts": [
