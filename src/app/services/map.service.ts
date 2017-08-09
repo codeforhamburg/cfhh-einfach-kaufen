@@ -38,19 +38,19 @@ export class MapService {
     //     }));
 
         // TODO: keine Ani bei klick / kein event.    
-        // this.map.addControl(new mapboxgl.GeolocateControl({
-        //     positionOptions: {
-        //         enableHighAccuracy: true
-        //     }
-        // }));
+        this.map.addControl(new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            }
+        }));
 
-        // this.map.on('trackuserlocationstart', function () {
-        //     console.log("spinner");
-        // });
+        this.map.on('trackuserlocationstart', function () {
+            console.log("spinner");
+        });
 
         let nav = new mapboxgl.NavigationControl();
         this.map.addControl(nav, 'top-right');
-        
+
 
         this.map.once('style.load', function() {
             if(that.dataService.staticData){
@@ -82,6 +82,12 @@ export class MapService {
     }
 
     drawData(map, data) {
+        map.loadImage('https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Cat_silhouette.svg/400px-Cat_silhouette.svg.png', function (error, image) {
+            if (error) throw error;
+            console.log(image);
+            
+        });
+
         this.map.addSource('data', {"type" : "geojson", "data" : data});
         this.map.addLayer({
             "id" : "kaufhaus",
