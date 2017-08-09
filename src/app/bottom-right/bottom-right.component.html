@@ -1,4 +1,4 @@
-<img class="wbc-bottom-right-icon" src="assets/img/placeholder.jpg">
+<img class="wbc-bottom-right-icon" (click)="showAbout=true" src="assets/img/placeholder.jpg">
 <img class="wbc-bottom-right-icon lang-switcher" (click)="toggleLangSwitch()" src="assets/img/placeholder.jpg">
 
 <div id="wbc-lang-switch-list" *ngIf="langSwitch" [@slideInAnimation]>
@@ -6,4 +6,8 @@
         <li (click)="switchLang('en')">en</li>
         <li (click)="switchLang('de')">de</li>
     </ul>
+</div>
+
+<div class="about-container" *ngIf="showAbout" [@slideInAnimationFromRight]>
+    <span class="wbc-close-button" (click)="showAbout=false">x</span>
 </div>
