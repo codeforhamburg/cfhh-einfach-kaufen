@@ -1,10 +1,14 @@
 <div #dropdownFilter class="dropdownFilter__container" [class.expand]="input || hasFocus || disableCollapse">
+  <div class="search-icon">
+    <i class="fa fa-search" aria-hidden="true"> </i>
+  </div>
   <input
     [(ngModel)]="input"
     (ngModelChange)="onInputChange($event)"
     (focus)="onFocus($event); hasFocus = true"
     (blur)="onBlur($event); hasFocus = false"
     (keydown)="inputKeyHandler($event)"
+    placeholder="Adresse / Stadtteil"
   >
   <ul *ngIf="dropdownVisible" class="dropdownFilter-list">
     <li class="item"
@@ -23,6 +27,10 @@
       {{"dropdownFilter_noMatchFoundText" | translate}}
     </li>
   </ul>
-  <span *ngIf="!input && hasFocus!=true" class="dropdown-expand">V</span>
-  <span *ngIf="input" class="dropdown-close" (click)="clearInput($event)">X</span>
+  <div *ngIf="!input && hasFocus!=true" class="dropdown-expand">
+    <i class="fa fa-angle-down" aria-hidden="true"> </i>
+  </div>
+  <div *ngIf="input" class="dropdown-close" (click)="clearInput($event)">
+    <i class="fa fa-times" aria-hidden="true"> </i>
+  </div>
 </div>
