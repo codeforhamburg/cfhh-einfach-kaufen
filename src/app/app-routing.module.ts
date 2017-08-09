@@ -15,7 +15,7 @@ const routes: Routes = [
     { path: 'kaufen', component: BuyStartComponent, data : { slideIndex : 3}, canDeactivate: [CanDeactivateAfterChangeDetectionGuard] },
     { path: 'kaufen-karte', component: BuyMapComponent, data : { slideIndex : 4}, canDeactivate: [CanDeactivateAfterChangeDetectionGuard] },
     { path: '404', component: NotFoundComponent },
-     {path: '**', redirectTo: '404'}
+     {path: '**', redirectTo: 'kaufen'}
     // { path: '**', component: NotFound }
 ];
 
