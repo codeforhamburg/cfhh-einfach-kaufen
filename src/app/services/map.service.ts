@@ -85,7 +85,7 @@ export class MapService {
             "source" : "data",
             "type" : "symbol",
             "layout": {
-                "icon-image": "marker-15",
+                "icon-image": "marker-11",
                 // "icon-image": "cat",
                 "text-field": "{title}",
                 "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
@@ -140,7 +140,9 @@ export class MapService {
         //     });
         // });
 
-        this.map.on('mousemove', function (e) {
+        let openKaufhausPopup = function (e) {
+            console.log(e);
+            
             var features = that.map.queryRenderedFeatures(e.point, { layers: ['kaufhaus'] });
             that.map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
             if (features.length > 0) {
@@ -149,8 +151,10 @@ export class MapService {
                     .setLngLat(features[0].geometry.coordinates)
                     .addTo(that.map);
             }
-        });
+        }
 
+        this.map.on('mouseenter', 'kaufhaus', openKaufhausPopup);
+        this.map.on('click', 'kaufhaus', openKaufhausPopup);
 
         // prepare marker for searchresult
         let searchResultMarkerEl = document.createElement('div');
