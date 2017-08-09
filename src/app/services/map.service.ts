@@ -85,7 +85,7 @@ export class MapService {
             "source" : "data",
             "type" : "symbol",
             "layout": {
-                "icon-image": "marker-11",
+                "icon-image": "monument-11",
                 // "icon-image": "cat",
                 "text-field": "{title}",
                 "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
@@ -119,7 +119,7 @@ export class MapService {
         let content = '<div class="searchResultMarker"></div><div class="searchResultMarker-pulse"></div>';     // use innerHTML to preserve transform:translate(x,y) from mapbox to position marker
 
         // add popup to show on hover over feature
-        let kaufhausPopup = new mapboxgl.Popup({ offset: [-5, -15], closeButton: true, closeOnClick: true });
+        let kaufhausPopup = new mapboxgl.Popup({ offset: [0, 0], closeButton: true, closeOnClick: false });
         kaufhausPopup.setDOMContent(document.getElementById('wbc-popup'));
 
         // markers can't be filtered like features, so can't be hidden as easily
@@ -141,10 +141,9 @@ export class MapService {
         // });
 
         let openKaufhausPopup = function (e) {
-            console.log(e);
-            
-            var features = that.map.queryRenderedFeatures(e.point, { layers: ['kaufhaus'] });
-            that.map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+            var bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
+            var features = that.map.queryRenderedFeatures(bbox, { layers: ['kaufhaus'] });
+            // that.map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
             if (features.length > 0) {
                 that.uiService.popupFeature = features[0];
                 kaufhausPopup
@@ -153,15 +152,24 @@ export class MapService {
             }
         }
 
-        this.map.on('mouseenter', 'kaufhaus', openKaufhausPopup);
         this.map.on('click', 'kaufhaus', openKaufhausPopup);
+
+        // Change the cursor to a pointer when the mouse is over the places layer.
+        this.map.on('mouseenter', 'kaufhaus', function () {
+            that.map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        this.map.on('mouseleave', 'kaufhaus', function () {
+            that.map.getCanvas().style.cursor = '';
+        });
 
         // prepare marker for searchresult
         let searchResultMarkerEl = document.createElement('div');
         searchResultMarkerEl.innerHTML = content;
 
         let searchResultMarker = new mapboxgl.Marker(searchResultMarkerEl);
-        let searchResultPopup = new mapboxgl.Popup({ offset: [-5, -15], closeButton: false, closeOnClick: false });
+        let searchResultPopup = new mapboxgl.Popup({ offset: [0, 0], closeButton: false, closeOnClick: false });
         searchResultMarker.setLngLat({ lng: 0, lat: 0 }).addTo(that.map);
         searchResultMarker.setPopup(searchResultPopup);
 
