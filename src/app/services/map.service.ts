@@ -38,11 +38,12 @@ export class MapService {
     //     }));
 
         // TODO: keine Ani bei klick / kein event.    
-        // this.map.addControl(new mapboxgl.GeolocateControl({
-        //     positionOptions: {
-        //         enableHighAccuracy: true
-        //     }
-        // }));
+        this.map.addControl(new mapboxgl.GeolocateControl({
+            // accessToken: mapboxgl.accessToken,
+            // positionOptions: {
+            //     enableHighAccuracy: true
+            // }
+        }));
 
         // this.map.on('trackuserlocationstart', function () {
         //     console.log("spinner");
@@ -193,6 +194,7 @@ export class MapService {
                     "tel" : item.gsx$telefon.$t,
                     "img" : item.gsx$picurl.$t,
                     "descde" : item.gsx$beschreibungde.$t,
+                    "email" : item.gsx$email.$t,
                     "opening" : item.gsx$oeffnungszeiten.$t,
 
                     //KATEGORIE STUFF
