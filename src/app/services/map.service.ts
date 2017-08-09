@@ -31,27 +31,20 @@ export class MapService {
             zoom: 11
         });
 
-    //    this.map.addControl(new MapboxGeocoder({
-    //         accessToken: mapboxgl.accessToken,
-    //         placeholder: "Suche",
-    //         bbox: [9.725313, 53.39534, 10.325959, 53.738472]
-    //     }));
-
         // TODO: keine Ani bei klick / kein event.    
         this.map.addControl(new mapboxgl.GeolocateControl({
-            // accessToken: mapboxgl.accessToken,
-            // positionOptions: {
-            //     enableHighAccuracy: true
-            // }
+            positionOptions: {
+                enableHighAccuracy: true
+            }
         }));
 
-        // this.map.on('trackuserlocationstart', function () {
-        //     console.log("spinner");
-        // });
+        this.map.on('trackuserlocationstart', function () {
+            console.log("spinner");
+        });
 
         let nav = new mapboxgl.NavigationControl();
         this.map.addControl(nav, 'top-right');
-        
+
 
         this.map.once('style.load', function() {
             if(that.dataService.staticData){
@@ -83,6 +76,12 @@ export class MapService {
     }
 
     drawData(map, data) {
+        // map.loadImage('https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Cat_silhouette.svg/400px-Cat_silhouette.svg.png', function (error, image) {
+        //     if (error) throw error;
+        //     map.addImage('cat', image);
+        //     console.log(image); 
+        // });
+
         this.map.addSource('data', {"type" : "geojson", "data" : data});
         this.map.addLayer({
             "id" : "kaufhaus",
@@ -90,6 +89,7 @@ export class MapService {
             "type" : "symbol",
             "layout": {
                 "icon-image": "marker-15",
+                // "icon-image": "cat",
                 "text-field": "{title}",
                 "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
                 "text-offset": [0, 0.6],
