@@ -31,12 +31,6 @@ export class MapService {
             zoom: 11
         });
 
-    //    this.map.addControl(new MapboxGeocoder({
-    //         accessToken: mapboxgl.accessToken,
-    //         placeholder: "Suche",
-    //         bbox: [9.725313, 53.39534, 10.325959, 53.738472]
-    //     }));
-
         // TODO: keine Ani bei klick / kein event.    
         this.map.addControl(new mapboxgl.GeolocateControl({
             positionOptions: {
@@ -200,6 +194,7 @@ export class MapService {
                     "tel" : item.gsx$telefon.$t,
                     "img" : item.gsx$picurl.$t,
                     "descde" : item.gsx$beschreibungde.$t,
+                    "email" : item.gsx$email.$t,
                     "opening" : item.gsx$oeffnungszeiten.$t,
 
                     //KATEGORIE STUFF
