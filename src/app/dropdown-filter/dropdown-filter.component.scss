@@ -5,10 +5,11 @@
     height: 40px;
     transition: width 0.15s ease-out;
     will-change: width;
+    position: relative;
 }
 
 .dropdownFilter__container.expand {
-    width: 200px;
+    width: 100%;
 }
 
 .dropdownFilter__container input {

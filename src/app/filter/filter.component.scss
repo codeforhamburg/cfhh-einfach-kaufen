@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 #wbc-filter {
-    min-width: 150px;
+    width: 254px;
 
     #wbc-choose-cat {
         list-style: none;
@@ -33,6 +33,17 @@
             padding: 0.5em 0.3em;
             user-select: none;
             cursor: pointer;
+            height: 40px;
+            font-family: NowRegular;
+            font-size: 14px;
+            letter-spacing: 1.2px;
+            padding-left: 12px;
+
+            .wbc-filter-item-name {
+                height: 100%;
+                display: inline-flex;
+                align-items: center;
+            }
         }
 
         .wbc-filter-item:not(:last-child) { 
@@ -53,3 +64,28 @@
         }
     }
 }
+
+wbc-dropdown-filter {
+    position: absolute;
+    width: 100%;
+    padding: 0.5em 0.3em;
+    background-color: white;
+    font-size: 14px;
+    font-family: NowRegular;
+}
+
+wbc-dropdown-filter /deep/ input {
+    font-size: 14px;
+    font-family: NowRegular;
+}
+
+.wbc-filter-help-text {
+    font-size: 14px;
+    font-family: "NowMedium";
+    margin-bottom: 12px;
+
+    &.ort {
+        margin-top: 24px;
+    }
+}
+

@@ -11,16 +11,25 @@
         </div>
 
     </div>
-    Was brauchst du genau?
+    <div class="wbc-filter-help-text">
+        Was brauchst du genau?
+    </div>
     <div class="wbc-sub-list">
         <ul *ngIf="dataService.activeCat" [@slideInOutAnimation]>
-            <li class="wbc-filter-item" *ngFor="let sub of dataService.activeCat.subs" (click)="mapService.toggleSub(sub)" [ngClass]="{'active' : sub.active}">{{sub.name | translate }}
-                <span *ngIf="sub.active" class="checkmark">
+            <li class="wbc-filter-item" *ngFor="let sub of dataService.activeCat.subs" (click)="mapService.toggleSub(sub)" [ngClass]="{'active' : sub.active}">
+                <div class="wbc-filter-item-name">{{sub.name | translate }}</div>
+                <div *ngIf="sub.active" class="checkmark"></div>
+                <!-- <span *ngIf="sub.active" class="checkmark">
                     <div class="checkmark_stem"></div>
                     <div class="checkmark_kick"></div>
-                </span>
+                </span> -->
             </li>
         </ul>
     </div>
     <div class="wbc-full-button wbc-hidden-lg" (click)="uiService.showFilter = false">{{'Ergebnisse anzeigen' | translate}}</div>
 </div>
+
+<div class="wbc-filter-help-text ort">
+    Wo suchst du?
+</div>
+<wbc-dropdown-filter></wbc-dropdown-filter>

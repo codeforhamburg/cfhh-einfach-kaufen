@@ -73,11 +73,10 @@ export class MapService {
     }
 
     drawData(map, data) {
-        // map.loadImage('https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Cat_silhouette.svg/400px-Cat_silhouette.svg.png', function (error, image) {
-        //     if (error) throw error;
-        //     map.addImage('cat', image);
-        //     console.log(image); 
-        // });
+        map.loadImage('./assets/img/marker_24x30.png', function (error, image) {
+            if (error) throw error;
+            map.addImage('hid_marker', image);
+        });
 
         this.map.addSource('data', {"type" : "geojson", "data" : data});
         this.map.addLayer({
@@ -86,13 +85,13 @@ export class MapService {
             "type": "symbol",
             "sprite": "mapbox://sprites/mapbox/bright-v8",
             "layout": {
-                "icon-image": "marker-15",
-                // "icon-image": "cat",
-                "icon-size": 1.5,
+                "icon-image": "hid_marker",
+                "icon-size": 1,
+                "icon-offset": [0, -15],
                 "text-field": "{title}",
                 "text-font": ["Now Regular", "Open Sans Semibold", "Arial Unicode MS Bold"],
-                "text-offset": [0, 0.6],
-                "text-anchor": "top",
+                "text-offset": [0.8, -0.2],
+                "text-anchor": "left",
                 "icon-allow-overlap" : true,
                 "text-allow-overlap" : true
             }
@@ -122,7 +121,7 @@ export class MapService {
         let content = '<div class="searchResultMarker"></div><div class="searchResultMarker-pulse"></div>';     // use innerHTML to preserve transform:translate(x,y) from mapbox to position marker
 
         // add popup to show on hover over feature
-        let kaufhausPopup = new mapboxgl.Popup({ offset: [0, 0], closeButton: true, closeOnClick: false });
+        let kaufhausPopup = new mapboxgl.Popup({ offset: [0, -32], closeButton: true, closeOnClick: false });
         kaufhausPopup.setDOMContent(document.getElementById('wbc-popup'));
 
         // markers can't be filtered like features, so can't be hidden as easily

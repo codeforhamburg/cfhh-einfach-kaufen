@@ -80,10 +80,20 @@ wbc-icon-filter {
             display: inline-block;
             padding: 0 1em;
             img {
-                height: 30px;
+                max-height: 30px;
+                height: auto;
+                width: auto;
+                display: block;
+                margin: 0 auto;
+                filter: invert(100%);
             }
         }
     }
+}
+
+wbc-icon-filter ul li:first-child img{
+    right: 5px;
+    position: relative;
 }
 
 wbc-filter {
@@ -173,7 +183,7 @@ wbc-infobox {
     }
     wbc-icon-filter {
         .active {
-            background: $primaryBlue !important;
+            background: $primaryBlue !important; 
         }
     }
     .wbc-infobox-ul {
@@ -212,14 +222,22 @@ wbc-infobox {
 
 
 .checkmark {
+    background-image: url("./assets/img/check.png");
     display:inline-block;
-    width: 22px;
-    height:22px;
-    -ms-transform: rotate(45deg); /* IE 9 */
-    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
-    transform: rotate(45deg);
+    width: 30px;
+    height:30px;
+    padding-top: 10px;
+    padding-left: 12px;
     position: absolute;
     right: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    // display:inline-block;
+    // width: 22px;
+    // height:22px;
+    // transform: rotate(45deg);
+    // position: absolute;
+    // right: 0;
 }
 
 .checkmark_stem {
@@ -297,10 +315,4 @@ wbc-filter {
 
 .mapboxgl-popup-content {
     padding: 0 !important;
-}
-
-wbc-dropdown-filter {
-    position: absolute;
-    top: 200px;
-    right: 10px;
 }
