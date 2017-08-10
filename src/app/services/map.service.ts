@@ -21,7 +21,7 @@ export class MapService {
 
 
     initMap(id) {
-        mapboxgl.accessToken = 'pk.eyJ1IjoibHVuZGVsaXVzIiwiYSI6ImNpdWljbmV4eTAwM2Uyb21kczN6bndrb2kifQ.AXS9vjUNgfpx8zrAfNT2pw';
+        mapboxgl.accessToken = 'pk.eyJ1Ijoid2VidWlsZGNpdHkiLCJhIjoiY2o2NjRzN3hjMjR1ZzMybm93bDVxNzFkYSJ9.Cn82QIwnCXpfEU7TcGlEkQ';
         let that = this;
 
         this.map = new mapboxgl.Map({
