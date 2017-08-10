@@ -90,7 +90,7 @@ export class MapService {
                 // "icon-image": "cat",
                 "icon-size": 1.5,
                 "text-field": "{title}",
-                // "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                "text-font": ["Now Regular", "Open Sans Semibold", "Arial Unicode MS Bold"],
                 "text-offset": [0, 0.6],
                 "text-anchor": "top",
                 "icon-allow-overlap" : true,
