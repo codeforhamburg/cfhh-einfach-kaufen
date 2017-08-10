@@ -26,7 +26,7 @@ export class MapService {
 
         this.map = new mapboxgl.Map({
             container: id,
-            style: 'mapbox://styles/mapbox/streets-v9',
+            style: "mapbox://styles/webuildcity/cj6662awc6xxd2ssce7cq2rii",
             center : [9.980159, 53.547726],
             zoom: 11
         });
@@ -83,12 +83,14 @@ export class MapService {
         this.map.addLayer({
             "id" : "kaufhaus",
             "source" : "data",
-            "type" : "symbol",
+            "type": "symbol",
+            "sprite": "mapbox://sprites/mapbox/bright-v8",
             "layout": {
-                "icon-image": "monument-11",
+                "icon-image": "marker-15",
                 // "icon-image": "cat",
+                "icon-size": 1.5,
                 "text-field": "{title}",
-                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                // "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
                 "text-offset": [0, 0.6],
                 "text-anchor": "top",
                 "icon-allow-overlap" : true,
@@ -103,12 +105,13 @@ export class MapService {
             "source": "dataStadtteile",
             "type" : "fill",
             "paint": {
-                "fill-color": "#00ffff"
+                "fill-color": "#00ffff",
+                "fill-opacity": 0.2
             },
             "layout": {
                 'visibility': 'none'
             }
-        });
+        }, "kaufhaus");     // this second arguments puts this new layer ("stadtteile") behind the one here ("kaufhaus");
 
         this.addMarker();
     }
@@ -155,8 +158,9 @@ export class MapService {
         this.map.on('click', 'kaufhaus', openKaufhausPopup);
 
         // Change the cursor to a pointer when the mouse is over the places layer.
-        this.map.on('mouseenter', 'kaufhaus', function () {
+        this.map.on('mouseenter', 'kaufhaus', function (e) {
             that.map.getCanvas().style.cursor = 'pointer';
+            openKaufhausPopup(e);
         });
 
         // Change it back to a pointer when it leaves.
