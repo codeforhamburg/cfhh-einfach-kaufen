@@ -12,7 +12,7 @@ export class MapService {
     private data;
     private selectedFeature;
     private map;
-    private stadtteilData = "./assets/data/Hamburg_Stadtteile.geojson";
+    private stadtteilData = "./assets/data/Hamburg_Stadtteile_compressed.geojson";
     private searchResultMarker;
     private searchResultPopup;
 
