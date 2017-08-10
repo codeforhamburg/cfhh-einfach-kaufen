@@ -4,7 +4,7 @@ import { Http } from '@angular/http';
 @Injectable()
 export class MapBoxGeocoderService {
   private http: Http;
-  private accessToken = 'pk.eyJ1IjoibHVuZGVsaXVzIiwiYSI6ImNpdWljbmV4eTAwM2Uyb21kczN6bndrb2kifQ.AXS9vjUNgfpx8zrAfNT2pw';
+  private accessToken = 'pk.eyJ1Ijoid2VidWlsZGNpdHkiLCJhIjoiY2o2NjRzN3hjMjR1ZzMybm93bDVxNzFkYSJ9.Cn82QIwnCXpfEU7TcGlEkQ';
   private language = "de";
   private boundingBox = "9.725313%2C53.39534%2C10.325959%2C53.738472"
 
