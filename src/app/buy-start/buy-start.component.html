@@ -1,8 +1,11 @@
 
 <a class="wbc-turned-link" routerLink="/spenden" routerLinkActive="active"> < {{ "Spenden" | translate }}</a>
 
-<h1 [innerHtml]="'kaufen-headline' | translate">
-</h1>
+<!-- <h1 class="headline" [innerHtml]="'kaufen-headline' | translate"></h1> -->
+<div class="headline">
+    <span>{{"kaufen-headline-1st" | translate}}</span><br>
+    <span>&mdash;{{"kaufen-headline-2nd" | translate}}</span>
+</div>
 
 <ul class="wbc-four-row">
     <li class="wbc-image-title-container" *ngFor="let cat of dataService.categories">

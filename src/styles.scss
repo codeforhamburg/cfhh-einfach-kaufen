@@ -29,24 +29,54 @@ html, body {
     font-family: NowRegular;
 }
 
+.headline {
+    font-family: NowBlack;
+    position: relative;
+    top: 12%;
+    left: 20%;
+    font-size: 75px;
+
+}
+
 .wbc-four-row {
     list-style: none;
     margin: 0;
     padding: 0;
     position: relative;
-    width: 90%;
-    left: 5%;
+    width: 90vw;
+    left: 5vw;
+    top: 25vh;
     // @media screen and (max-width: 768px){
     //     // height: 60%;
     // }
     li {
-        max-width: 24%;
+        max-width: 18vw;
+        padding: 0 2vw 0 2vw;
         display: inline-block;
 
         @media screen and (max-width: 768px){
-            max-width: 49%;
+            max-width: 15vw;
         }
     }
+}
+
+
+.wbc-four-row li:nth-child(1) {
+    bottom: 10vh;
+    padding-left: 0;
+}
+
+.wbc-four-row li:nth-child(2) {
+    bottom: 10vh;
+}
+
+.wbc-four-row li:nth-child(3) img {
+    width: 60%;
+}
+
+.wbc-four-row li:nth-child(4) {
+    bottom: 10vh;
+    padding-right: 0;
 }
 
 .wbc-image-title-container {
@@ -54,6 +84,7 @@ html, body {
     text-align: center;
     .wbc-image-container {
         height: 100%;
+        min-width: 24vw;
     }
     img {
         width: 80%;

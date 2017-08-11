@@ -29,7 +29,7 @@ export class DataService {
         this.categories = [
             {
                 "name": "Freizeit",
-                "img": "assets/img/nav_main_bike.png",
+                "img": "assets/img/bike.png",
                 "active": false,
                 "subs": [
                     { "name": "Fahrrad", "active": false },
@@ -43,7 +43,7 @@ export class DataService {
             },
             {
                 "name": "Kleidung",
-                "img": "assets/img/nav_main_shirt.png",
+                "img": "assets/img/shirt.png",
                 "active": false,
                 "subs": [
                     { "name": "Schuhe", "active": false },
@@ -53,7 +53,7 @@ export class DataService {
             },
             {
                 "name": "Haushalt",
-                "img": "assets/img/nav_main_chair.png",
+                "img": "assets/img/chair.png",
                 "active": false,
                 "subs": [
                     { "name": "stuff", "active": false },
@@ -63,7 +63,7 @@ export class DataService {
             },
             {
                 "name": "Sonstiges",
-                "img": "assets/img/nav_main_stroller.png",
+                "img": "assets/img/stroller.png",
                 "active": false,
                 "subs": [
                     { "name": "sonstigerstuff", "active": false },

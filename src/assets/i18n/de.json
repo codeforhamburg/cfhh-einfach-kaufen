@@ -1,6 +1,7 @@
 {
     "HELLO": "hello",
-    "kaufen-headline" : "Moin.<br> -Was Suchst du?",
+    "kaufen-headline-1st" : "Moin.",
+    "kaufen-headline-2nd" : " Was suchst du?",
     "spenden-headline" : "Cool!<br> -Was spendest du?",
     "Spenden" : "Spenden",
     "Sonstiges" : "Sonstiges",
