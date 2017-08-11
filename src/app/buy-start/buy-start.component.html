@@ -7,14 +7,12 @@
     <span>&mdash;{{"kaufen-headline-2nd" | translate}}</span>
 </div>
 
-<ul class="wbc-four-row">
-    <li class="wbc-image-title-container" *ngFor="let cat of dataService.categories">
-        <div class="wbc-image-container" (click)="dataService.activate(cat, 'buy')">
-            <img src="{{cat.img}}">
-        </div>
+<div class="wbc-four-row">
+    <div class="wbc-image-title-container" *ngFor="let cat of dataService.categories" (click)="dataService.activate(cat, 'buy')">
+        <img src="{{cat.img}}">
         {{ cat.name | translate }}
-    </li>
-</ul>
+    </div>
+</div>
 
 <!-- <ul class="wbc-four-row">
     <li class="wbc-image-title-container"><div class="wbc-image-container"><img src="assets/img/placeholder.jpg"></div> {{ 'Sonstiges' | translate }}</li>
