@@ -1,18 +1,25 @@
-<div id="wbc-nav-container">
-    <p class="wbc-rotate-text-top" *ngIf="uiService.currentIndex < 3">{{'Spenden' | translate }}</p>
-    <ul>
-        <li>
-            <a routerLink="/spenden-karte" routerLinkActive="active" title="Spenden Karte"></a>
-        </li>
-        <li>
-            <a routerLink="/spenden" routerLinkActive="active" title="Spenden"></a>
-        </li>
-        <li>
-            <a routerLink="/kaufen" routerLinkActive="active" title="Kaufen"></a>
-        </li>
-        <li>
-            <a routerLink="/kaufen-karte" routerLinkActive="active" title="Kaufen Karte"></a>
-        </li>
-    </ul>
-    <p class="wbc-rotate-text-bot" *ngIf="uiService.currentIndex > 2">{{'Kaufen' | translate }}</p>
+<div class="wbc-rotate-text-top-container">
+    <div class="wbc-rotate-text-top-rotator">
+        <p class="wbc-rotate-text" *ngIf="uiService.currentIndex < 3">{{'Spenden' | translate }}</p>
+    </div>
+</div>
+<ul>
+    <li>
+        <a routerLink="/spenden-karte" routerLinkActive="active" title="Spenden Karte"></a>
+    </li>
+    <li>
+        <a routerLink="/spenden" routerLinkActive="active" title="Spenden"></a>
+    </li>
+    <li>
+        <a routerLink="/kaufen" routerLinkActive="active" title="Kaufen"></a>
+    </li>
+    <li>
+        <a routerLink="/kaufen-karte" routerLinkActive="active" title="Kaufen Karte"></a>
+    </li>
+</ul>
+
+<div class="wbc-rotate-text-bot-container">
+    <div class="wbc-rotate-text-bot-rotator">
+        <p class="wbc-rotate-text" *ngIf="uiService.currentIndex > 2">{{'Kaufen' | translate }}</p>
+    </div>
 </div>

@@ -1,49 +1,71 @@
 @import '../../styles/variables.scss';
 
-#wbc-nav-container {
-    ul {
-        list-style: none;
-        li {
-            a {
-                margin: 0.8em;
-                border-radius: 50%;
-                width: 10px;
-                height: 10px;
-                background: black;
-                display: inline-block;
-                border: 1px solid black;
 
-                &.active {
-                    background: white;
-                }
-            }
+.wbc-rotate-text-top-container {
+    position: absolute;
+    top: -1em;
+    right: 1em;
 
+        .wbc-rotate-text-top-rotator {
+            transform: rotate(90deg);
+            transform-origin: right center;
+            text-align: right;
         }
-        li:nth-child(-n + 2):hover {
-            a {
-                background: $primaryRed;
+}
+
+.wbc-rotate-text-bot-container {
+    position: absolute;
+    bottom: -1em;
+    right: 1em;
+
+        .wbc-rotate-text-bot-rotator {
+            transform: rotate(90deg) translateX(100%);
+            transform-origin: right center;
+            text-align: left;
+        }
+}
+
+
+.wbc-rotate-text,
+.wbc-rotate-text {
+    white-space: nowrap;
+    margin: 0;
+    line-height: 20px;
+    font-family: nowMedium;
+    font-size: 20px;
+    bottom: -2px;
+    position: relative;
+    text-align: right;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+
+    li {
+        a {
+            margin: 0.8em;
+            border-radius: 50%;
+            width: 10px;
+            height: 10px;
+            background: black;
+            display: inline-block;
+            border: 1px solid black;
+
+            &.active {
+                background: white;
             }
         }
-        li:nth-child(-n - 2):hover {
-            a {
-                background: $primaryBlue;
-            }
+
+    }
+    li:nth-child(-n + 2):hover {
+        a {
+            background: $primaryRed;
         }
     }
-
-    .wbc-rotate-text-top {
-        position: absolute;
-        transform: rotate(90deg);
-        margin: 0;
-        left: 30px;
-        top: -25px;
-    }
-
-    .wbc-rotate-text-bot {
-        position: absolute;
-        transform: rotate(90deg);
-        margin: 0;
-        left: 30px;
-        // top: -25px;
+    li:nth-child(-n - 2):hover {
+        a {
+            background: $primaryBlue;
+        }
     }
 }
