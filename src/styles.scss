@@ -40,7 +40,7 @@ html, body {
 
 .wbc-four-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 5vw;
     position: relative;
     width: 80%;
@@ -71,20 +71,13 @@ html, body {
         }
 }
 
-.wbc-four-row div:nth-child(1) img {
-    width: 95%;
-}
-
-.wbc-four-row div:nth-child(3) img {
-    width: 60%;
-        @media screen and (max-width: 768px){
-            width: 40%;
-        }
-}
-
 .wbc-image-title-container {
     text-align: center;
     font: 20px NowMedium;
+    &:hover{
+        color: $primaryBlue;
+        text-shadow: 0 0 3px white;
+    }
 }
 
 
@@ -95,34 +88,13 @@ html, body {
 
 wbc-icon-filter {
     position: absolute;
-    bottom: 1em;
+    bottom: 2em;
     left: 1em;
     z-index: 2;
-
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-
-        li {
-            display: inline-block;
-            padding: 0 1em;
-            img {
-                max-height: 30px;
-                height: auto;
-                width: auto;
-                display: block;
-                margin: 0 auto;
-                filter: invert(100%);
-            }
-        }
-    }
+    max-width: 80%;
+    display: inline-flex;
 }
 
-wbc-icon-filter ul li:first-child img{
-    right: 5px;
-    position: relative;
-}
 
 wbc-filter {
     position: absolute;
@@ -289,11 +261,12 @@ wbc-infobox {
 wbc-bottom-right {
     position: absolute;
     bottom: 2em;
-    right: 2em;
+    right: 1em;
     z-index: 2;
     
     img {
-        height: 30px;
+        height: 54px;
+        margin-left: 12px;
     }
 }
 

@@ -1,4 +1,4 @@
-<ul>
-    <li class="wbc-icons-filter" *ngFor="let cat of dataService.categories" [ngClass]="{'active' : cat.active}"><div class="wbc-image-container" (click)="activateCat(cat)"><img src="{{cat.img}}" [title]="cat.name | translate"></div></li>
-    <li class="wbc-active-name" *ngIf="dataService.activeCat">{{dataService.activeCat.name | translate}}</li> 
-</ul>
+<div class="wbc-icons-filter" *ngFor="let cat of dataService.categories" [ngClass]="{'active' : cat.active}">
+    <img src="{{cat.img}}" [title]="cat.name | translate" (click)="activateCat(cat)">
+</div>
+<span class="wbc-active-name" *ngIf="dataService.activeCat">{{dataService.activeCat.name | translate}}</span> 
