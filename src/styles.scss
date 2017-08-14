@@ -101,6 +101,13 @@ wbc-filter {
     z-index: 1;
     left: 1em;
     top: 5em;
+    height: calc(100% - 13em);
+    display: flex;
+    flex-direction: column;
+    width: 254px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
     @media screen and (max-width: 768px){
         right: 1em;
         background: #EBEBEB;

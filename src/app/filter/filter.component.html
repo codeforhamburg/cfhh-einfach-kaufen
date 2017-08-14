@@ -29,7 +29,9 @@
     <div class="wbc-full-button wbc-hidden-lg" (click)="uiService.showFilter = false">{{'Ergebnisse anzeigen' | translate}}</div>
 </div>
 
-<div class="wbc-filter-help-text ort">
-     {{"search-HL" | translate }}
+<div class="wbc-search">
+    <div class="wbc-filter-help-text ort">
+        {{"search-HL" | translate }}
+    </div>
+    <wbc-dropdown-filter></wbc-dropdown-filter>
 </div>
-<wbc-dropdown-filter></wbc-dropdown-filter>

@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 #wbc-filter {
-    width: 254px;
+    flex: 1;
 
     #wbc-choose-cat {
         list-style: none;
@@ -21,7 +21,7 @@
     }
 
     .wbc-sub-list {
-        min-height: 300px;
+        // min-height: 300px;
     }
     ul {
         list-style: none;
@@ -79,6 +79,10 @@ wbc-dropdown-filter /deep/ input {
     font-family: NowRegular;
 }
 
+.wbc-search {
+    height: 110px;
+}
+
 .wbc-filter-help-text {
     font-size: 14px;
     font-family: "NowMedium";
@@ -88,4 +92,5 @@ wbc-dropdown-filter /deep/ input {
         margin-top: 24px;
     }
 }
+
 
