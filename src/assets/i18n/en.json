@@ -3,6 +3,8 @@
     "kaufen" : "buybuy",
     "Spenden" : "Donate",
     "dropdownFilter_noMatchFoundText" : "no results",
-    "dropdownFilter_isLoading": "loading ..."
+    "dropdownFilter_isLoading": "loading ...",
+    "filter-HL": "what you want gal?",
+    "search-HL": "where's your hood?"
 }
 

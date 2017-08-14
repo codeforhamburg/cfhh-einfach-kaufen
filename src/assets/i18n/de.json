@@ -9,5 +9,7 @@
     "Hauhalt" : "Haushalt",
     "Freizeit" : "Freizeit",
     "dropdownFilter_noMatchFoundText": "keine Ergebnisse",
-    "dropdownFilter_isLoading": "läd ..."
+    "dropdownFilter_isLoading": "läd ...",
+    "filter-HL": "Was brauchst du?",
+    "search-HL": "Wo suchst du?"
 }
