@@ -58,6 +58,8 @@ html, body {
     margin: 0 auto;
     display: block;
     width: 80%;
+    cursor: pointer;
+    padding-bottom: 2vh;
 }
 
 .wbc-four-row div:nth-child(1), 
@@ -82,6 +84,7 @@ html, body {
 
 .wbc-image-title-container {
     text-align: center;
+    font: 20px NowMedium;
 }
 
 

@@ -8,11 +8,13 @@
 </div>
 
 <div class="wbc-four-row">
-    <div class="wbc-image-title-container" *ngFor="let cat of dataService.categories" (click)="dataService.activate(cat, 'buy')">
-        <img src="{{cat.img}}">
+    <div class="wbc-image-title-container" *ngFor="let cat of dataService.categories">
+        <img src="{{cat.img}}" (click)="dataService.activate(cat, 'buy')">
         {{ cat.name | translate }}
     </div>
 </div>
+
+
 
 <!-- <ul class="wbc-four-row">
     <li class="wbc-image-title-container"><div class="wbc-image-container"><img src="assets/img/placeholder.jpg"></div> {{ 'Sonstiges' | translate }}</li>
