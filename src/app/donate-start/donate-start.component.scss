@@ -14,15 +14,45 @@
     }
 }
 
-.wbc-turned-link {
+.wbc-turned-link-container {
     position: absolute;
-    left: 3em;
-    bottom: 3em;
-    transform: rotate(90deg);
+    left: 15%;
+    bottom: 0;
+}
+
+.wbc-turned-link-rotator {
+    transform: rotate(-90deg);
+    transform-origin: left center;
+}
+
+.wbc-turned-link {
     color: black;
-    letter-spacing: 2.5px;
+    letter-spacing: 8px;
+    white-space: nowrap;
+    font: 18px nowMedium;
     text-decoration: none;
     &:hover {
         color: $darkBlue;
     }
+}
+
+.smily {
+    background-image: url("/../assets/img/smily_donate.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    transform: rotateZ(90deg);
+    width: 40px;
+    height: 40px;
+    bottom: -3em;
+    left: 2em;
+    position: absolute;
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    will-change: transform, opacity;
+}
+
+.wbc-turned-link:hover ~.smily{
+    transition: transform 0.3s ease-in-out;
+    opacity: 1;
+    transform: rotateZ(90deg) rotateY(180deg) translateY(-15px);
 }

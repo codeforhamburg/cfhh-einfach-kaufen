@@ -1,6 +1,9 @@
-
-<a class="wbc-turned-link" routerLink="/kaufen" routerLinkActive="active"> {{ "Kaufen" | translate }} ></a>
-
+<div class="wbc-turned-link-container">
+    <div class="wbc-turned-link-rotator">
+        <a class="wbc-turned-link" routerLink="/kaufen" routerLinkActive="active"> < {{ "Kaufen" | translate }}</a>
+        <div class="smily"></div>
+    </div>
+</div>
 
 <ul class="wbc-four-row">
     <li class="wbc-image-title-container" *ngFor="let cat of dataService.categories"><div class="wbc-image-container" (click)="dataService.activate(cat, 'donate')"><img src="{{cat.img}}"></div>{{ cat.name | translate }}</li>
