@@ -13,14 +13,21 @@
 .footer-buttons{
     position: absolute;
     bottom: 0;
-    background: #eee;
+    background: black;
+    color: white;
     padding: 0.3em 0.3em;
     right: 0px;
     z-index: -1;
+    width: 115px;
+
+    &:hover{
+        cursor: pointer;
+        background: $primaryBlue;
+    }
 }
 
 #wbc-show-footer-button,
 #wbc-show-impressum-button {
-    float: right;
+    text-align: center;
 }
 

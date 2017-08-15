@@ -1,10 +1,14 @@
 @import '../../styles/variables.scss';
 
+:host {
+    pointer-events: none;
+}
 
 .wbc-rotate-text-top-container {
     position: absolute;
     top: -1em;
     right: 1em;
+    pointer-events: none;
 
         .wbc-rotate-text-top-rotator {
             transform: rotate(90deg);
@@ -17,6 +21,7 @@
     position: absolute;
     bottom: -1em;
     right: 1em;
+    pointer-events: none;
 
         .wbc-rotate-text-bot-rotator {
             transform: rotate(90deg) translateX(100%);
@@ -51,6 +56,7 @@ ul {
             background: black;
             display: inline-block;
             border: 1px solid black;
+            pointer-events: all;
 
             &.active {
                 background: white;

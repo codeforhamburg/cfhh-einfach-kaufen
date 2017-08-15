@@ -29,6 +29,15 @@ html, body {
     font-family: NowRegular;
 }
 
+img {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
 .headline {
     font-family: NowBlack;
     position: relative;
@@ -88,7 +97,7 @@ html, body {
 
 wbc-icon-filter {
     position: absolute;
-    bottom: 2em;
+    top: 3em;
     left: 1em;
     z-index: 2;
     max-width: 80%;
@@ -100,7 +109,7 @@ wbc-filter {
     position: absolute;
     z-index: 1;
     left: 1em;
-    top: 5em;
+    top: 11em;
     height: calc(100% - 13em);
     display: flex;
     flex-direction: column;
@@ -174,10 +183,20 @@ wbc-infobox {
     position: absolute;
     z-index: 2;
     top: 0;
-    left: 0;
-    background: #eee;
+    left: calc(50% - 20px);
+    width: 40px;
+    height: 40px;
+    background: black;
     padding: 0.1em 0.3em;
     cursor: pointer;
+    background-image: url("assets/img/arrow_up.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.wbc-back.down {
+    background-image: url("assets/img/arrow_down.png");
+    top: auto;
+    bottom: 0px;
 }
 
 #wbc-buy-map {
@@ -267,7 +286,7 @@ wbc-infobox {
 
 wbc-bottom-right {
     position: absolute;
-    bottom: 2em;
+    bottom: 4em;
     right: 1em;
     z-index: 2;
     
@@ -323,4 +342,11 @@ wbc-filter {
 
 .mapboxgl-popup-content {
     padding: 0 !important;
+}
+
+wbc-footer {
+    position: absolute;
+    bottom: 2em;
+    right: 1em;
+    z-index: 2;
 }

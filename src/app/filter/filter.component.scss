@@ -1,7 +1,16 @@
 @import '../../styles/variables.scss';
 
 #wbc-filter {
-    flex: 1;
+    .background{
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 284px;
+        height: 100%;
+        background: rgba(255,255,255,0.4);
+    }
+
+    padding-right: 2px;
 
     #wbc-choose-cat {
         list-style: none;
@@ -30,7 +39,7 @@
 
         .wbc-filter-item {
             background: white;
-            padding: 0.5em 0.3em;
+            padding: 0 0.3em;
             user-select: none;
             cursor: pointer;
             height: 40px;
@@ -65,6 +74,11 @@
     }
 }
 
+hr {
+    width: 100%;
+    margin: 2em 0;
+}
+
 wbc-dropdown-filter {
     position: relative;
     width: 100%;
@@ -88,10 +102,6 @@ wbc-dropdown-filter /deep/ input {
     font-size: 14px;
     font-family: "NowMedium";
     margin-bottom: 12px;
-
-    &.ort {
-        margin-top: 24px;
-    }
 }
 
 

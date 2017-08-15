@@ -1,4 +1,5 @@
 <div id="wbc-filter">
+    <div class="background"></div>
     <div class="wbc-close-bar wbc-hidden-lg">
         <span class="wbc-close-button-rel" (click)="uiService.showFilter = false">x</span>
     </div>
@@ -15,7 +16,7 @@
         <div class="wbc-filter-help-text">
             {{"filter-HL" | translate }}
         </div>
-        <ul [@slideInOutAnimation]>
+        <ul>
             <li class="wbc-filter-item" *ngFor="let sub of dataService.activeCat.subs" (click)="mapService.toggleSub(sub)" [ngClass]="{'active' : sub.active}">
                 <div class="wbc-filter-item-name">{{sub.name | translate }}</div>
                 <div *ngIf="sub.active" class="checkmark"></div>
@@ -28,7 +29,7 @@
     </div>
     <div class="wbc-full-button wbc-hidden-lg" (click)="uiService.showFilter = false">{{'Ergebnisse anzeigen' | translate}}</div>
 </div>
-
+<hr>
 <div class="wbc-search">
     <div class="wbc-filter-help-text ort">
         {{"search-HL" | translate }}
