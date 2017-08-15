@@ -66,12 +66,13 @@
 }
 
 wbc-dropdown-filter {
-    position: absolute;
+    position: relative;
     width: 100%;
-    padding: 0.5em 0.3em;
+    // padding: 0.5em 0.3em;
     background-color: white;
     font-size: 14px;
     font-family: NowRegular;
+    display: inline-block;
 }
 
 wbc-dropdown-filter /deep/ input {
@@ -80,7 +81,7 @@ wbc-dropdown-filter /deep/ input {
 }
 
 .wbc-search {
-    height: 110px;
+    // height: 110px;
 }
 
 .wbc-filter-help-text {

@@ -10,7 +10,7 @@
     (keydown)="inputKeyHandler($event)"
     placeholder="Adresse / Stadtteil"
   >
-  <ul *ngIf="dropdownVisible" class="dropdownFilter-list">
+  <ul *ngIf="dropdownVisible" [@flyInOut] class="dropdownFilter-list">
     <li class="item"
     *ngFor="let item of filteredList; let i=index"
     (mousedown)="selectOne(item)"
@@ -30,7 +30,7 @@
   <div *ngIf="!input && hasFocus!=true" class="dropdown-expand">
     <i class="fa fa-angle-down" aria-hidden="true"> </i>
   </div>
-  <div *ngIf="input" class="dropdown-close" (click)="clearInput($event)">
+  <div *ngIf="input || hasFocus" class="dropdown-close" (click)="clearInput($event)">
     <i class="fa fa-times" aria-hidden="true"> </i>
   </div>
 </div>

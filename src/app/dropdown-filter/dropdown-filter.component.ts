@@ -6,11 +6,24 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/do';
+import { trigger, state, animate, style, transition } from '@angular/animations';
 
 @Component({
   selector: 'wbc-dropdown-filter',
   templateUrl: './dropdown-filter.component.html',
-  styleUrls: ['./dropdown-filter.component.scss']
+  styleUrls: ['./dropdown-filter.component.scss'],
+  animations: [
+    trigger('flyInOut', [
+      state('in', style({ height: '0' })),
+      transition('void => *', [
+        style({ height: '0' }),
+        animate(100)
+      ]),
+      transition('* => void', [
+        animate(100, style({ height: '0' }))
+      ])
+    ])
+  ]
 })
 export class DropdownFilterComponent implements OnInit {
   private dataSource: any[] = this.dataService.dataStadtteilNamen;                  // local, static source Data to filter on
