@@ -9,17 +9,15 @@
     background: orange;
 }
 
-.wbc-content {
-    padding: 0 1em;
-}
+    .wbc-content {
+        .body2 {
+            color: $primaryRed;
+        }
+    }
+
 .wbc-more-button {
-    background: black;
-    color: white;
-    font-weight: bold;
-    padding: 1em 0.5em;
-    text-align: center;
     &:hover {
-        background: #333333;
+        background: $darkRed;
     }
     &:active {
         background: $primaryRed;

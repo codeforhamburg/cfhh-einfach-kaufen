@@ -3,6 +3,9 @@
     <span class="wbc-close-button-rel" (click)="uiService.showFilter = false">x</span>
 </div>
 <div id="wbc-filter">
+    <div class="wbc-filter-help-text">
+        {{"kategorie-HL" | translate }}
+    </div>
     <wbc-icon-filter></wbc-icon-filter>
     <div class="wbc-sub-list" *ngIf="dataService.activeCat">
         <div class="wbc-filter-help-text">

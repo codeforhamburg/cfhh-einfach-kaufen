@@ -16,8 +16,9 @@
 }
 
 #wbc-filter {
-    width: 100%;
+    width: 95%;
     position: relative;
+    padding: 0 2.5%;
 
     #wbc-choose-cat {
         list-style: none;
@@ -53,7 +54,7 @@
             font-family: NowRegular;
             font-size: 14px;
             letter-spacing: 1.2px;
-            padding-left: 12px;
+            padding: 0 12px;
 
             .wbc-filter-item-name {
                 height: 100%;
@@ -75,10 +76,6 @@
         background: black;
         color: white;
         cursor: pointer;
-
-        &:hover {
-            background: $primaryBlue;
-        }
     }
 }
 
@@ -103,8 +100,9 @@ wbc-dropdown-filter /deep/ input {
 }
 
 .wbc-search {
-    width: 100%;
+    width: 95%;
     position: relative;
+    padding: 0 2.5%;
 }
 
 .wbc-filter-help-text {

@@ -143,6 +143,7 @@ export class MapService {
         // });
 
         let openKaufhausPopup = function (e) {
+            kaufhausPopup.remove();
             var bbox = [[e.point.x - 5, e.point.y - 5], [e.point.x + 5, e.point.y + 5]];
             var features = that.map.queryRenderedFeatures(bbox, { layers: ['kaufhaus'] });
             // that.map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
@@ -159,7 +160,7 @@ export class MapService {
         // Change the cursor to a pointer when the mouse is over the places layer.
         this.map.on('mouseenter', 'kaufhaus', function (e) {
             that.map.getCanvas().style.cursor = 'pointer';
-            openKaufhausPopup(e);
+            //openKaufhausPopup(e);
         });
 
         // Change it back to a pointer when it leaves.

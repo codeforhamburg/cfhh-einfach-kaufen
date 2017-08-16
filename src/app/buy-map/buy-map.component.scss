@@ -9,19 +9,17 @@
     // background: green;
 }
 
-.wbc-content {
-    padding: 0 1em;
-}
+    .wbc-content {
+        .body2 {
+            color: $primaryBlue;
+        }
+    }
+
 .wbc-more-button {
-    background: black;
-    color: white;
-    font-weight: bold;
-    padding: 1em 0.5em;
-    text-align: center;
     &:hover {
-        background: #333333;
+        background: $darkBlue;
     }
     &:active {
-        background: $primaryRed;
+        background: $primaryBlue;
     }
 }

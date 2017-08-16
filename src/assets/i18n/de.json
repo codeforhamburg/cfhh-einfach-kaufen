@@ -11,6 +11,7 @@
     "Freizeit" : "Freizeit",
     "dropdownFilter_noMatchFoundText": "keine Ergebnisse",
     "dropdownFilter_isLoading": "läd ...",
-    "filter-HL": "Was brauchst du?",
+    "kategorie-HL": "Wähle eine Kategorie",
+    "filter-HL": "Grenze die Auswahl ein",
     "search-HL": "Wo suchst du?"
 }

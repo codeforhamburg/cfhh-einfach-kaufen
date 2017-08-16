@@ -128,7 +128,7 @@ wbc-filter {
         padding: 0;
         margin: 0 5%;
         z-index: 99;
-        background-color: white;
+        background-color: #E6E6E8;
         
         &.visible {
             transform: translateY(0);
@@ -137,8 +137,7 @@ wbc-filter {
 
         wbc-icon-filter {
             padding-top: 12px;
-            width: 90%;
-            left: 5%;
+            width: 100%;
         }
 
         .wbc-close-bar {
@@ -212,7 +211,7 @@ wbc-infobox {
     cursor: pointer;
     background-image: url("assets/img/arrow_up.png");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: 100% 100%;
 }
 .wbc-back.down {
     background-image: url("assets/img/arrow_down.png");
@@ -242,6 +241,15 @@ wbc-infobox {
         background: $darkBlue !important;
         color: white;
     }
+
+    .wbc-full-button:hover {
+        background: $primaryBlue !important;
+    }
+
+    .wbc-icons-filter:hover {
+        background-color: $darkBlue !important;
+    }
+
 }
 #wbc-donate-map {
      .wbc-color {
@@ -265,26 +273,27 @@ wbc-infobox {
         background: $darkRed !important;
         color: white;
     }
+
+    .wbc-full-button:hover {
+        background: $primaryRed !important;
+    }
+
+    .wbc-icons-filter:hover {
+        background-color: $darkRed !important;
+    }
 }
 
 
 .checkmark {
     background-image: url("./assets/img/check.png");
-    display:inline-block;
+    display: inline-block;
     width: 30px;
-    height:30px;
+    height: 30px;
     padding-top: 10px;
-    padding-left: 12px;
-    position: absolute;
-    right: 0;
+    position: relative;
+    float: right;
     background-repeat: no-repeat;
     background-position: center;
-    // display:inline-block;
-    // width: 22px;
-    // height:22px;
-    // transform: rotate(45deg);
-    // position: absolute;
-    // right: 0;
 }
 
 .checkmark_stem {
@@ -357,3 +366,37 @@ wbc-footer {
     right: 1em;
     z-index: 2;
 }
+
+.mapboxgl-popup .mapboxgl-popup-content {
+    font: 16px nowRegular;
+
+    .mapboxgl-popup-close-button {
+        font-size: 30px;
+        line-height: 22px;
+    }
+    
+    .wbc-content {
+        padding: 0 1em;
+        max-width: 300px;
+    }
+
+    .wbc-more-button {
+        background: black;
+        color: white;
+        text-align: center;
+        letter-spacing: 1px;
+        height: 40px;
+        line-height: 40px;
+        font-family: nowMedium;
+    }
+    
+    h3 {
+        font: 18px nowMedium;
+    }
+
+    p {
+
+    }
+}
+
+
