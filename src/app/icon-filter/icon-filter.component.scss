@@ -18,16 +18,19 @@
         filter: invert(100%);
         align-self: center;
     }
+
+    &:hover{
+        background-color: $darkBlue;
+    }
 }
 
 .wbc-active-name {
     font-family: "NowBlack";
     font-size: 28px;
-    align-self: center;
     line-height: 28px;
-    bottom: -4px;
-    position: relative;
-    left: 1em;
+    margin-bottom: 0.5em;
+    width: 100%;
+    text-align: center;
 }
 
 @media screen and (max-width: 768px){

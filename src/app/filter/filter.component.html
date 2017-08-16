@@ -1,17 +1,9 @@
+<div class="background"></div>
+<div class="wbc-close-bar wbc-hidden-lg">
+    <span class="wbc-close-button-rel" (click)="uiService.showFilter = false">x</span>
+</div>
 <div id="wbc-filter">
-    <div class="background"></div>
-    <div class="wbc-close-bar wbc-hidden-lg">
-        <span class="wbc-close-button-rel" (click)="uiService.showFilter = false">x</span>
-    </div>
-    <div class="wbc-hidden-lg">
-        <ul id="wbc-choose-cat">
-            <li *ngFor="let cat of dataService.categories"><div (click)="dataService.activate(cat, '')"><img src="{{cat.img}}"></div></li>
-        </ul>
-        <div class="wbc-text-field" *ngIf="dataService.activeCat">
-            {{ dataService.activeCat.name | translate }}
-        </div>
-
-    </div>
+    <wbc-icon-filter></wbc-icon-filter>
     <div class="wbc-sub-list" *ngIf="dataService.activeCat">
         <div class="wbc-filter-help-text">
             {{"filter-HL" | translate }}
