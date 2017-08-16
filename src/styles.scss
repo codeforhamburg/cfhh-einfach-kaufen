@@ -83,6 +83,8 @@ img {
 .wbc-image-title-container {
     text-align: center;
     font: 20px NowMedium;
+    cursor: pointer;
+    letter-spacing: 1.5px;
     &:hover{
         color: $primaryBlue;
         text-shadow: 0 0 3px white;
@@ -118,11 +120,20 @@ wbc-filter {
     overflow-x: hidden;
     
     @media screen and (max-width: 768px){
-        right: 1em;
         background: #EBEBEB;
-        max-height: 80%;
         overflow-y: scroll;
         overflow-x: hidden;
+        top: 2.5vh;
+        left: 0;
+        height: 95vh;
+        max-height: 95vh;
+        width: 95vw;
+        margin: 0 2.5vw;
+        z-index: 99;
+
+        .background{
+            visibility: hidden;
+        }
     }
 
 }
@@ -156,8 +167,8 @@ wbc-infobox {
 .wbc-close-bar {
     position: absolute;
     top: 0;
-    right: 1em;
-    left: 1em;
+    right: 0;
+    left: 0;
     text-align: right;
     background: black;
     height: 30px;
