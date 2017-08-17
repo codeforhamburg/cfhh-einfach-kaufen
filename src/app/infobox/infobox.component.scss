@@ -1,60 +1,87 @@
+// :host {
+//     width: 100%
+// }
+
+// .wbc-infobox-ul {
+//     list-style: none;
+//     margin: 0 2em;
+//     background: white;
+//     padding: 0;
+//     position: relative;
+//     top: 0;
+
+//     display: flex;
+
+//     li.wbc-wide {
+//         width: 48%;
+//         float: left;
+//         flex-grow: 1;
+//         position : relative;
+//         height: 100%;
+//         .wbc-wide-devider {
+//             display: flex;
+//             width: 100%;
+//             .wbc-half {
+//                 flex-grow: 1;
+//                 width: 24%;
+//                 float: left;
+//                 img {
+//                     max-width: 100%;
+//                     max-height: 200px;
+//                 }
+//             }
+//         }
+//     }
+//     li.wbc-normal {
+//         flex-grow: 1;
+//         width: 24%;
+//         float: left;
+//     }
+// }
+
+// .wbc-mobile-info {
+//     max-height: 95VH;
+//     overflow-y: scroll;
+//     overflow-x: hidden;
+//     margin: 0 1em;
+//     background: white;
+//     .wbc-infos {
+//         padding: 1em;
+//         padding-top: 36px;
+//         img {
+//             max-height: 200px;
+//         }
+//     }
+// }
+
 :host {
-    // background: white;
-    width: 100%
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 1fr 4fr;
 }
 
-.wbc-infobox-ul {
-    list-style: none;
-    margin: 0 2em;
-    // width: 100%;
-    background: white;
-    padding: 0;
-    // margin: 0;
-    position: relative;
-    top: 0;
+.grid_1_1 {
+}
 
-    display: flex;
-    // flex-direction: column;
-
-    li.wbc-wide {
-        width: 48%;
-        float: left;
-        // display: inline-block;
-        flex-grow: 1;
-        position : relative;
-        height: 100%;
-        .wbc-wide-devider {
-            display: flex;
-            width: 100%;
-            .wbc-half {
-                flex-grow: 1;
-                width: 24%;
-                float: left;
-                img {
-                    max-width: 100%;
-                    max-height: 200px;
-                }
-            }
-        }
-    }
-    li.wbc-normal {
-        flex-grow: 1;
-        width: 24%;
-        float: left;
+.grid_1_2 {
+    // display: flex;
+    .pic {
+        max-width: 40%;
+        max-height: 60%;
+        float: right;
     }
 }
 
-.wbc-mobile-info {
-    max-height: 95VH;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    margin: 0 1em;
-    background: white;
-    .wbc-infos {
-        padding: 1em;
-        padding-top: 36px;
-        img {
-            max-height: 200px;
-        }
-    }
+.grid_2_1 {
+}
+.grid_2_2 {
+}
+
+.grid_3_1 {
+}
+.grid_3_2 {
+}
+
+.grid-item {
+    min-width: 250px;
 }

@@ -1,4 +1,4 @@
-<ul class="wbc-infobox-ul wbc-hidden-xs">
+<!-- <ul class="wbc-infobox-ul wbc-hidden-xs">
     <span class="wbc-close-button" (click)="uiService.showSelectedFeature = false">x</span>
    <li class="wbc-wide">
        <h2>{{uiService.selectedFeature.properties.title}}</h2>
@@ -35,10 +35,10 @@
        </div>
    </li>
 
-</ul>
+</ul> -->
 
 
-<div class="wbc-mobile-info wbc-hidden-lg">
+<!-- <div class="wbc-mobile-info wbc-hidden-lg">
      <div class="wbc-close-bar wbc-hidden-lg">
         <span class="wbc-close-button-rel" (click)="uiService.showSelectedFeature = false">x</span>
     </div>
@@ -66,5 +66,36 @@
             <li>das auch</li>
             <li>alles</li>
         </ul>
+    </div>
+</div> -->
+
+
+<span class="wbc-close-button" (click)="uiService.showSelectedFeature = false">x</span>
+
+<h2 class="grid_1_1 grid-item">{{uiService.selectedFeature.properties.title}}</h2>
+<h3 class="grid_2_1 grid-item">{{'Bitte Mitbringen' | translate}}</h3>
+<h3 class="grid_3_1 grid-item"> {{'Kontakt' | translate}} </h3>
+
+<div class="grid_1_2 grid-item">
+    <img class="pic" src={{uiService.selectedFeature.properties.img}}>
+    <p>{{uiService.selectedFeature.properties.descde }}</p>
+</div>
+<div class="grid_2_2 grid-item">
+    <ul>
+        <li>stuff</li>
+        <li>mehr stuff</li>
+        <li>nocht mehr</li>
+        <li>das auch</li>
+        <li>alles</li>
+    </ul>
+</div>
+<div class="grid_3_2 grid-item">
+    <p>{{uiService.selectedFeature.properties.title}} </p>
+    <p>{{uiService.selectedFeature.properties.address}}</p>
+    <p>{{uiService.selectedFeature.properties.opening}}</p>
+    <div class="wbc-triple-button">
+        <a target="_blank" href="mailto:{{uiService.selectedFeature.properties.email}}">E-Mail</a>
+        <a target="_blank" href="https://www.google.com/maps/dir/?api=1&destination=@{{uiService.selectedFeature.properties.lat}},{{uiService.selectedFeature.properties.lng}},16z">MAP</a>
+        <a target="_blank" href="tel:{{uiService.selectedFeature.properties.tel}}">TEL</a>
     </div>
 </div>
