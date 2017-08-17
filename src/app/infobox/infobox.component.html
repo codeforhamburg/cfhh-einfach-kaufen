@@ -72,15 +72,21 @@
 
 <span class="wbc-close-button" (click)="uiService.showSelectedFeature = false">x</span>
 
-<h2 class="grid_1_1 grid-item">{{uiService.selectedFeature.properties.title}}</h2>
-<h3 class="grid_2_1 grid-item">{{'Bitte Mitbringen' | translate}}</h3>
-<h3 class="grid_3_1 grid-item"> {{'Kontakt' | translate}} </h3>
-
-<div class="grid_1_2 grid-item">
-    <img class="pic" src={{uiService.selectedFeature.properties.img}}>
-    <p>{{uiService.selectedFeature.properties.descde }}</p>
+<div class="col_1 flex_item">
+    <h2>{{uiService.selectedFeature.properties.title}}</h2>
+    <div class="pic_container">
+        <!-- <img class="pic" src={{uiService.selectedFeature.properties.img}}> -->
+        <div class="pic" [ngStyle]="{'background-image': 'url(' + uiService.selectedFeature.properties.img + ')'}"></div>
+    </div>
+    <p>{{uiService.selectedFeature.properties.descde }} noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch
+    ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch
+    ein Ladennoch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch
+    ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch
+    ein Laden</p>
 </div>
-<div class="grid_2_2 grid-item">
+
+<div class="col_2 flex_item">
+    <h3>{{'Bitte Mitbringen' | translate}}</h3>
     <ul>
         <li>stuff</li>
         <li>mehr stuff</li>
@@ -89,7 +95,9 @@
         <li>alles</li>
     </ul>
 </div>
-<div class="grid_3_2 grid-item">
+
+<div class="col_3 flex_item">
+    <h3> {{'Kontakt' | translate}} </h3>
     <p>{{uiService.selectedFeature.properties.title}} </p>
     <p>{{uiService.selectedFeature.properties.address}}</p>
     <p>{{uiService.selectedFeature.properties.opening}}</p>
