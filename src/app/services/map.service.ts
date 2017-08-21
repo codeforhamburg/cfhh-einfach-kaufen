@@ -1,3 +1,4 @@
+import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
 import { UiService } from './ui.service';
@@ -21,7 +22,7 @@ export class MapService {
 
 
     initMap(id) {
-        mapboxgl.accessToken = 'pk.eyJ1Ijoid2VidWlsZGNpdHkiLCJhIjoiY2o2NjRzN3hjMjR1ZzMybm93bDVxNzFkYSJ9.Cn82QIwnCXpfEU7TcGlEkQ';
+        mapboxgl.accessToken = environment.mapBoxKey;
         let that = this;
 
         this.map = new mapboxgl.Map({
