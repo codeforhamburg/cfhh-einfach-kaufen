@@ -111,4 +111,14 @@ wbc-dropdown-filter /deep/ input {
     margin-bottom: 12px;
 }
 
-
+.checkmark {
+    background-image: url("../../assets/img/check.png");
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    padding-top: 10px;
+    position: relative;
+    float: right;
+    background-repeat: no-repeat;
+    background-position: center;
+}

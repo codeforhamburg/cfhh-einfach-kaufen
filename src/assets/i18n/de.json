@@ -2,16 +2,18 @@
     "HELLO": "hello",
     "kaufen-headline-1st" : "Moin.",
     "kaufen-headline-2nd" : " Was suchst du?",
-    "spenden-headline" : "Cool!<br> -Was spendest du?",
+    "spenden-headline-1st" : "Cool.",
+    "spenden-headline-2nd" : " Was spendest du?",
     "Spenden" : "Spenden",
     "Kaufen" : "Kaufen",
     "Sonstiges" : "Sonstiges",
     "Kleidung" : "Kleidung & Schuhe",
-    "Hauhalt" : "Haushalt",
+    "Haushalt" : "Haushalt",
     "Freizeit" : "Freizeit",
     "dropdownFilter_noMatchFoundText": "keine Ergebnisse",
     "dropdownFilter_isLoading": "läd ...",
     "kategorie-HL": "Wähle eine Kategorie",
     "filter-HL": "Grenze die Auswahl ein",
-    "search-HL": "Wo suchst du?"
+    "search-HL": "Wo suchst du?",
+    "Ueber uns": "Über uns"
 }

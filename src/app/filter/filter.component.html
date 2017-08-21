@@ -3,22 +3,18 @@
     <span class="wbc-close-button-rel" (click)="uiService.showFilter = false">x</span>
 </div>
 <div id="wbc-filter">
-    <div class="wbc-filter-help-text">
-        {{"kategorie-HL" | translate }}
-    </div>
     <wbc-icon-filter></wbc-icon-filter>
+    <div class="wbc-filter-help-text">
+        {{"kategorie-HL" | translate }} &#9651;
+    </div>
     <div class="wbc-sub-list" *ngIf="dataService.activeCat">
         <div class="wbc-filter-help-text">
-            {{"filter-HL" | translate }}
+            {{"filter-HL" | translate }} &#9661;
         </div>
         <ul>
             <li class="wbc-filter-item" *ngFor="let sub of dataService.activeCat.subs" (click)="mapService.toggleSub(sub)" [ngClass]="{'active' : sub.active}">
                 <div class="wbc-filter-item-name">{{sub.name | translate }}</div>
                 <div *ngIf="sub.active" class="checkmark"></div>
-                <!-- <span *ngIf="sub.active" class="checkmark">
-                    <div class="checkmark_stem"></div>
-                    <div class="checkmark_kick"></div>
-                </span> -->
             </li>
         </ul>
     </div>

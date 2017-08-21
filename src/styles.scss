@@ -26,7 +26,7 @@ html, body {
     width: 100%;
     margin: 0;
     overflow: hidden;
-    font-family: NowRegular;
+    font-family: NowRegular, 'Lucida Grande';
 }
 
 img {
@@ -85,10 +85,6 @@ img {
     font: 20px NowMedium;
     cursor: pointer;
     letter-spacing: 1.5px;
-    &:hover{
-        color: $primaryBlue;
-        text-shadow: 0 0 3px white;
-    }
 }
 
 
@@ -150,9 +146,18 @@ wbc-infobox {
     position: absolute;
     z-index: 10;
     bottom: 1em;
-    width: 100%;
+    width: 86%;
+    min-width: 200px;
+    max-width: 1200px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
     min-height: 30vh;
-    background-color: floralwhite;
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: white;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.5);
 }
 
 .wbc-close-button {
@@ -214,6 +219,22 @@ wbc-infobox {
     background-image: url("assets/img/arrow_down.png");
     top: auto;
     bottom: 0px;
+}
+
+wbc-donate-start {
+    .wbc-image-title-container {
+        &:hover{
+            color: white;
+        }
+    }
+}
+
+wbc-buy-start {
+    .wbc-image-title-container {
+        &:hover{
+            color: $primaryBlue;
+        }
+    }
 }
 
 #wbc-buy-map {
@@ -281,51 +302,18 @@ wbc-infobox {
 }
 
 
-.checkmark {
-    background-image: url("./assets/img/check.png");
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    padding-top: 10px;
-    position: relative;
-    float: right;
-    background-repeat: no-repeat;
-    background-position: center;
-}
 
-.checkmark_stem {
-    position: absolute;
-    width:3px;
-    height:9px;
-    background-color: white;
-    left:11px;
-    top:6px;
-}
 
-.checkmark_kick {
-    position: absolute;
-    width:3px;
-    height:3px;
-    background-color: white;
-    left:8px;
-    top:12px;
-}
 
 wbc-bottom-right {
     position: absolute;
-    bottom: 4em;
+    bottom: 3em;
     right: 1em;
     z-index: 2;
     
     img {
         height: 54px;
         margin-left: 12px;
-    }
-}
-
-.wbc-hidden-xs {
-    @media screen and (max-width: 768px){
-        display: none !important;
     }
 }
 
@@ -359,7 +347,7 @@ wbc-bottom-right {
 
 wbc-footer {
     position: absolute;
-    bottom: 2em;
+    bottom: 1em;
     right: 1em;
     z-index: 2;
 }

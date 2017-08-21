@@ -1,91 +1,19 @@
-<!-- <ul class="wbc-infobox-ul wbc-hidden-xs">
-    <span class="wbc-close-button" (click)="uiService.showSelectedFeature = false">x</span>
-   <li class="wbc-wide">
-       <h2>{{uiService.selectedFeature.properties.title}}</h2>
-       <div class="wbc-wide-devider">
-            <div class="wbc-half">
-                <h3> {{'Über uns' | translate}}</h3>
-                <p>{{uiService.selectedFeature.properties.descde }}</p>
-            </div>
-            <div class="wbc-half">
-                <img src="{{uiService.selectedFeature.properties.img}}">
-           </div>
-       </div>
-   </li>
-   <li class="wbc-normal">
-        <h3>{{'Bitte Mitbringen' | translate}}</h3>
-        <ul>
-            <li>stuff</li>
-            <li>mehr stuff</li>
-            <li>nocht mehr</li>
-            <li>das auch</li>
-            <li>alles</li>
-        </ul>
-
-    </li>
-    <li class="wbc-normal">
-        <h3> {{'Kontakt' | translate}} </h3>
-        <p>{{uiService.selectedFeature.properties.title}} </p>
-        <p>{{uiService.selectedFeature.properties.address}}</p>
-        <p>{{uiService.selectedFeature.properties.opening}}</p>
-       <div class="wbc-triple-button">
-            <a target="_blank" href="mailto:{{uiService.selectedFeature.properties.email}}">E-Mail</a>
-            <a target="_blank" href="https://www.google.com/maps/dir/?api=1&destination=@{{uiService.selectedFeature.properties.lat}},{{uiService.selectedFeature.properties.lng}},16z">MAP</a>
-            <a target="_blank" href="tel:{{uiService.selectedFeature.properties.tel}}">TEL</a>
-       </div>
-   </li>
-
-</ul> -->
-
-
-<!-- <div class="wbc-mobile-info wbc-hidden-lg">
-     <div class="wbc-close-bar wbc-hidden-lg">
-        <span class="wbc-close-button-rel" (click)="uiService.showSelectedFeature = false">x</span>
-    </div>
-    <div class="wbc-infos">
-        <div class="wbc-triple-button">
-            <a target="_blank" href="mailto:{{uiService.selectedFeature.properties.email}}">E-Mail</a>
-            <a target="_blank" href="https://www.google.com/maps/dir/?api=1&destination=@{{uiService.selectedFeature.properties.lat}},{{uiService.selectedFeature.properties.lng}},16z">MAP</a>
-            <a target="_blank" href="tel:{{uiService.selectedFeature.properties.tel}}">TEL</a>
-        </div>
-
-        <h2 class="wbc-color">{{uiService.selectedFeature.properties.title}}</h2>
-        <h3> {{'Kontakt' | translate}} </h3>
-        <p>{{uiService.selectedFeature.properties.title}} </p>
-        <p>{{uiService.selectedFeature.properties.address}}</p>
-        <p>{{uiService.selectedFeature.properties.opening}}</p>
-        <img src="{{uiService.selectedFeature.properties.img}}">
-
-        <h3> {{'Über uns' | translate}}</h3>
-        <p>{{uiService.selectedFeature.properties.descde }}</p>
-        <h3>{{'Bitte Mitbringen' | translate}}</h3>
-        <ul>
-            <li>stuff</li>
-            <li>mehr stuff</li>
-            <li>nocht mehr</li>
-            <li>das auch</li>
-            <li>alles</li>
-        </ul>
-    </div>
-</div> -->
-
-
 <span class="wbc-close-button" (click)="uiService.showSelectedFeature = false">x</span>
 
-<div class="col_1 flex_item">
-    <h2>{{uiService.selectedFeature.properties.title}}</h2>
-    <div class="pic_container">
-        <!-- <img class="pic" src={{uiService.selectedFeature.properties.img}}> -->
-        <div class="pic" [ngStyle]="{'background-image': 'url(' + uiService.selectedFeature.properties.img + ')'}"></div>
-    </div>
-    <p>{{uiService.selectedFeature.properties.descde }} noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch
-    ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch
-    ein Ladennoch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch
-    ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch ein Laden noch
-    ein Laden</p>
-</div>
+<h2 class="title">{{uiService.selectedFeature.properties.title}}</h2>
 
 <div class="col_2 flex_item">
+    <h3>{{'Ueber uns' | translate}}</h3>
+    <p>{{uiService.selectedFeature.properties.descde}}</p>
+</div>
+
+<div class="col_1 flex_item">
+    <!-- <div class="pic" [ngStyle]="{'background-image': 'url(' + uiService.selectedFeature.properties.img + ')'}"></div> -->
+    <img class="pic" src={{uiService.selectedFeature.properties.img}}>
+</div>
+
+
+<div class="col_3 flex_item">
     <h3>{{'Bitte Mitbringen' | translate}}</h3>
     <ul>
         <li>stuff</li>
@@ -96,14 +24,14 @@
     </ul>
 </div>
 
-<div class="col_3 flex_item">
+<div class="col_4 flex_item">
     <h3> {{'Kontakt' | translate}} </h3>
     <p>{{uiService.selectedFeature.properties.title}} </p>
     <p>{{uiService.selectedFeature.properties.address}}</p>
     <p>{{uiService.selectedFeature.properties.opening}}</p>
     <div class="wbc-triple-button">
-        <a target="_blank" href="mailto:{{uiService.selectedFeature.properties.email}}">E-Mail</a>
-        <a target="_blank" href="https://www.google.com/maps/dir/?api=1&destination=@{{uiService.selectedFeature.properties.lat}},{{uiService.selectedFeature.properties.lng}},16z">MAP</a>
-        <a target="_blank" href="tel:{{uiService.selectedFeature.properties.tel}}">TEL</a>
+        <a class="mail" target="_blank" href="mailto:{{uiService.selectedFeature.properties.email}}"></a>
+        <a class="map" target="_blank" href="https://www.google.com/maps/dir/?api=1&destination=@{{uiService.selectedFeature.properties.lat}},{{uiService.selectedFeature.properties.lng}},16z"></a>
+        <a class="tel" target="_blank" href="tel:{{uiService.selectedFeature.properties.tel}}"></a>
     </div>
 </div>
