@@ -17,7 +17,7 @@ export class BuyStartComponent extends Slideable {
     public orderId = 3;
     public direction;
 
-    constructor(public dataService: DataService, protected cdRef2: ChangeDetectorRef, public uiService: UiService) { 
+    constructor(public dataService: DataService, protected cdRef2: ChangeDetectorRef, public uiService: UiService) {
       super(cdRef2, uiService);
 
     }

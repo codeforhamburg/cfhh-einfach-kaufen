@@ -30,7 +30,7 @@ export class BuyMapComponent extends Slideable implements OnInit {
 
     public orderId = 4;
 
-  constructor(public dataService: DataService, protected cdRef2: ChangeDetectorRef, public uiService: UiService, private mapService: MapService) { 
+    constructor(public dataService: DataService, protected cdRef2: ChangeDetectorRef, public uiService: UiService, private mapService: MapService) { 
       super(cdRef2, uiService);
 
   }

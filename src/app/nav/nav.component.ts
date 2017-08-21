@@ -9,7 +9,7 @@ import { UiService} from '../services/ui.service';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private router: Router, public uiService: UiService) { }
+  constructor(private router: Router, private uiService: UiService) { }
 
     ngOnInit() {
     }
