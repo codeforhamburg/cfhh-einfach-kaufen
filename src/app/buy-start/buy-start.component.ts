@@ -17,19 +17,8 @@ export class BuyStartComponent extends Slideable {
     public orderId = 3;
     public direction;
 
-    constructor(private dataService: DataService, protected cdRef2: ChangeDetectorRef, private uiService2: UiService) { 
-      super(cdRef2, uiService2);
+    constructor(public dataService: DataService, protected cdRef2: ChangeDetectorRef, public uiService: UiService) { 
+      super(cdRef2, uiService);
 
     }
-
-    // constructor(private uiService: UiService, private ref: ChangeDetectorRef) { }
-
-    // ngOnInit() {
-    //     this.uiService.direction$.subscribe(res => { 
-    //         this.direction = res;
-    //         this.ref.markForCheck();
-    //         // this.ref.detectChanges();
-    //     });
-    // }
-
 }

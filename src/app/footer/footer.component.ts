@@ -21,7 +21,7 @@ import {trigger, state, animate, style, transition} from '@angular/animations';
 })
 export class FooterComponent implements OnInit {
 
-  constructor(private uiService: UiService) { }
+  constructor(public uiService: UiService) { }
 
   ngOnInit() {
   }

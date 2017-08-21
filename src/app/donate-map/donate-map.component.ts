@@ -28,8 +28,8 @@ export class DonateMapComponent extends Slideable implements OnInit {
 
     public orderId = 1;
 
-    constructor(private uiService2: UiService, private cdRef2: ChangeDetectorRef, private mapService: MapService) {
-      super(cdRef2, uiService2);
+    constructor(public uiService: UiService, private cdRef2: ChangeDetectorRef, public mapService: MapService) {
+      super(cdRef2, uiService);
     }
 
     ngOnInit() {
@@ -47,8 +47,8 @@ export class DonateMapComponent extends Slideable implements OnInit {
     // }
   
     openDetails(feature) {
-      this.uiService2.selectedFeature = feature;
-      this.uiService2.showSelectedFeature = true;
+      this.uiService.selectedFeature = feature;
+      this.uiService.showSelectedFeature = true;
     }
 
 }

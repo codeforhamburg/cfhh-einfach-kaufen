@@ -5,7 +5,7 @@
         <div></div> 
     </div>
     <wbc-filter [ngClass]="{'visible' : uiService.showFilter}"></wbc-filter>
-    <wbc-infobox *ngIf="uiService2.showSelectedFeature" [@slideInAnimation] ></wbc-infobox>
+    <wbc-infobox *ngIf="uiService.showSelectedFeature" [@slideInAnimation] ></wbc-infobox>
     <span class="wbc-back down" routerLink="/spenden"></span>
 
 </div>

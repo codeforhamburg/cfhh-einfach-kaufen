@@ -9,7 +9,7 @@ import { MapService } from '../services/map.service';
 })
 export class IconFilterComponent implements OnInit {
 
-  constructor(private dataService: DataService, private mapService: MapService) { }
+  constructor(public dataService: DataService, private mapService: MapService) { }
 
   ngOnInit() {
   }

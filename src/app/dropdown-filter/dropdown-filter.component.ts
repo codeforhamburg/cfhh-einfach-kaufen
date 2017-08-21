@@ -28,22 +28,22 @@ import { trigger, state, animate, style, transition } from '@angular/animations'
 export class DropdownFilterComponent implements OnInit {
   private dataSource: any[] = this.dataService.dataStadtteilNamen;                  // local, static source Data to filter on
   private dataSourceObservable = this.MapBoxGeocoderService;                        // optional remote, dynamic source Data to filter on
-  private filterOnValue: any = "place_name";                                        // data[key] to filter on
-  private addInfo: any = "name:prefix";                                             // optional data[addInfo] prefix to display for filtered Data
+  public filterOnValue: any = "place_name";                                        // data[key] to filter on
+  public addInfo: any = "name:prefix";                                             // optional data[addInfo] prefix to display for filtered Data
   private debounceTime = 300;                                                       // time to debounce if onDebouncedInputChange is used
-  private disableCollapse: Boolean = true;                                          // true disables collapsing
+  public disableCollapse: Boolean = true;                                          // true disables collapsing
   
-  private input: string = "";                                                       // ngModel, triggers ngModelChange = onInputChange()
-  private filteredList: any[] = [];
-  private dropdownVisible: boolean = false;
+  public input: string = "";                                                       // ngModel, triggers ngModelChange = onInputChange()
+  public filteredList: any[] = [];
+  public dropdownVisible: boolean = false;
   private itemIndex: number = 0;
-  private hasFocus: Boolean = false;
-  private inputChangedDebouncer: Subject<string> = new Subject<string>();
-  private isLoading: Boolean = false;
+  public hasFocus: Boolean = false;
+  public inputChangedDebouncer: Subject<string> = new Subject<string>();
+  public isLoading: Boolean = false;
   @ViewChild('dropdownFilter') dropdownFilter__container;
   
 
-  constructor(private dataService: DataService, private dropDownFilterService: DropdownFilterService, private MapBoxGeocoderService: MapBoxGeocoderService) {
+  constructor(public dataService: DataService, private dropDownFilterService: DropdownFilterService, private MapBoxGeocoderService: MapBoxGeocoderService) {
     if (this.dataSourceObservable) {
       this.inputChangedDebouncer
         .do(val => {
@@ -173,7 +173,7 @@ export class DropdownFilterComponent implements OnInit {
     });
   }
 
-  selectOne(item) {
+  selectOne(item: any) {
     console.log("selectedItem: ", item);
     this.triggerObservable(null);   // clear map
     this.dropdownVisible = false;

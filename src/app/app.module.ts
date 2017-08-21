@@ -66,7 +66,7 @@ export function HttpLoaderFactory(http: Http) {
     }),
     BrowserAnimationsModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [UiService, CanDeactivateAfterChangeDetectionGuard, DataService, MapService, DropdownFilterService, MapBoxGeocoderService],
   bootstrap: [AppComponent]

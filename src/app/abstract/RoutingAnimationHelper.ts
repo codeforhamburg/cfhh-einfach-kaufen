@@ -8,7 +8,6 @@ declare abstract class WaitForChangeDetection {
 }
 
 
-@Component({})
 class WaitForChangeDetectionImpl implements AfterViewChecked, WaitForChangeDetection {
   constructor(protected cdRef: ChangeDetectorRef){
     this.viewChecked$ = new Subject<void>();
@@ -25,9 +24,8 @@ class WaitForChangeDetectionImpl implements AfterViewChecked, WaitForChangeDetec
   }
 }
 
-@Component({})
 export class Slideable extends WaitForChangeDetectionImpl {
-  constructor(protected cdRef: ChangeDetectorRef, private uiService: UiService){
+  constructor(protected cdRef: ChangeDetectorRef, public uiService: UiService){
     super(cdRef);
   }
 

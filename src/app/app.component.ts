@@ -30,8 +30,8 @@ import { trigger, state, animate, style, transition } from '@angular/animations'
 export class AppComponent {
   title = 'wbc';
 
-  constructor(private router: Router, private route: ActivatedRoute, private uiService: UiService,
-    private appRef: ApplicationRef, private changeDetectorRef: ChangeDetectorRef, private translate: TranslateService, private dataService: DataService) { 
+  constructor(private router: Router, private route: ActivatedRoute, public uiService: UiService,
+    private appRef: ApplicationRef, private changeDetectorRef: ChangeDetectorRef, private translate: TranslateService, public dataService: DataService) { 
         // this language will be used as a fallback when a translation isn't found in the current language
         translate.setDefaultLang('de');
 

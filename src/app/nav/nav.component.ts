@@ -9,17 +9,7 @@ import { UiService} from '../services/ui.service';
 })
 export class NavComponent implements OnInit {
 
-    constructor(private router: Router, private uiService: UiService) { }
-
-    // activateRoute(route, id) {
-    //     if (id > this.uiService.currentPosition) {
-    //         this.uiService.direction = 'down';
-    //     } else {
-    //         this.uiService.direction = 'up';
-    //     }
-    //     this.uiService.currentPosition = id;
-    //     this.router.navigateByUrl(route);
-    // }
+  constructor(private router: Router, public uiService: UiService) { }
 
     ngOnInit() {
     }

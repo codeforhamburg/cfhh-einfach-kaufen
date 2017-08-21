@@ -9,7 +9,7 @@ import { UiService } from '../services/ui.service';
 })
 export class InfoboxComponent implements OnInit {
 
-  constructor(private mapService: MapService, private uiService: UiService) { }
+  constructor(private mapService: MapService, public uiService: UiService) { }
 
   ngOnInit() {
   }

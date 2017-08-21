@@ -81,7 +81,7 @@ export class DataService {
         })
 
 
-        http.get("./assets/data/Hamburg_Stadtteile.geojson")
+        http.get("./assets/data/Hamburg_Stadtteile_compressed.geojson")
             .subscribe(data => {
                 let dataJson = data.json().features;
                 

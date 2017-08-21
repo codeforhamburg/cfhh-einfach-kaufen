@@ -32,9 +32,9 @@ import { UiService } from '../services/ui.service';
 })
 export class BottomRightComponent implements OnInit {
 
-    private langSwitch = false;
+    public langSwitch = false;
 
-    constructor(private translate: TranslateService, private uiService: UiService) { }
+    constructor(private translate: TranslateService, public uiService: UiService) { }
 
     ngOnInit() {
     }

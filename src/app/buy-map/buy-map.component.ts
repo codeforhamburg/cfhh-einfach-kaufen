@@ -30,8 +30,8 @@ export class BuyMapComponent extends Slideable implements OnInit {
 
     public orderId = 4;
 
-  constructor(private dataService: DataService, protected cdRef2: ChangeDetectorRef, private uiService2: UiService, private mapService: MapService) { 
-      super(cdRef2, uiService2);
+  constructor(public dataService: DataService, protected cdRef2: ChangeDetectorRef, public uiService: UiService, private mapService: MapService) { 
+      super(cdRef2, uiService);
 
   }
 
@@ -41,7 +41,7 @@ export class BuyMapComponent extends Slideable implements OnInit {
 
 
   openDetails(feature) {
-    this.uiService2.selectedFeature = feature;
-    this.uiService2.showSelectedFeature = true;
+    this.uiService.selectedFeature = feature;
+    this.uiService.showSelectedFeature = true;
   }
 }

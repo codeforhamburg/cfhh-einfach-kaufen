@@ -4,7 +4,7 @@
   </div>
   <input
     [(ngModel)]="input"
-    (ngModelChange)="onInputChange($event)"
+    (ngModelChange)="onInputChange()"
     (focus)="onFocus($event); hasFocus = true"
     (blur)="onBlur($event); hasFocus = false"
     (keydown)="inputKeyHandler($event)"

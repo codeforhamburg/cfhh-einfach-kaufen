@@ -17,7 +17,7 @@ export class MapService {
     private searchResultPopup;
 
 
-    constructor(private dataService: DataService, private uiService: UiService, private dropDownFilterService: DropdownFilterService ) { }
+    constructor(public dataService: DataService, public uiService: UiService, private dropDownFilterService: DropdownFilterService ) { }
 
 
     initMap(id) {

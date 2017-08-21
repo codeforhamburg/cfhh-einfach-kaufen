@@ -23,7 +23,7 @@ import {trigger, state, animate, style, transition} from '@angular/animations';
 })
 export class FilterComponent implements OnInit {
 
-  constructor(private dataService: DataService, private mapService: MapService, private uiService: UiService) { }
+  constructor(public dataService: DataService, public mapService: MapService, public uiService: UiService) { }
 
   ngOnInit() {
   }
