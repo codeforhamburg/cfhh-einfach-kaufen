@@ -10,12 +10,12 @@ import { UiService } from '../services/ui.service';
   animations: [
     trigger('slideInAnimation', [
         transition(':enter', [
-          style({transform: 'translateY(100%)', opacity: 0.5}),
+          style({transform: 'translateY(100%)', opacity: 0}),
           animate('300ms', style({transform: 'translateY(0)', opacity: 1}))
         ]),
         transition(':leave', [
           style({transform: 'translateY(0)', opacity: 1}),
-          animate('300ms', style({transform: 'translateY(100%)', opacity: 0.5}))
+          animate('300ms', style({opacity: 0}))
         ])
       ]),
     trigger('slideInAnimationFromRight', [

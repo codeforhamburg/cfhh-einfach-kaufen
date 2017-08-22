@@ -2,8 +2,8 @@
 <img class="wbc-bottom-right-icon" (click)="uiService.showAbout = !uiService.showAbout" src="assets/img/ueberUns.png" [class.active]="uiService.showAbout">
 <img class="wbc-bottom-right-icon lang-switcher" (click)="toggleLangSwitch()" src="assets/img/translate.png" [class.active]="langSwitch">
 
-<div id="wbc-lang-switch-list" *ngIf="langSwitch" [@slideInAnimation]>
-    <ul>
+<div id="wbc-lang-switch-list" *ngIf="langSwitch">
+    <ul [@slideInAnimation]>
         <li (click)="switchLang('en')">english</li>
         <li (click)="switchLang('de')">deutsch</li>
         <li (click)="switchLang('de')">trukmenisch</li>

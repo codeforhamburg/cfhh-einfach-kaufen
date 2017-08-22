@@ -8,9 +8,9 @@ export class UiService {
     public pos = 0;
     public direction = 'none';
     public currentPosition: number = undefined;
-    public showFooter: boolean = false;
-    public showImpressum: boolean = false;
-    public showAbout: boolean = false;
+    public showFooter = false;
+    public showImpressum = false;
+    public showAbout = false;
     public currentIndex = 3;
 
     public showSelectedFeature = false;
