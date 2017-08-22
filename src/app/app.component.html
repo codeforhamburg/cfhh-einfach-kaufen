@@ -1,4 +1,6 @@
 <wbc-nav></wbc-nav>
-<router-outlet></router-outlet>
+<div class="page" [@routerAnimations]="prepareRouteTransition(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+</div>
 <wbc-bottom-right></wbc-bottom-right>
 <wbc-footer></wbc-footer>

@@ -1,24 +1,17 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UiService } from '../services/ui.service';
 import { DataService } from '../services/data.service';
 
-import { slideVertical } from '../app-routing-animations';
-import { Slideable } from '../abstract/RoutingAnimationHelper';
+import { trigger, transition } from '@angular/animations';
 
 @Component({
   selector: 'wbc-buy-start',
   templateUrl: './buy-start.component.html',
-  styleUrls: ['./buy-start.component.scss'],
-  animations: [slideVertical]
-  // host: {'[@routerSlide]': 'direction'}
+  styleUrls: ['./buy-start.component.scss']
 })
-export class BuyStartComponent extends Slideable {
-
+export class BuyStartComponent {
     public orderId = 3;
     public direction;
 
-    constructor(public dataService: DataService, protected cdRef2: ChangeDetectorRef, private uiService2: UiService) {
-      super(cdRef2, uiService2);
-
-    }
+    constructor(public dataService: DataService, private uiService2: UiService) {}
 }

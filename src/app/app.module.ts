@@ -21,16 +21,14 @@ import {HttpModule, Http} from '@angular/http';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
-import { CanDeactivateAfterChangeDetectionGuard } from './guards/can-deactivate-after-change-detection.guard';
 import { FilterComponent } from './filter/filter.component';
 import { IconFilterComponent } from './icon-filter/icon-filter.component';
 import { InfoboxComponent } from './infobox/infobox.component';
 import { BottomRightComponent } from './bottom-right/bottom-right.component';
 import { DropdownFilterComponent } from './dropdown-filter/dropdown-filter.component';
-import { DropdownFilterService } from "./dropdown-filter/dropdown-filter.service"
+import { DropdownFilterService } from './dropdown-filter/dropdown-filter.service';
 import { FormsModule } from '@angular/forms';
 import { MapBoxSimpleMarkerComponent } from './mapbox-simple-marker/mapbox-simple-marker.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 
 export function HttpLoaderFactory(http: Http) {
     return new TranslateHttpLoader(http);
@@ -51,8 +49,7 @@ export function HttpLoaderFactory(http: Http) {
     InfoboxComponent,
     BottomRightComponent,
     DropdownFilterComponent,
-    MapBoxSimpleMarkerComponent,
-    NotFoundComponent
+    MapBoxSimpleMarkerComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +65,7 @@ export function HttpLoaderFactory(http: Http) {
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [UiService, CanDeactivateAfterChangeDetectionGuard, DataService, MapService, DropdownFilterService, MapBoxGeocoderService],
+  providers: [UiService, DataService, MapService, DropdownFilterService, MapBoxGeocoderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

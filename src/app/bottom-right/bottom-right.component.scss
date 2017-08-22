@@ -37,6 +37,10 @@
                 background: $darkBlue;
                 color: white;
             }
+
+            &:last-child {
+                border-bottom: none;
+            }
         }
     }
 }

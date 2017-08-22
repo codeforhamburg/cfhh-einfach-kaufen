@@ -1,9 +1,7 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UiService } from '../services/ui.service';
 import { DataService } from '../services/data.service';
 import { MapService } from '../services/map.service';
-import { slideVertical } from '../app-routing-animations';
-import { Slideable } from '../abstract/RoutingAnimationHelper';
 import {trigger, state, animate, style, transition} from '@angular/animations';
 
 
@@ -11,7 +9,7 @@ import {trigger, state, animate, style, transition} from '@angular/animations';
   selector: 'wbc-buy-map',
   templateUrl: './buy-map.component.html',
   styleUrls: ['./buy-map.component.scss'],
-  animations: [slideVertical, trigger(
+  animations: [trigger(
       'slideInAnimation', [
         transition(':enter', [
           style({transform: 'translateY(100%)', opacity: 0.5}),
@@ -26,14 +24,11 @@ import {trigger, state, animate, style, transition} from '@angular/animations';
   // host: {'[@routerSlide]': 'uiService.direction'}
 
 })
-export class BuyMapComponent extends Slideable implements OnInit {
+export class BuyMapComponent implements OnInit {
 
     public orderId = 4;
 
-    constructor(public dataService: DataService, protected cdRef2: ChangeDetectorRef, public uiService2: UiService, private mapService: MapService) {
-      super(cdRef2, uiService2);
-
-  }
+    constructor(public dataService: DataService, public uiService2: UiService, private mapService: MapService) {}
 
   ngOnInit() {
     this.mapService.initMap('wbc-buy-map');
