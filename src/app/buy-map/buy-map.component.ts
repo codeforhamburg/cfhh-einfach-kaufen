@@ -30,18 +30,18 @@ export class BuyMapComponent extends Slideable implements OnInit {
 
     public orderId = 4;
 
-    constructor(public dataService: DataService, protected cdRef2: ChangeDetectorRef, public uiService: UiService, private mapService: MapService) { 
-      super(cdRef2, uiService);
+    constructor(public dataService: DataService, protected cdRef2: ChangeDetectorRef, public uiService2: UiService, private mapService: MapService) {
+      super(cdRef2, uiService2);
 
   }
 
   ngOnInit() {
-    this.mapService.initMap('wbc-buy-map')
+    this.mapService.initMap('wbc-buy-map');
   }
 
 
   openDetails(feature) {
-    this.uiService.selectedFeature = feature;
-    this.uiService.showSelectedFeature = true;
+    this.uiService2.selectedFeature = feature;
+    this.uiService2.showSelectedFeature = true;
   }
 }

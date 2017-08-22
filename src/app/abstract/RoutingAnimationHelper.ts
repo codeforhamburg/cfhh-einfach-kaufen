@@ -25,14 +25,14 @@ class WaitForChangeDetectionImpl implements AfterViewChecked, WaitForChangeDetec
 }
 
 export class Slideable extends WaitForChangeDetectionImpl {
-  constructor(protected cdRef: ChangeDetectorRef, public uiService: UiService){
+  constructor(protected cdRef: ChangeDetectorRef, private uiService: UiService){
     super(cdRef);
   }
 
   @HostBinding('@slideVertical')
   get slideVertical(){
-    let slideDirection = this.uiService.getDirection();
-    if(slideDirection){
+    const slideDirection = this.uiService.getDirection();
+    if (slideDirection){
       return slideDirection === 'top' ? 'fromTop' : 'fromBot';
     }
     return null;

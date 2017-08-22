@@ -1,11 +1,11 @@
 <div id="wbc-donate-map" class="wbc-map">
-    <div *ngIf="!uiService.showFilter" class="wbc-menu-button wbc-hidden-lg" (click)="uiService.showFilter = true">
+    <div *ngIf="!uiService2.showFilter" class="wbc-menu-button wbc-hidden-lg" (click)="uiService2.showFilter = true">
         <div></div>
         <div></div>
         <div></div> 
     </div>
-    <wbc-filter [ngClass]="{'visible' : uiService.showFilter}"></wbc-filter>
-    <wbc-infobox *ngIf="uiService.showSelectedFeature" [@slideInAnimation] ></wbc-infobox>
+    <wbc-filter [ngClass]="{'visible' : uiService2.showFilter}"></wbc-filter>
+    <wbc-infobox *ngIf="uiService2.showSelectedFeature" [@slideInAnimation] ></wbc-infobox>
     <span class="wbc-back down" routerLink="/spenden"></span>
 
 </div>
@@ -13,12 +13,12 @@
 <wbc-dropdown-filter></wbc-dropdown-filter>
 
 <div id="wbc-popup">
-    <div *ngIf="uiService.popupFeature">
+    <div *ngIf="uiService2.popupFeature">
         <div class="wbc-content">
-            <h3>{{uiService.popupFeature.properties.title}}</h3>
-            <p class="body1">{{uiService.popupFeature.properties.address}}</p>
-            <p class="body2">T - {{uiService.popupFeature.properties.tel}}</p>
+            <h3>{{uiService2.popupFeature.properties.title}}</h3>
+            <p class="body1">{{uiService2.popupFeature.properties.address}}</p>
+            <p class="body2">T - {{uiService2.popupFeature.properties.tel}}</p>
         </div>
-        <div class="wbc-more-button" (click)="openDetails(uiService.popupFeature)">{{'Mehr Information' | translate}}</div>
+        <div class="wbc-more-button" (click)="openDetails(uiService2.popupFeature)">{{'Mehr Information' | translate}}</div>
     </div>
 </div>
