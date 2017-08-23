@@ -166,12 +166,15 @@ wbc-infobox {
 
 .wbc-close-button {
     position: absolute;
-    top: 0.3em;
-    right: 0.3em;
     cursor: pointer;
-    font-size: 1.2em;
-    font-weight: bold;
-    padding: 0.5em 1em;
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    line-height: 36px;
+    top: 0;
+    right: 0;
+    background-color: white;
 
     &:hover {
         background: #ccc;
