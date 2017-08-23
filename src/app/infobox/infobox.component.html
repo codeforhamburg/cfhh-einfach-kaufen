@@ -1,37 +1,38 @@
 <span class="wbc-close-button" (click)="uiService.showSelectedFeature = false">x</span>
+<div class="infobox_content">
+    <h2 class="title">{{uiService.selectedFeature.properties.title}}</h2>
 
-<h2 class="title">{{uiService.selectedFeature.properties.title}}</h2>
+    <div class="col_2 flex_item">
+        <h3>{{'Ueber uns' | translate}}</h3>
+        <p>{{uiService.selectedFeature.properties.descde}}</p>
+    </div>
 
-<div class="col_2 flex_item">
-    <h3>{{'Ueber uns' | translate}}</h3>
-    <p>{{uiService.selectedFeature.properties.descde}}</p>
-</div>
-
-<div class="col_1 flex_item">
-    <!-- <div class="pic" [ngStyle]="{'background-image': 'url(' + uiService.selectedFeature.properties.img + ')'}"></div> -->
-    <img class="pic" src={{uiService.selectedFeature.properties.img}}>
-</div>
+    <div class="col_1 flex_item">
+        <!-- <div class="pic" [ngStyle]="{'background-image': 'url(' + uiService.selectedFeature.properties.img + ')'}"></div> -->
+        <img class="pic" src={{uiService.selectedFeature.properties.img}}>
+    </div>
 
 
-<div class="col_3 flex_item">
-    <h3>{{'Bitte Mitbringen' | translate}}</h3>
-    <ul>
-        <li>stuff</li>
-        <li>mehr stuff</li>
-        <li>nocht mehr</li>
-        <li>das auch</li>
-        <li>alles</li>
-    </ul>
-</div>
+    <div class="col_3 flex_item">
+        <h3>{{'Bitte Mitbringen' | translate}}</h3>
+        <ul>
+            <li>stuff</li>
+            <li>mehr stuff</li>
+            <li>nocht mehr</li>
+            <li>das auch</li>
+            <li>alles</li>
+        </ul>
+    </div>
 
-<div class="col_4 flex_item">
-    <h3> {{'Kontakt' | translate}} </h3>
-    <p>{{uiService.selectedFeature.properties.title}} </p>
-    <p>{{uiService.selectedFeature.properties.address}}</p>
-    <p>{{uiService.selectedFeature.properties.opening}}</p>
-    <div class="wbc-triple-button">
-        <a class="mail" target="_blank" href="mailto:{{uiService.selectedFeature.properties.email}}"></a>
-        <a class="map" target="_blank" href="https://www.google.com/maps/dir/?api=1&destination=@{{uiService.selectedFeature.properties.lat}},{{uiService.selectedFeature.properties.lng}},16z"></a>
-        <a class="tel" target="_blank" href="tel:{{uiService.selectedFeature.properties.tel}}"></a>
+    <div class="col_4 flex_item">
+        <h3> {{'Kontakt' | translate}} </h3>
+        <p>{{uiService.selectedFeature.properties.title}} </p>
+        <p>{{uiService.selectedFeature.properties.address}}</p>
+        <p>{{uiService.selectedFeature.properties.opening}}</p>
+        <div class="wbc-triple-button">
+            <a class="mail" target="_blank" href="mailto:{{uiService.selectedFeature.properties.email}}"></a>
+            <a class="map" target="_blank" href="https://www.google.com/maps/dir/?api=1&destination=@{{uiService.selectedFeature.properties.lat}},{{uiService.selectedFeature.properties.lng}},16z"></a>
+            <a class="tel" target="_blank" href="tel:{{uiService.selectedFeature.properties.tel}}"></a>
+        </div>
     </div>
 </div>
