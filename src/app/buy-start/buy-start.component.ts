@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UiService } from '../services/ui.service';
 import { DataService } from '../services/data.service';
 
-import { trigger, transition } from '@angular/animations';
-
 @Component({
   selector: 'wbc-buy-start',
   templateUrl: './buy-start.component.html',
