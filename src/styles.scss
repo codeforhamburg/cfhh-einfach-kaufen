@@ -45,6 +45,11 @@ img {
     left: 20%;
     font-size: 75px;
     max-width: 80%;
+    padding-bottom: 14vh;
+
+    @media screen and (max-width: 768px){
+        font-size: 10vw;
+    }
 }
 
 .wbc-four-row {
@@ -54,7 +59,6 @@ img {
     position: relative;
     width: 80%;
     left: 10%;
-    top: 25vh;
     @media screen and (max-width: 768px){
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr;
