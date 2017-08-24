@@ -4,6 +4,7 @@ import { BuyStartComponent } from './buy-start/buy-start.component';
 import { BuyMapComponent } from './buy-map/buy-map.component';
 import { DonateMapComponent } from './donate-map/donate-map.component';
 import { DonateStartComponent } from './donate-start/donate-start.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
     { path: '', redirectTo: 'kaufen', pathMatch: 'full' },
@@ -15,7 +16,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),
+    BrowserAnimationsModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

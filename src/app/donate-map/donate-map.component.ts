@@ -1,7 +1,6 @@
-import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UiService } from '../services/ui.service';
 import { MapService } from '../services/map.service';
-import {trigger, state, animate, style, transition} from '@angular/animations';
 
 @Component({
   selector: 'wbc-donate-map',

@@ -44,8 +44,9 @@ export class AppComponent {
          // the lang to use, if the lang isn't available, it will use the current loader to get them
         translate.use('de');
       }
-      prepareRouteTransition(outlet) {
-        const animation = outlet.activatedRouteData['animation'] || {};
-        return animation['value'] || null;
-      }
+  prepareRouteTransition(outlet) {
+    this.uiService.currentIndex = outlet.activatedRouteData['slideIndex'];
+    const animation = outlet.activatedRouteData['animation'] || {};
+    return animation['value'] || null;
+  }
 }

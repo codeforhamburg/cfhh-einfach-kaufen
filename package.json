@@ -28,11 +28,13 @@
     "@ngx-translate/core": "^7.1.0",
     "@ngx-translate/http-loader": "^0.1.0",
     "@turf/turf": "^4.6.1",
+    "classlist.js": "^1.1.20150312",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "mapbox-gl": "^0.39.1",
     "rxjs": "^5.1.0",
     "turf": "^3.0.14",
+    "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {

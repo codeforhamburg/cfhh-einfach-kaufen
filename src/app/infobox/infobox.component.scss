@@ -54,32 +54,19 @@
 //     }
 // }
 
-:host {
-    display: flex;
-    flex-wrap: wrap;
-    font: 16px nowRegular;
-}
 
-.wbc-close-button {
-    padding: 0;
-    width: 36px;
-    height: 36px;
-    text-align: center;
-    line-height: 36px;
-    top: 0;
-    right: 0;
-    background-color: white;
-}
 
-.flex_item {
-    min-width: 160px;
-    flex: 1;
-    max-height: 30vh;
-    // min-height: 20vh;
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding: 1em 1em 0 1em;
-}
+// .wbc-close-button {
+//     padding: 0;
+//     width: 36px;
+//     height: 36px;
+//     text-align: center;
+//     line-height: 36px;
+//     top: 0;
+//     right: 0;
+//     background-color: white;
+// }
+
 .title {
     font: 18px nowMedium;
     margin: 0;
